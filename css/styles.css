@@ -1,0 +1,717 @@
+/* Main Styles */
+
+body {
+  font-family: var(--font-family-primary);
+  color: var(--text-primary);
+  background-color: var(--bg-light);
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-sticky);
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-md) 0;
+}
+
+.header-container {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 1. 기본 로고 스타일 (SUKHOON 부분) */
+.logo {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;    /* 굵게 */
+  font-size: 1.2rem;   
+  color: #1a1a1a;      /* SUKHOON은 진한 검정색 */
+  cursor: pointer;
+  letter-spacing: -0.02em;
+}
+
+/* 2. 포인트 컬러 (.CPA 부분) */
+.logo-point {
+  color: #3b82f6;      /* 여기만 파란색으로 변경 */
+  font-weight: 600;    /* 굵기 유지 */
+}
+
+/* Hero Section - 레이아웃 여백 수정 */
+.hero {
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  
+  /* [수정 1] 상단 여백 대폭 증가 (60px -> 160px) */
+  /* 이제 사진이 잘리지 않고 적당히 아래로 내려올 겁니다 */
+  padding-top: 160px; 
+  padding-bottom: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.hero-container {
+  width: 100%;
+  /* [수정 2] 가로 폭을 넓혀서 글자가 한 줄에 들어갈 공간 확보 */
+  max-width: 1200px; 
+  text-align: center;
+}
+
+/* 프로필 사진 */
+.profile-image-wrapper {
+  position: relative;
+  width: 200px;  /* 크기 대폭 확대 */
+  height: 200px; /* 너비와 똑같이 맞춤 */
+  margin: 0 auto 30px; 
+  padding: 5px;  /* 테두리 두께 살짝 굵게 */
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6); 
+  border-radius: 50%;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #fff;
+  overflow: hidden;
+  /* 테두리 안쪽에 흰색 여백을 주고 싶다면 아래 border 추가 */
+  border: 3px solid #fff; 
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 메인 타이틀 - 힙하게 바꾸기 */
+.hero-title {
+  /* [수정 3] 글자 크기를 살짝 줄여서 한 줄에 쏙 들어오게 조정 (3.5rem -> 3rem) */
+  font-size: 3rem; 
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  font-family: 'Pretendard', -apple-system, sans-serif;
+  color: #111111;
+  letter-spacing: -0.02em;
+  word-break: keep-all; 
+}
+
+/* 4. 강조(Context, Engineering) 부분 보라색 그라데이션 */
+.hero-title .highlight {
+  background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%); /* 파랑->보라 */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; /* fallback */
+  display: inline-block; /* 그라데이션 잘 먹게 */
+}
+
+/* 2. 서브타이틀 글씨 크기 확대 (기존 1.25rem -> 1.5rem) */
+.hero-subtitle {
+  font-size: 1.5rem; /* 약 24px 정도로 커짐 (가독성 UP) */
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 900px;  /* 글씨가 커진 만큼 가로 폭도 넓혀줌 */
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 500;
+  word-break: keep-all; /* 단어 끊김 방지 */
+}
+
+/* 버튼 섹션 */
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+/* 서브텍스트 내의 굵은 글씨 (b 태그) 스타일 */
+.hero-subtitle b {
+  font-weight: 700; /* 진하게 */
+  color: #111;      /* 검정색으로 또렷하게 */
+}
+
+/* AI 기술 강조 (파란색 + 굵게) */
+.text-blue {
+  font-weight: 600; /* 아주 두껍게 */
+  color: #3b82f6;   /* 쨍한 파란색 (원하시면 그라데이션으로 변경 가능) */
+}
+
+/* 버튼 스타일 다듬기 (크기 확대 버전) */
+.btn {
+  /* 1. 안쪽 여백을 대폭 늘림 (위아래 18px, 양옆 40px) -> 버튼이 뚱뚱해짐 */
+  padding: 18px 40px;
+  
+  /* 2. 글자 크기 확대 (1rem -> 1.25rem) */
+  font-size: 1.25rem; 
+  
+  /* 3. 글자 두께 강화 (600 -> 700) */
+  font-weight: 700;
+  
+  /* 4. 모서리를 조금 더 둥글게 (8px -> 12px) */
+  border-radius: 12px;
+  
+  /* 5. [중요] 최소 너비 설정: 'GitHub' 글자가 짧아도 버튼 길이를 확보해줌 */
+  min-width: 180px;
+  
+  /* 정렬 및 애니메이션 */
+  display: inline-flex; /* 내부 아이콘/글자 중앙 정렬 */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1; /* 글자 높이 중앙 정렬 보정 */
+}
+
+/* 검정색 버튼 (Contact Me) */
+.btn-primary {
+  background: #111; 
+  color: #fff;
+  border: 1px solid #111; /* 테두리를 줘서 크기 미세 조정 */
+}
+
+/* 흰색 버튼 (GitHub) */
+.btn-secondary {
+  background-color: #fff;
+  color: #111;
+  border: 1px solid #ddd; /* 연한 회색 테두리 */
+  gap: 10px; /* 아이콘과 글자 사이 간격 */
+}
+
+/* 마우스 올렸을 때 공통 효과 */
+.btn:hover {
+  transform: translateY(-3px); /* 살짝 위로 뜸 */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* 그림자 추가로 입체감 */
+}
+/* About Me Section */
+.about-me {
+  background-color: #f9fafb;
+  padding: var(--space-3xl) var(--space-md);
+}
+
+.about-me-container {
+  max-width: var(--container-md);
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: var(--space-2xl);
+  text-align: center;
+}
+
+/* About Card (White Card Container) */
+.about-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+.about-card-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: #3498db;
+  margin-bottom: var(--space-2xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.about-card-title i {
+  font-size: var(--font-size-2xl);
+  color: #3498db;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 80px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 25px;
+  top: 30px;
+  bottom: 30px;
+  width: 3px;
+  background: linear-gradient(180deg, #3498db 0%, #e0e0e0 100%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-md);
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -55px;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
+  border: 4px solid #3498db;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #3498db;
+}
+
+.timeline-content {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  transition: all var(--transition-base);
+}
+
+.timeline-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.timeline-period {
+  font-size: var(--font-size-base);
+  color: #888888;
+  margin-bottom: 12px;
+  font-weight: var(--font-weight-normal);
+}
+
+.timeline-description {
+  font-size: var(--font-size-base);
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Skills & Certificates Section */
+.skills-certificates {
+  background-color: #ffffff;
+  padding: var(--space-3xl) var(--space-md);
+}
+
+.skills-certificates-container {
+  max-width: var(--container-lg);
+  margin: 0 auto;
+}
+
+.skills-certificates-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  margin-top: var(--space-2xl);
+}
+
+.subsection-title {
+  font-size:2rem;
+  font-weight: var(--font-weight-bold);
+  color: #1a1a1a;
+  margin-bottom: var(--space-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.subsection-icon {
+  font-size: var(--font-size-3xl);
+}
+
+/* 서브 타이틀 (Tech Stack, Certificates) */
+.section-subtitle {
+  font-size: 1.3rem; /* 기존 1.1rem → 1.3rem */
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Tech Stack */
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-tag {
+  display: inline-block;
+  padding: 8px 16px; /* 6px 14px → 8px 16px */
+  border-radius: 8px;
+  font-size: 17px; /* 16px → 17px */
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: default;
+  border: 1px solid transparent;
+}
+
+.tech-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tag Colors */
+.tag-blue {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border-color: #dbeafe;
+}
+
+.tag-green {
+  background-color: #f0fdf4;
+  color: #15803d;
+  border-color: #dcfce7;
+}
+
+.tag-cyan {
+  background-color: #ecfeff;
+  color: #0891b2;
+  border-color: #cffafe;
+}
+
+.tag-gray {
+  background-color: #f9fafb;
+  color: #374151;
+  border-color: #e5e7eb;
+}
+
+.tag-red {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.tag-purple {
+  background-color: #faf5ff;
+  color: #7c3aed;
+  border-color: #e9d5ff;
+}
+
+.tag-orange {
+  background-color: #fff7ed;
+  color: #ea580c;
+  border-color: #fed7aa;
+}
+
+.tag-yellow {
+  background-color: #fefce8;
+  color: #ca8a04;
+  border-color: #fef3c7;
+}
+
+/* Certificates */
+.certificate-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.certificate-item {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* 10px → 12px */
+  
+  padding: 12px 16px; /* 10px 14px → 12px 16px */
+  
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.certificate-item:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  transform: translateY(-2px);
+}
+
+.certificate-icon {
+  font-size: 1.6rem; /* 1.4rem → 1.6rem */
+  flex-shrink: 0;
+  width: 36px; /* 32px → 36px */
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.certificate-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px; /* 2px → 3px */
+}
+
+.certificate-name {
+  font-size: 1rem; /* 0.9rem → 1rem */
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+
+.certificate-date {
+  font-size: 0.85rem; /* 0.75rem → 0.85rem */
+  font-weight: 500;
+  color: #888;
+}
+
+/* Let's Connect Section */
+.connect {
+  background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-accent) 100%);
+  color: var(--text-light);
+  padding: var(--space-3xl) var(--space-md);
+}
+
+.connect-container {
+  max-width: var(--container-lg);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.connect-title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-lg);
+  color: #ffffff;
+}
+
+.connect-description {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-2xl);
+  color: var(--text-muted);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-md);
+  max-width: 900px;
+  margin: 0 auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 1rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  font-size: 1.3rem;
+  font-weight: 500;
+  flex: 0 1 auto;
+  min-width: 200px;
+}
+
+.contact-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+.contact-item .icon {
+  font-size: var(--font-size-lg);
+  min-width: 30px;
+  text-align: center;
+}
+
+.contact-item a {
+  color: var(--text-light);
+  transition: color var(--transition-base);
+}
+
+.contact-item a:hover {
+  color: var(--color-accent-1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero {
+    margin-top: 30px;
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .profile-image-wrapper {
+    width: 150px;
+    height: 150px;
+    margin-bottom: var(--space-xl);
+  }
+
+  .hero-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    padding: var(--space-sm) var(--space-lg);
+  }
+
+  .connect-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .connect-description {
+    font-size: var(--font-size-base);
+  }
+
+  .contact-info {
+    flex-direction: column;
+    max-width: 400px;
+  }
+
+  .contact-item {
+    font-size: var(--font-size-base);
+    min-width: auto;
+  }
+
+  .about-me {
+    padding: var(--space-2xl) var(--space-md);
+  }
+
+  .about-card {
+    padding: var(--space-lg);
+    border-radius: 12px;
+    max-width: 100%;
+  }
+
+  .about-card-title {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-lg);
+  }
+
+  .section-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-xl);
+  }
+
+  .timeline {
+    padding-left: 60px;
+  }
+
+  .timeline::before {
+    left: 18px;
+    width: 2px;
+  }
+
+  .timeline-dot {
+    left: -42px;
+    width: 36px;
+    height: 36px;
+    border-width: 3px;
+    font-size: 16px;
+  }
+
+  .timeline-content {
+    padding: 0;
+  }
+
+  .timeline-title {
+    font-size: var(--font-size-base);
+  }
+
+  .timeline-period {
+    font-size: var(--font-size-sm);
+  }
+
+  .timeline-description {
+    font-size: var(--font-size-sm);
+  }
+
+  .timeline-item {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+  }
+
+  .skills-certificates {
+    padding: var(--space-2xl) var(--space-md);
+  }
+
+  .skills-certificates-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .subsection-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .tech-tag {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .certificate-list {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .certificate-item {
+    padding: var(--space-md);
+  }
+
+  .certificate-icon {
+    font-size: var(--font-size-xl);
+    width: 36px;
+    height: 36px;
+  }
+
+  .certificate-name {
+    font-size: var(--font-size-base);
+    font-weight: 800;
+  }
+
+  .certificate-date {
+    font-size: var(--font-size-xs);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .profile-image-wrapper {
+    width: 180px;
+    height: 180px;
+  }
+}
