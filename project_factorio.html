@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Cloud Infra Migration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="max-w-4xl mx-auto px-4 py-12">
+        <a href="index.html" class="inline-flex items-center text-green-600 hover:text-green-800 mb-8 font-medium">
+            <i class="fas fa-arrow-left mr-2"></i> Back to Home
+        </a>
+
+        <header class="mb-12">
+            <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full mb-4 inline-block">Infra Engineering</span>
+            <h1 class="text-4xl font-extrabold text-slate-900 mb-4">GCP 기반 Linux 게임 서버 구축</h1>
+            <p class="text-xl text-slate-600">온프레미스에서 클라우드(IaaS)로의 서비스 마이그레이션 및 24/7 운영</p>
+        </header>
+
+        <div class="grid gap-8">
+            <!-- Tech Stack -->
+            <section class="bg-white p-6 rounded-2xl shadow-sm">
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-slate-100 rounded-lg text-sm font-bold">GCP Compute Engine</span>
+                    <span class="px-3 py-1 bg-slate-100 rounded-lg text-sm font-bold">Debian Linux</span>
+                    <span class="px-3 py-1 bg-slate-100 rounded-lg text-sm font-bold">VPC/Firewall</span>
+                    <span class="px-3 py-1 bg-slate-100 rounded-lg text-sm font-bold">Bash Shell</span>
+                </div>
+            </section>
+
+            <!-- Context -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm">
+                <h2 class="text-2xl font-bold mb-4 text-slate-800">Context & Problem</h2>
+                <p class="leading-relaxed text-slate-600 mb-4">
+                    지인들과 'Factorio'라는 게임을 즐기던 중, P2P 연결 방식의 한계를 겪었습니다. 호스트(Host) 플레이어가 접속을 종료하면 다른 사람들도 게임을 할 수 없었고, 호스트 컴퓨터의 네트워크 상태에 따라 랙(Lag)이 발생했습니다.
+                </p>
+                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                    <p class="font-bold text-red-700">핵심 문제: 단일 장애 지점(SPOF)인 호스트 의존성 및 가용성 부족</p>
+                </div>
+            </section>
+
+            <!-- Implementation -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm">
+                <h2 class="text-2xl font-bold mb-4 text-slate-800">Implementation Details</h2>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">1. 클라우드 리소스 프로비저닝</h3>
+                        <p class="text-slate-600">
+                            GCP에서 <strong>e2-medium</strong> 인스턴스를 생성하고 <strong>Debian Linux</strong> OS를 설치했습니다. 게임 서버의 메모리 요구사항을 분석하여 스왑 메모리(Swap Memory)를 설정해 비용 효율적인 스펙을 구성했습니다.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">2. 네트워크 및 보안 설정</h3>
+                        <p class="text-slate-600">
+                            외부 접속을 위해 <strong>고정 IP(Static IP)</strong>를 할당받고, VPC 방화벽 규칙에서 게임이 사용하는 <strong>UDP 34197 포트</strong>를 개방했습니다. SSH 접속 보안을 위해 키 기반 인증 방식을 적용했습니다.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">3. 프로세스 관리 및 자동화</h3>
+                        <p class="text-slate-600">
+                            SSH 세션이 끊겨도 서버가 유지되도록 <code>nohup</code>을 사용해 백그라운드 데몬으로 실행했습니다. 또한 <code>run.sh</code>, <code>stop.sh</code> 스크립트를 작성하여 서버 제어를 간편화했습니다.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lesson Learned -->
+            <section class="bg-slate-900 text-white p-8 rounded-2xl">
+                <h2 class="text-2xl font-bold mb-4">Lesson Learned</h2>
+                <p class="leading-relaxed opacity-90">
+                    이 프로젝트는 단순한 게임 서버 구축을 넘어, <strong>"서비스를 내 컴퓨터 밖(Cloud)으로 옮길 때 고려해야 할 인프라 요소들"</strong>을 몸으로 익힌 경험이었습니다.
+                    리눅스 파일 시스템 권한, 포트 포워딩, 백그라운드 프로세스 관리 등 엔지니어링의 기초 체력을 실제 운영(500시간 이상 무중단)을 통해 다질 수 있었습니다.
+                </p>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

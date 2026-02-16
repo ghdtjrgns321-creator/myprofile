@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홍석훈 | Data Analyst & CPA</title>
+    <meta name="description" content="재무적 논리를 디지털 기술로 재해석하는 데이터 분석가 홍석훈의 개인 프로필 웹사이트">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(to right, #2563eb, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        html { scroll-behavior: smooth; }
+        
+        /* Quote Mark for Feedback */
+        .quote-icon {
+            opacity: 0.1;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 4rem;
+            color: #2563eb;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <nav class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="#" class="flex-shrink-0 font-bold text-xl tracking-tight text-slate-900 hover:opacity-80 transition">
+                    SUKHOON<span class="text-blue-600">.CPA(Articled)</span>
+                </a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">About</a>
+                    <a href="#skills" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Skills</a>
+                    <a href="#projects" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Projects</a>
+                    <a href="#contact" class="text-slate-600 hover:text-blue-600 font-medium transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-20 bg-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="mb-6 inline-block p-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg">
+                    <img src="images/sukhoon_1.png" onerror="this.src='https://placehold.co/200x200?text=Profile+Image'" alt="홍석훈훈 프로필" class="w-48 h-48 rounded-full border-4 border-white object-cover object-top bg-white">
+                </div>
+            
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">
+                재무적 논리를 <span class="gradient-text">디지털 기술(AI)</span>로 재해석하는<br>
+                데이터분석가 홍석훈입니다.
+            </h1>
+            
+            <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                <span class="font-semibold text-slate-800">회계사(CPA)의 분석적 사고</span>와 
+                <span class="font-semibold text-slate-800">재무적 지식</span> 을 바탕으로,<br>
+                비즈니스 의사결정 과정을 <span class="text-blue-600 font-bold">AI</span>로 혁신하겠습니다.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="px-8 py-3 bg-slate-900 text-white font-semibold rounded-lg hover:bg-slate-800 transition shadow-lg transform hover:-translate-y-0.5">
+                    Contact Me
+                </a>
+                <a href="https://github.com/ghdtjrgns321-creator/Digital-Audit-Portfolio" target="_blank" class="px-8 py-3 bg-white text-slate-900 border border-slate-300 font-semibold rounded-lg hover:bg-slate-50 transition shadow-sm transform hover:-translate-y-0.5 flex items-center justify-center">
+                    <i class="fab fa-github mr-2 text-xl"></i>GitHub
+                </a>
+            </div>
+        </div>
+    </header>
+
+<section id="about" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">About Me</h2>
+        
+        <div class="flex justify-center">
+            <div class="bg-slate-50 p-8 rounded-2xl shadow-sm border border-slate-100 max-w-3xl w-full">
+                <h3 class="text-xl font-bold text-blue-600 mb-8 flex items-center border-b border-slate-200 pb-4">
+                    <i class="fas fa-briefcase w-8"></i> Experience & Career
+                </h3>
+
+                <div class="space-y-8 relative">
+
+                    <div class="absolute left-0 top-3 bottom-3 w-8 flex justify-center">
+                        <div class="w-[2px] bg-slate-200 h-full"></div>
+                    </div>
+
+                    <div class="relative pl-10">
+                        <div class="absolute left-0 top-2 w-8 flex justify-center">
+                            <div class="w-4 h-4 bg-blue-500 rounded-full border-4 border-white shadow-sm ring-1 ring-blue-500"></div>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">팀스파르타 (POSCO 운영매니저)</h4>
+                        <p class="text-sm text-slate-500 font-medium mb-2">2025.07 - 2025.08</p>
+                        <p class="text-slate-600">포스코 현직자 대상 AI/Data 프로젝트 교육 과정 기획 및 수강생 관리</p>
+                    </div>
+
+                    <div class="relative pl-10">
+                        <div class="absolute left-0 top-2 w-8 flex justify-center">
+                            <div class="w-4 h-4 bg-blue-500 rounded-full border-4 border-white shadow-sm ring-1 ring-blue-500"></div>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">LG 생활건강 (영업관리)</h4>
+                        <p class="text-sm text-slate-500 font-medium mb-2">2022.07 - 2022.12</p>
+                        <p class="text-slate-600">하이퍼 마켓 채널 영업 전략, 판매 계획 수립 및 유통 채널 관리.</p>
+                    </div>
+
+                    <div class="relative pl-10">
+                        <div class="absolute left-0 top-2 w-8 flex justify-center">
+                            <div class="w-4 h-4 bg-slate-300 rounded-full border-4 border-white shadow-sm ring-1 ring-slate-300"></div>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">대한민국 육군 (병장 만기전역)</h4>
+                        <p class="text-sm text-slate-500 font-medium mb-2">2014.03 - 2015.12</p>
+                    </div>
+
+                    <div class="relative pl-10 group">
+                        <div class="absolute left-0 top-2 w-8 flex justify-center">
+                            <div class="w-4 h-4 bg-slate-200 rounded-full border-4 border-white shadow-sm ring-1 ring-slate-200 group-hover:ring-slate-100 transition-all"></div>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg tracking-tight">성균관대학교 (경영학과)</h4>
+                        <p class="text-sm text-slate-500 font-medium mb-2">2013.03 - 2022.02</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="skills" class="py-20 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Skills & Certificates</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-code text-slate-400 mr-3"></i>Tech Stack
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-blue-50 text-blue-700 border border-blue-100 rounded-lg font-semibold shadow-sm">Python</span>
+                        <span class="px-4 py-2 bg-blue-50 text-blue-700 border border-blue-100 rounded-lg font-semibold shadow-sm">SQL</span>
+                        <span class="px-4 py-2 bg-green-50 text-green-700 border border-green-100 rounded-lg font-semibold shadow-sm">Pandas</span>
+                        <span class="px-4 py-2 bg-orange-50 text-orange-700 border border-orange-100 rounded-lg font-semibold shadow-sm">ML/DL</span>
+                        <span class="px-4 py-2 bg-sky-50 text-sky-700 border border-sky-100 rounded-lg font-semibold shadow-sm">LangChain/LangGraph</span>
+                        <span class="px-4 py-2 bg-yellow-50 text-yellow-700 border border-yellow-100 rounded-lg font-semibold shadow-sm">FastAPI</span>
+                        <span class="px-4 py-2 bg-slate-50 text-slate-700 border border-slate-100 rounded-lg font-semibold shadow-sm">Git</span>
+                        <span class="px-4 py-2 bg-red-50 text-red-700 border border-red-100 rounded-lg font-semibold shadow-sm">Streamlit</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-center">
+                        <i class="fas fa-award text-slate-400 mr-3"></i>Certificates
+                    </h3>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <li class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center space-x-3 hover:border-blue-300 transition">
+                            <i class="fas fa-database text-blue-500 text-xl"></i>
+                            <div>
+                                <span class="block font-bold text-slate-800">SQLD</span>
+                                <span class="text-xs text-slate-500">2025.09 취득</span>
+                            </div>
+                        </li>
+                        
+                        <li class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center space-x-3 hover:border-blue-300 transition">
+                            <i class="fas fa-chart-bar text-green-500 text-xl"></i>
+                            <div>
+                                <span class="block font-bold text-slate-800">ADsP</span>
+                                <span class="text-xs text-slate-500">2025.09 취득</span>
+                            </div>
+                        </li>
+
+                        <li class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center space-x-3 hover:border-blue-300 transition">
+                            <i class="fas fa-book-open text-indigo-500 text-xl"></i>
+                            <div>
+                                <span class="block font-bold text-slate-800">재무빅데이터분석사2급</span>
+                                <span class="text-xs text-slate-500">2025.09 취득</span>
+                            </div>
+                        </li>
+
+                        <li class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center space-x-3 hover:border-blue-300 transition">
+                            <i class="fas fa-language text-purple-500 text-xl"></i>
+                            <div>
+                                <span class="block font-bold text-slate-800">AICE Associate</span>
+                                <span class="text-xs text-slate-500">2025.12 취득</span>
+                            </div>
+                        </li>
+
+                        <li class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center space-x-3 hover:border-blue-300 transition">
+                            <i class="fas fa-hourglass-half text-orange-400 text-xl"></i>
+                            <div>
+                                <span class="block font-bold text-slate-800">빅데이터분석기사</span>
+                                <span class="text-xs text-slate-500">2025.12 취득</span>
+                        <li class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center space-x-3 hover:border-blue-300 transition">
+                            <i class="fas fa-hourglass-half text-orange-400 text-xl"></i>
+                            <div>
+                                <span class="block font-bold text-slate-800">TOEIC 915</span>
+                                <span class="text-xs text-slate-500">2025.12 취득</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Featured Projects</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                 <a href="project_final.html" class="group block bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col relative">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">NEW</div>
+                    
+                    <div class="p-8 flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full uppercase tracking-wide">
+                                Team Project
+                            </span>
+                            <span class="text-slate-400 text-sm"><i class="far fa-calendar-alt mr-1"></i>2026.02</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
+                            Hybrid Cloud 여드름 진단 AI
+                        </h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                            AWS와 로컬 GPU를 <strong>SSH Tunneling</strong>으로 연결하여 비용 효율적인 서빙 환경을 구축했습니다. FastAPI와 RAG를 활용해 여드름 심각도를 진단하고 맞춤형 의료 상담을 제공합니다.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">FastAPI</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Hybrid Cloud</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">RAG</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">System Design</span>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 px-8 py-3 flex justify-between items-center text-sm font-medium text-purple-700">
+                        <span>View Project</span>
+                        <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+                
+                 <a href="project_objectdetection.html" class="group block bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+                    <div class="p-8 flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-bold rounded-full uppercase tracking-wide">
+                                <i class="fas fa-trophy mr-1"></i> 1st Place
+                            </span>
+                            <span class="text-slate-400 text-sm"><i class="far fa-calendar-alt mr-1"></i>2025.12</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">재활용 쓰레기 탐지 (Object Detection)</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                            Naver Boostcamp CV 대회 1위. 1인 1GPU 인프라 구축부터 Co-DETR 모델 튜닝, WBF 앙상블 전략 수립까지 전체 엔지니어링 과정을 주도했습니다.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">PyTorch</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">MMDetection</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Co-DETR</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Docker</span>
+                        </div>
+                    </div>
+                    <div class="bg-yellow-50 px-8 py-3 flex justify-between items-center text-sm font-medium text-yellow-700">
+                        <span>View Project</span>
+                        <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+                
+                <a href="project_segmentation.html" class="group block bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+                    <div class="p-8 flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded-full uppercase tracking-wide"> Team Project </span>
+                            <span class="text-slate-400 text-sm"><i class="far fa-calendar-alt mr-1"></i>2026.01</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">Hand Bone Segmentation</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                            의료 X-ray 이미지의 29개 뼈 분할 프로젝트. Class Imbalance와 중첩 문제를 해결하기 위해 CLAHE 전처리와 CNN-ViT Hybrid Ensemble 전략을 적용하여 Dice 0.9752를 달성했습니다.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">PyTorch</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Segmentation</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Data-Centric</span>
+                        </div>
+                    </div>
+                    <div class="bg-orange-50 px-8 py-3 flex justify-between items-center text-sm font-medium text-orange-700">
+                        <span>View Project</span>
+                        <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <a href="project_gongpick.html" class="group block bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+                    <div class="p-8 flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full uppercase tracking-wide">Team Project</span>
+                            <span class="text-slate-400 text-sm"><i class="far fa-calendar-alt mr-1"></i>2025</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">GongPick: 맛집 추천 서비스</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                            공무원 업무추진비 데이터를 분석하여 상황별 맛집을 추천하는 서비스입니다. Azure VM 환경에서 Streamlit을 활용해 데이터 분석 모델을 웹 서비스로 빠르게 구현(Rapid Prototyping)했습니다.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Azure VM</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Streamlit</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Python</span>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 px-8 py-3 flex justify-between items-center text-sm font-medium text-blue-700">
+                        <span>View Project</span>
+                        <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <a href="project_posco.html" class="group block bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+                    <div class="p-8 flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full uppercase tracking-wide">Leadership</span>
+                            <span class="text-slate-400 text-sm"><i class="far fa-calendar-alt mr-1"></i>2025</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">POSCO 현직자 기술 멘토링</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                            현직자들의 '설비 고장 이력 자동 분류' 프로젝트를 기술 멘토링하여, 수작업 시간을 99% 단축시키는 성과를 리드했습니다. RAG 아키텍처와 데이터 전처리 최적화 가이드를 제공했습니다.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">RAG</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">LLM</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Mentoring</span>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 px-8 py-3 flex justify-between items-center text-sm font-medium text-purple-700">
+                        <span>View Case Study</span>
+                        <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <a href="project_factorio.html" class="group block bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+                    <div class="p-8 flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase tracking-wide">Infra Engineering</span>
+                            <span class="text-slate-400 text-sm"><i class="far fa-calendar-alt mr-1"></i>Personal</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">GCP 기반 Linux 게임 서버 구축</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                            P2P 방식의 연결 한계를 극복하기 위해 온프레미스 환경을 GCP 클라우드로 마이그레이션했습니다. 리눅스 환경에서 방화벽 및 프로세스를 직접 관리하여 24/7 무중단 서비스를 운영했습니다.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">GCP Compute Engine</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Linux</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Network</span>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 px-8 py-3 flex justify-between items-center text-sm font-medium text-green-700">
+                        <span>View Project</span>
+                        <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <a href="project_algo.html" class="group block bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+                    <div class="p-8 flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-slate-200 text-slate-700 text-xs font-bold rounded-full uppercase tracking-wide">Self Development</span>
+                            <span class="text-slate-400 text-sm"><i class="far fa-calendar-alt mr-1"></i>Ongoing</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">Algorithm 역량 강화</h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                            견고한 엔지니어링의 기초가 되는 알고리즘 역량을 꾸준히 개발하고 있습니다. 백준 Gold V 달성 및 DDP 새싹 코딩 대회 본선 진출(예선 4위) 성과를 거뒀습니다.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Python</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">PS (Problem Solving)</span>
+                        </div>
+                    </div>
+                    <div class="bg-slate-100 px-8 py-3 flex justify-between items-center text-sm font-medium text-slate-700">
+                        <span>View Details</span>
+                        <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-slate-900 text-white py-16 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-8">Let's Connect</h2>
+            <p class="text-slate-400 mb-8 max-w-lg mx-auto">
+                데이터 분석을 통한 실질적인 AI 전환(AI Transformation)을<br> 목표로 정진하고 있습니다.<br>
+                새로운 기회와 협업에 언제나 열려있습니다.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-12">
+                <a href="mailto:ghdtjrgns321@gmail.com" class="flex items-center px-6 py-3 bg-slate-800 rounded-full hover:bg-blue-600 transition group w-full sm:w-auto justify-center">
+                    <i class="fas fa-envelope mr-3 text-lg group-hover:text-white text-slate-300"></i>
+                    <span class="font-medium">ghdtjrgns321@gmail.com</span>
+                </a>
+                <a href="tel:+821043661149" class="flex items-center px-6 py-3 bg-slate-800 rounded-full hover:bg-green-600 transition group w-full sm:w-auto justify-center">
+                    <i class="fas fa-phone mr-3 text-lg group-hover:text-white text-slate-300"></i>
+                    <span class="font-medium">010-4366-1149</span>
+                </a>
+                <a href="https://github.com/ghdtjrgns321-creator/Digital-Audit-Portfolio" target="_blank" class="flex items-center px-6 py-3 bg-slate-800 rounded-full hover:bg-gray-600 transition group w-full sm:w-auto justify-center">
+                    <i class="fab fa-github mr-3 text-lg group-hover:text-white text-slate-300"></i>
+                    <span class="font-medium">GitHub</span>
+                </a>
+            </div>
+            <div class="border-t border-slate-800 pt-8">
+                <p class="text-slate-500 text-sm">
+                    © 2026 Sukhoon Hong. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Hand Bone Segmentation | 손준서</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Noto Sans KR', sans-serif; }</style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="max-w-4xl mx-auto px-4 py-16">
+        <a href="index.html" class="inline-flex items-center text-slate-500 hover:text-blue-600 mb-8 font-medium transition">
+            <i class="fas fa-arrow-left mr-2"></i> Back to Portfolio
+        </a>
+
+        <header class="mb-12">
+            <div class="flex gap-2 mb-4">
+                <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full border border-blue-200 shadow-sm">Naver Boostcamp</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 leading-tight">X-ray Hand Bone Image Segmentation</h1>
+            <p class="text-lg text-slate-600 mb-6">Data-Centric Optimization & Hybrid Ensemble Strategy</p>
+            
+            <!-- Meta Info -->
+            <div class="flex flex-wrap gap-4 text-sm text-slate-600 mb-6">
+                <span><i class="far fa-calendar-alt mr-2"></i>2025.12 - 2026.01</span>
+                <span><i class="fas fa-users mr-2"></i>Team CV-05 (4인)</span>
+                <span><i class="fas fa-user-tag mr-2"></i>Role: Core Researcher</span>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap gap-4">
+                <!-- PDF Download Button -->
+                <a href="images/Hand Bone Image Segmentation.pdf" target="_blank" class="inline-flex items-center bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition font-medium text-sm shadow-md">
+                    <i class="fas fa-file-pdf mr-2 text-lg"></i>상세 리포트 보기 (PDF)
+                </a>
+
+                <!-- GitHub Button -->
+                <a href="https://github.com/boostcampaitech8/pro-cv-semanticsegmentation-cv-05" target="_blank" class="inline-flex items-center bg-gray-800 text-white px-5 py-2.5 rounded-lg hover:bg-gray-700 transition font-medium text-sm shadow-md">
+                    <i class="fab fa-github mr-2 text-lg"></i>GitHub Repository
+                </a>
+            </div>
+        </header>
+
+        <div class="grid gap-12">
+            
+            <!-- Tech Stack -->
+            <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wide mb-3">Core Tech & Tools</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-slate-100 rounded-md text-sm font-semibold text-slate-700">Python 3.10</span>
+                    <span class="px-3 py-1 bg-slate-100 rounded-md text-sm font-semibold text-slate-700">PyTorch</span>
+                    <span class="px-3 py-1 bg-slate-100 rounded-md text-sm font-semibold text-slate-700">Segmentation Models Pytorch</span>
+                    <span class="px-3 py-1 bg-slate-100 rounded-md text-sm font-semibold text-slate-700">Albumentations</span>
+                    <span class="px-3 py-1 bg-slate-100 rounded-md text-sm font-semibold text-slate-700">WandB</span>
+                    <span class="px-3 py-1 bg-slate-100 rounded-md text-sm font-semibold text-slate-700">Docker</span>
+                </div>
+            </section>
+
+            <!-- Overview -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <!-- Project Overview Image (Added) -->
+                <div class="mb-8 rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                    <img src="images/project_seg_overview.png" alt="Project Overview Visualization" class="w-full h-auto">
+                </div>
+
+                <h2 class="text-xl font-bold mb-6 text-slate-900 flex items-center">
+                    <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-clipboard-list"></i></span>프로젝트 개요
+                </h2>
+                <p class="text-slate-600 leading-relaxed mb-6">
+                    X-ray 이미지에서 29개의 손 뼈를 픽셀 단위로 정밀하게 분할(Segmentation)하는 프로젝트입니다. 
+                    단순히 고성능 모델을 적용하는 것을 넘어, 의료 데이터 특유의 <strong class="text-slate-900">Class Imbalance(클래스 불균형)</strong>와 
+                    <strong class="text-slate-900">Superimposition(뼈 중첩)</strong> 문제를 해결하기 위해 데이터 중심(Data-Centric)의 가설 검증과 
+                    고도화된 앙상블 전략을 수행했습니다.
+                </p>
+
+                <!-- Result Image & Metrics Layout (Updated) -->
+                <div class="flex flex-col md:flex-row gap-6 items-center">
+                    <!-- Result Image -->
+                    <div class="w-full md:w-1/2">
+                        <img src="images/project_seg_result.png" alt="Project Result Graph" class="rounded-lg shadow-sm border border-slate-200 w-full h-auto">
+                    </div>
+
+                    <!-- Metrics Cards -->
+                    <div class="w-full md:w-1/2 grid grid-cols-1 gap-4">
+                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 text-center">
+                            <div class="text-3xl font-bold text-blue-600 mb-1">0.9752</div>
+                            <div class="text-sm text-slate-600 font-medium">Private Dice Score</div>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 text-center">
+                            <div class="text-3xl font-bold text-slate-500 mb-1">0.0017</div>
+                            <div class="text-sm text-slate-600 font-medium">Gap to 1st Place</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problem Definition -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold mb-6 text-slate-900 flex items-center">
+                    <span class="w-8 h-8 bg-red-100 text-red-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-exclamation-triangle"></i></span>문제 정의 (The Challenge)
+                </h2>
+                
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl mb-6">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3 flex items-center">
+                        <i class="fas fa-search mr-2"></i>왜 점수가 오르지 않았는가? (Root Cause Analysis)
+                    </h3>
+                    <p class="text-slate-700 mb-4">초기 베이스라인 모델 학습 중 두 가지 치명적인 문제를 발견했습니다.</p>
+                    <ol class="space-y-3 text-slate-700">
+                        <li class="flex items-start">
+                            <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-0.5">1</span>
+                            <div>
+                                <strong class="text-slate-900">Class Collapse (소형 객체 소멸):</strong> 배경(Background)이 이미지의 대다수를 차지하는 **극심한 클래스 불균형(Severe Class Imbalance)**으로 인해, 상대적으로 픽셀 비중이 적은 Finger-12, 13 클래스의 Loss가 전체 학습에 기여하지 못하고 무시되는 현상.
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-0.5">2</span>
+                            <div>
+                                <strong class="text-slate-900">Ambiguity (경계 모호성):</strong> 3차원 구조인 손목뼈(Carpal Bones)가 2차원 X-ray로 투영되면서, 뼈와 뼈가 겹치는 구간(Overlap)의 경계선이 불분명하여 모델이 확신(Confidence)을 갖지 못함.
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Engineering Process (STAR) -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold mb-6 text-slate-900 flex items-center">
+                    <span class="w-8 h-8 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-cogs"></i></span>문제 해결 과정 (Engineering Process)
+                </h2>
+                <p class="text-slate-600 leading-relaxed mb-8">
+                    SOTA 모델을 맹신하지 않고, <strong class="text-slate-900">"보이지 않는 것을 보이게 만드는"</strong> 데이터 중심의 엔지니어링 접근을 시도했습니다.
+                </p>
+
+                <!-- Try 1 -->
+                <div class="mb-10 pb-10 border-b border-slate-200">
+                    <div class="flex items-center mb-4">
+                        <span class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl flex items-center justify-center mr-3 shadow-md">
+                            <i class="fas fa-microscope"></i>
+                        </span>
+                        <h3 class="text-lg font-bold text-slate-900">Try 1: "안 보이는 뼈" 살려내기 (Data-Centric)</h3>
+                    </div>
+                    
+                    <div class="ml-13 space-y-4">
+                        <div>
+                            <h4 class="font-semibold text-slate-900 mb-2">📍 Situation</h4>
+                            <p class="text-slate-600 pl-4 border-l-2 border-slate-200">
+                                512px 해상도와 원본 이미지로는 소형 뼈의 특징점(Feature)이 소실되거나 구분이 불가능함.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-slate-900 mb-2">⚡ Action</h4>
+                            <ul class="text-slate-600 space-y-2 pl-4 border-l-2 border-slate-200">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                                    <span><strong class="text-slate-900">High-Resolution Training:</strong> VRAM 효율이 좋은 아키텍처를 활용하여 1024px ~ 2048px 기반의 고해상도 학습 파이프라인 구축.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                                    <span><strong class="text-slate-900">Contrast Enhancement:</strong> <code class="bg-slate-100 px-1.5 py-0.5 rounded text-sm">CLAHE</code> 및 <code class="bg-slate-100 px-1.5 py-0.5 rounded text-sm">Random Gamma Correction</code>을 적용하여 뼈와 연조직 사이의 대비를 극대화, 육안으로도 구분하기 힘든 경계를 모델이 학습하도록 유도.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Try 2 -->
+                <div class="mb-10 pb-10 border-b border-slate-200">
+                    <div class="flex items-center mb-4">
+                        <span class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl flex items-center justify-center mr-3 shadow-md">
+                            <i class="fas fa-balance-scale"></i>
+                        </span>
+                        <h3 class="text-lg font-bold text-slate-900">Try 2: "학습 불균형" 해소 (Loss Engineering)</h3>
+                    </div>
+                    
+                    <div class="ml-13 space-y-4">
+                        <div>
+                            <h4 class="font-semibold text-slate-900 mb-2">📍 Situation</h4>
+                            <p class="text-slate-600 pl-4 border-l-2 border-slate-200">
+                                단순 Cross Entropy나 Dice Loss는 픽셀 수가 많은 배경에 편향되어, 작은 뼈를 놓쳐도 Loss가 낮게 잡히는 문제 발생.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-slate-900 mb-2">⚡ Action</h4>
+                            <ul class="text-slate-600 space-y-2 pl-4 border-l-2 border-slate-200">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                                    <span><strong class="text-slate-900">Compound Loss 설계:</strong> <code class="bg-slate-100 px-1.5 py-0.5 rounded text-sm">Focal Loss</code>(어려운 예제 집중) + <code class="bg-slate-100 px-1.5 py-0.5 rounded text-sm">Tversky Loss</code>(Recall 보정)를 결합.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                                    <span><strong class="text-slate-900">Class Boosting:</strong> 학습 통계를 바탕으로 잘 맞추지 못하는 하위 5개 클래스(손목뼈)에 가중치를 부여하여 강제 학습 유도.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-slate-900 mb-2">✨ Result</h4>
+                            <p class="text-slate-600 pl-4 border-l-2 border-green-200 bg-green-50 p-3 rounded-r-lg">
+                                소형 객체(Pisiform 등)의 Dice Score가 0.00에서 0.90 이상으로 급격히 상승하며 Class Collapse 해결.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Try 3 -->
+                <div class="mb-0">
+                    <div class="flex items-center mb-4">
+                        <span class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-xl flex items-center justify-center mr-3 shadow-md">
+                            <i class="fas fa-project-diagram"></i>
+                        </span>
+                        <h3 class="text-lg font-bold text-slate-900">Try 3: "상호 보완" (Hybrid Ensemble)</h3>
+                    </div>
+                    
+                    <div class="ml-13 space-y-4">
+                        <div>
+                            <h4 class="font-semibold text-slate-900 mb-2">📍 Situation</h4>
+                            <p class="text-slate-600 pl-4 border-l-2 border-slate-200">
+                                CNN 모델은 경계선(Edge)을 잘 잡지만 문맥을 놓치고, Transformer 모델은 뼈의 구조(Context)는 잘 알지만 미세 경계가 뭉개지는 Trade-off 발생.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-slate-900 mb-2">⚡ Action</h4>
+                            <ul class="text-slate-600 space-y-2 pl-4 border-l-2 border-slate-200">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                                    <span><strong class="text-slate-900">Hybrid Ensemble:</strong> 국소적 특징에 강한 <strong>CNN(HRNet)</strong>과 전역적 문맥을 보는 <strong>Transformer(MaxViT)</strong>를 결합.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                                    <span><strong class="text-slate-900">Selective Voting:</strong> 모든 클래스를 평균 내지 않고, 일반 뼈는 MaxViT를 신뢰하되 미세 중첩 뼈는 HRNet과 <strong>Union(합집합)</strong> 연산을 수행하는 조건부 앙상블 설계.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results with Visualization -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold mb-6 text-slate-900 flex items-center">
+                    <span class="w-8 h-8 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-chart-line"></i></span>최종 결과 및 시각화
+                </h2>
+                
+                <div class="rounded-xl overflow-hidden shadow-sm border border-slate-200 mb-6">
+                    <img src="images/project_seg_infer.png" alt="Segmentation Visualization Result" class="w-full h-auto">
+                </div>
+                
+                <p class="text-center text-sm text-slate-500 mb-6 font-medium italic">
+                    Figure 1. 최종 모델의 추론 결과 시각화 (좌: 원본, 우: 예측 마스크 Overlay)
+                </p>
+                
+                <p class="text-slate-600 leading-relaxed">
+                    최종적으로 <strong class="text-slate-900">Private Leaderboard Dice Score 0.9752</strong>를 달성했습니다. 
+                    1위(0.9769)와는 불과 0.0017 차이였으며, 이는 모델 아키텍처의 차이라기보다는 
+                    <strong class="text-slate-900">Post-processing(후처리)</strong>의 디테일과 <strong class="text-slate-900">Pseudo-labeling</strong> 활용 여부에서 갈렸음을 확인했습니다.
+                </p>
+            </section>
+
+            <!-- Retrospective -->
+            <section class="bg-slate-900 text-white p-8 rounded-2xl shadow-lg">
+                <h2 class="text-xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-lightbulb text-yellow-400 mr-3"></i>회고 (Retrospective)
+                </h2>
+                
+                <div class="space-y-6 text-slate-300">
+                    <div class="flex items-start">
+                        <i class="fas fa-quote-left text-slate-600 mt-1 mr-3 flex-shrink-0"></i>
+                        <div>
+                            <h3 class="text-white font-bold mb-2">Data First, Model Second</h3>
+                            <p class="leading-relaxed">
+                                아무리 좋은 SOTA 모델(Mamba 등)도 데이터 전처리(Preprocessing)가 받쳐주지 않으면 무용지물임을 깨달았습니다. 특히 의료 데이터에서는 도메인 지식에 기반한 전처리가 성능의 8할을 결정했습니다.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <i class="fas fa-quote-left text-slate-600 mt-1 mr-3 flex-shrink-0"></i>
+                        <div>
+                            <h3 class="text-white font-bold mb-2">Validation Strategy</h3>
+                            <p class="leading-relaxed">
+                                초기 실험에서 동일 환자의 데이터가 Train/Val에 섞여 들어가는 실수를 범했으나, <code class="bg-slate-800 px-2 py-1 rounded text-sm">Group K-Fold</code>를 적용하여 '왼손/오른손' 데이터 유출(Leakage)을 막고 신뢰할 수 있는 검증 세트를 구축했습니다.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <i class="fas fa-quote-left text-slate-600 mt-1 mr-3 flex-shrink-0"></i>
+                        <div>
+                            <h3 class="text-white font-bold mb-2">Engineering Trade-off</h3>
+                            <p class="leading-relaxed">
+                                0.001점을 올리기 위해 무거운 앙상블과 TTA를 사용했으나, 현업 배포를 고려한다면 <strong class="text-white">Knowledge Distillation</strong>과 같은 경량화 전략이 필수적임을 느꼈습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</body>
+</html>

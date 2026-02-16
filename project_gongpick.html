@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: GongPick | 손준서</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Noto Sans KR', sans-serif; }</style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="max-w-4xl mx-auto px-4 py-16">
+        <a href="index.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-8 font-medium transition">
+            <i class="fas fa-arrow-left mr-2"></i> Back to Portfolio
+        </a>
+
+        <header class="mb-12">
+            <div class="flex gap-2 mb-4">
+                <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full">Team Project</span>
+                <span class="px-3 py-1 bg-slate-200 text-slate-700 text-xs font-bold rounded-full">MS AI School</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 leading-tight">GongPick: 공무원 업무추진비 기반 맛집 추천</h1>
+            <p class="text-lg text-slate-600 mb-6">비정형 데이터 분석 및 Azure VM 기반 인터랙티브 웹 서비스 구축</p>
+            
+            <div class="flex flex-wrap gap-3">
+                <a href="https://github.com/nannull4/GongPick" target="_blank" class="inline-flex items-center text-slate-900 border border-slate-300 px-4 py-2 rounded-lg hover:bg-slate-100 transition font-medium text-sm">
+                    <i class="fab fa-github mr-2 text-lg"></i>GitHub Repo
+                </a>
+                <a href="https://youtu.be/JhScHuOaxBc" target="_blank" class="inline-flex items-center text-red-600 border border-red-200 bg-red-50 px-4 py-2 rounded-lg hover:bg-red-100 transition font-medium text-sm">
+                    <i class="fab fa-youtube mr-2 text-lg"></i>발표 영상 보기 (Presenter)
+                </a>
+                <!-- PDF 파일 경로는 실제 업로드 위치에 맞게 수정해주세요 (예: assets/4팀_발표자료.pdf) -->
+                <a href="images/4팀_발표자료.pdf" target="_blank" class="inline-flex items-center text-slate-700 border border-slate-300 px-4 py-2 rounded-lg hover:bg-slate-100 transition font-medium text-sm">
+                    <i class="fas fa-file-pdf mr-2 text-lg"></i>발표 자료 (PDF)
+                </a>
+            </div>
+        </header>
+
+        <div class="grid gap-8">
+            <!-- Role -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold mb-6 text-slate-900 flex items-center">
+                    <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-user-tag"></i></span>My Role
+                </h2>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-blue-500 mt-1 mr-3 flex-shrink-0"></i>
+                        <div>
+                            <strong class="block text-slate-900 mb-1">Data Engineering & Modeling</strong>
+                            <p class="text-slate-600 text-sm">공공데이터(업무추진비)의 비정형 텍스트(가게명, 지출내역) 정제 및 결측치 처리. Random Forest 기반의 상황별(인원, 예산, 계절 등) 맛집 추천 모델링 수행.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-blue-500 mt-1 mr-3 flex-shrink-0"></i>
+                        <div>
+                            <strong class="block text-slate-900 mb-1">Cloud Infrastructure (Azure)</strong>
+                            <p class="text-slate-600 text-sm">Azure VM(Ubuntu) 인스턴스 프로비저닝 및 네트워크 보안 그룹(NSG) 설정을 통한 외부 접속 환경 구성. 리눅스 환경에서의 패키지 관리 및 배포 담당.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-blue-500 mt-1 mr-3 flex-shrink-0"></i>
+                        <div>
+                            <strong class="block text-slate-900 mb-1">Rapid Application Development</strong>
+                            <p class="text-slate-600 text-sm">Streamlit을 활용하여 별도의 프론트엔드/백엔드 구축 없이 데이터 분석 결과를 즉시 시각화하고, 챗봇 형태의 인터페이스를 빠르게 구현하여 MVP(Minimum Viable Product) 완성.</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Tech Stack -->
+            <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wide mb-3">Technologies Used</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-slate-100 rounded-md text-sm font-semibold text-slate-700">Python</span>
+                    <span class="px-3 py-1 bg-slate-100 rounded-md text-sm font-semibold text-slate-700">Azure VM</span>
+                    <span class="px-3 py-1 bg-slate-100 rounded-md text-sm font-semibold text-slate-700">Streamlit</span>
+                    <span class="px-3 py-1 bg-slate-100 rounded-md text-sm font-semibold text-slate-700">Scikit-learn</span>
+                    <span class="px-3 py-1 bg-slate-100 rounded-md text-sm font-semibold text-slate-700">Pandas</span>
+                </div>
+            </section>
+
+            <!-- Process -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold mb-6 text-slate-900 flex items-center">
+                    <span class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-layer-group"></i></span>Development Process
+                </h2>
+                <div class="relative border-l-2 border-slate-200 ml-3 space-y-10 py-2">
+                    <div class="pl-8 relative">
+                        <div class="absolute -left-[9px] top-0 w-4 h-4 bg-blue-500 rounded-full ring-4 ring-white"></div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">1. 데이터 수집 및 전처리 (Data Pipeline)</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            전국 구청의 업무추진비 집행 내역을 수집하여, '드림스타트 사례관리 관계자 간담회,연회다원,3명,16500'와 같은 <strong>비정형 텍스트 데이터</strong>에서 핵심 키워드(식당명, 인원, 금액)를 추출하고 정규화(Normalization)하는 전처리 파이프라인을 구축했습니다.
+                        </p>
+                    </div>
+                    <div class="pl-8 relative">
+                        <div class="absolute -left-[9px] top-0 w-4 h-4 bg-blue-500 rounded-full ring-4 ring-white"></div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">2. 모델링 및 로직 구현</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            단순 랭킹이 아닌 <strong>'상황(Context) 기반 추천'</strong>을 위해 계절, 시간대, 인원수, 예산 데이터를 Feature로 활용하여 분류 모델을 학습시켰습니다.
+                        </p>
+                    </div>
+                    <div class="pl-8 relative">
+                        <div class="absolute -left-[9px] top-0 w-4 h-4 bg-blue-500 rounded-full ring-4 ring-white"></div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">3. 서비스 배포 (Azure VM + Streamlit)</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            복잡한 웹 프레임워크 대신 <strong>Streamlit</strong>을 채택하여 데이터 로직 구현에 집중했습니다. Azure VM(Standard D8as v5)을 할당받고 방화벽(Inbound Port 8501)을 개방하여, 로컬이 아닌 클라우드 환경에서 누구나 접속 가능한 챗봇 서비스를 띄웠습니다.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lesson Learned -->
+            <section class="bg-slate-900 text-white p-8 rounded-2xl shadow-lg">
+                <h2 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-quote-left text-slate-500 mr-3"></i>Lesson Learned
+                </h2>
+                <div class="space-y-4">
+                    <p class="leading-relaxed text-slate-300">
+                        "<strong>'기술의 선택은 목적에 부합해야 한다'</strong>는 것을 배웠습니다. 제한된 프로젝트 기간 내에 데이터 분석 모델의 가치를 보여주기 위해, 프론트/백엔드를 분리하는 오버엔지니어링 대신 Python만으로 빠르게 앱을 빌드할 수 있는 Streamlit을 선택하여 <strong>개발 생산성을 극대화</strong>했습니다."
+                    </p>
+                    <p class="leading-relaxed text-slate-300">
+                        "또한 로컬 환경(localhost)과 클라우드 환경(Azure VM)의 차이를 몸소 겪으며, <strong>리눅스 환경 설정, 권한 관리, 네트워크 포트 포워딩</strong> 등 서비스 배포를 위한 인프라 기초 역량을 다질 수 있었습니다."
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

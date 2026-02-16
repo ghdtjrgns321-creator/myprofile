@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Acne Diagnosis AI | 손준서</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.75rem; /* rounded-xl */
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="max-w-4xl mx-auto px-4 py-16">
+        <a href="index.html" class="inline-flex items-center text-slate-500 hover:text-blue-600 mb-8 font-medium transition">
+            <i class="fas fa-arrow-left mr-2"></i> Back to Portfolio
+        </a>
+
+        <header class="mb-12">
+            <div class="flex gap-2 mb-4">
+                <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full border border-purple-200 shadow-sm">
+                    <i class="fas fa-users mr-1"></i> Team CV-05
+                </span>
+                <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full border border-blue-200 shadow-sm">Final Project</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 leading-tight">
+                Hybrid Cloud 기반 여드름 진단 AI 서비스
+            </h1>
+            <p class="text-lg text-slate-600 mb-6">
+                AWS 비용 절감을 위한 <strong>SSH Tunneling 하이브리드 아키텍처</strong> 설계 및 RAG 기반 의료 상담 시스템 구축
+            </p>
+            
+            <div class="flex flex-wrap gap-4">
+                 <a href="https://youtu.be/waJlkwcnvVE" target="_blank" class="inline-flex items-center bg-red-600 text-white px-5 py-2.5 rounded-lg hover:bg-red-700 transition font-medium text-sm shadow-md">
+                    <i class="fab fa-youtube mr-2 text-lg"></i>발표 영상 보기
+                </a>
+
+                 <a href="images/CV_05_Final_Project.pdf" target="_blank" class="inline-flex items-center bg-slate-900 text-white px-5 py-2.5 rounded-lg hover:bg-slate-700 transition font-medium text-sm shadow-md">
+                    <i class="fas fa-file-pdf mr-2"></i>발표자료 보기 (PDF)
+                </a>
+
+                <a href="https://github.com/boostcampaitech8/pro-cv-finalproject-cv-05" target="_blank" class="inline-flex items-center bg-gray-800 text-white px-5 py-2.5 rounded-lg hover:bg-gray-700 transition font-medium text-sm shadow-md">
+                    <i class="fab fa-github mr-2 text-lg"></i>GitHub Repository
+                </a>
+            </div>
+        </header>
+
+        <section class="mb-12">
+            <div class="bg-white p-2 rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                <div class="relative w-full pb-[56.25%] video-container bg-slate-100 rounded-xl">
+                    <video id="architecture-video" class="absolute top-0 left-0 w-full h-full object-cover rounded-xl" autoplay loop muted playsinline>
+                        <source src="images/App_Demo.mp4" type="video/mp4">
+                        브라우저가 비디오 태그를 지원하지 않습니다.
+                    </video>
+                </div>
+            </div>
+            <p class="text-center text-sm text-slate-500 mt-2 font-medium">
+                <i class="fas fa-network-wired text-blue-500 mr-1"></i> AWS(Web)와 On-Premise(GPU)를 연결한 Hybrid Cloud 아키텍처 시연
+            </p>
+        </section>
+
+        <div class="grid gap-12">
+            
+            <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wide mb-3">Core Tech & Tools</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-blue-50 text-blue-700 border border-blue-100 rounded-md text-sm font-semibold">FastAPI</span>
+                    <span class="px-3 py-1 bg-blue-50 text-blue-700 border border-blue-100 rounded-md text-sm font-semibold">PostgreSQL</span>
+                    <span class="px-3 py-1 bg-orange-50 text-orange-700 border border-orange-100 rounded-md text-sm font-semibold">AWS EC2 (m7i-flex)</span>
+                    <span class="px-3 py-1 bg-slate-100 rounded-md text-sm font-semibold text-slate-700">SSH Tunneling</span>
+                    <span class="px-3 py-1 bg-green-50 text-green-700 border border-green-100 rounded-md text-sm font-semibold">GitHub Actions</span>
+                    <span class="px-3 py-1 bg-slate-100 rounded-md text-sm font-semibold text-slate-700">Docker</span>
+                    <span class="px-3 py-1 bg-purple-50 text-purple-700 border border-purple-100 rounded-md text-sm font-semibold">Flutter</span>
+                </div>
+            </section>
+
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold mb-8 text-slate-900 flex items-center border-b border-slate-100 pb-4">
+                    <span class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-cogs"></i></span>
+                    Key Engineering Achievements (STAR)
+                </h2>
+                
+                <div class="space-y-10">
+                    
+                    <div class="relative pl-6 border-l-2 border-indigo-100">
+                        <div class="absolute -left-[9px] top-0 w-4 h-4 bg-indigo-500 rounded-full border-4 border-white shadow-sm"></div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">1. AWS 인스턴스 최적화 및 Hybrid Cloud 구축 전략</h3>
+                        
+                        <div class="space-y-3 text-sm">
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <p class="mb-2"><span class="font-bold text-indigo-600">Situation:</span> 초기 Free Tier(`t3.micro`) 환경에서 FastAPI 서버와 Dockerized PostgreSQL을 동시 구동하자 메모리 부족(OOM) 및 레이턴시 저하가 발생했습니다. 또한, 예산 제약으로 고성능 클라우드 GPU(g4dn 등) 사용이 불가능했습니다.</p>
+                                <p class="mb-2"><span class="font-bold text-indigo-600">Task:</span> 최소한의 비용으로 Web/DB 서버의 안정성을 확보하고, 동시에 고성능 AI 추론을 수행할 수 있는 아키텍처를 설계해야 했습니다.</p>
+                                <p class="mb-2"><span class="font-bold text-indigo-600">Action:</span> 
+                                    <ul class="list-disc list-inside ml-2 text-slate-700 space-y-1">
+                                        <li><strong>Vertical Scaling (Scale-Up):</strong> 벤치마크 테스트 후, Web/DB 부하를 감당하면서도 가성비가 우수한 <strong>`m7i-flex.large`</strong> 인스턴스로 마이그레이션하여 서버 안정성을 확보했습니다.</li>
+                                        <li><strong>Hybrid Cloud Tunneling:</strong> 고비용 GPU 인스턴스 대신, 로컬 워크스테이션(RTX 3060)을 <strong>SSH Reverse Tunneling</strong>으로 AWS와 연결하여 보안 그룹 개방 없이 0원으로 추론 자원을 확보했습니다.</li>
+                                    </ul>
+                                </p>
+                                <p><span class="font-bold text-indigo-600">Result:</span> 서버 크래시 문제를 100% 해결하고, 클라우드 비용을 최소 유지비 수준으로 억제하면서도 AI 추론 성능을 온전히 활용하는 효율적인 파이프라인을 완성했습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 border-l-2 border-indigo-100">
+                        <div class="absolute -left-[9px] top-0 w-4 h-4 bg-indigo-500 rounded-full border-4 border-white shadow-sm"></div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">2. GitHub Actions 기반 CI/CD 및 무중단 배포 환경 구축</h3>
+                        
+                        <div class="space-y-3 text-sm">
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <p class="mb-2"><span class="font-bold text-indigo-600">Situation:</span> 잦은 코드 업데이트 과정에서 수동 배포(`git pull` -> `kill` -> `nohup`) 방식은 Human Error 위험이 높았고, 배포 시마다 서비스 다운타임이 발생했습니다.</p>
+                                <p class="mb-2"><span class="font-bold text-indigo-600">Task:</span> 개발 생산성을 위해 코드 푸시 시 자동으로 테스트 및 배포가 이루어지는 파이프라인 구축이 필요했습니다.</p>
+                                <p class="mb-2"><span class="font-bold text-indigo-600">Action:</span> 
+                                    <ul class="list-disc list-inside ml-2 text-slate-700 space-y-1">
+                                        <li><strong>Automated Pipeline:</strong> <strong>GitHub Actions</strong>를 도입하여 `main` 브랜치 병합 시 AWS EC2에 자동 배포되도록 워크플로우를 작성했습니다.</li>
+                                        <li><strong>Systemd Integration:</strong> FastAPI 애플리케이션을 리눅스 서비스(`systemd`)로 등록하여, 배포 후 자동 재시작 및 프로세스 비정상 종료 시 자가 복구(Auto-healing)가 가능하도록 설정했습니다.</li>
+                                    </ul>
+                                </p>
+                                <p><span class="font-bold text-indigo-600">Result:</span> 배포 시간을 단축하고, 개발자가 인프라 관리보다 기능 구현에 집중할 수 있는 환경을 조성했습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-6 border-l-2 border-indigo-100">
+                        <div class="absolute -left-[9px] top-0 w-4 h-4 bg-indigo-500 rounded-full border-4 border-white shadow-sm"></div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">3. 비동기 API 서버 구축 및 협업 효율화</h3>
+                        
+                        <div class="space-y-3 text-sm">
+                            <div class="bg-slate-50 p-4 rounded-lg mb-4">
+                                <p class="mb-2"><span class="font-bold text-indigo-600">Situation:</span> 프론트엔드 팀과의 협업 과정에서 명확한 API 명세가 필요했으며, AI 추론 지연 시간 동안 웹 서버가 블로킹(Blocking)되지 않아야 했습니다.</p>
+                                <p class="mb-2"><span class="font-bold text-indigo-600">Task:</span> 고성능 비동기 처리가 가능한 서버를 구축하고, 인증 로직이 포함된 테스트 환경을 제공해야 했습니다.</p>
+                                <p class="mb-2"><span class="font-bold text-indigo-600">Action:</span> 
+                                    <ul class="list-disc list-inside ml-2 text-slate-700 space-y-1">
+                                        <li><strong>Async Architecture:</strong> `FastAPI`와 `Async SQLAlchemy`를 채택하여 I/O 블로킹을 최소화하고 동시 접속 처리량을 극대화했습니다.</li>
+                                        <li><strong>Swagger UI 개선:</strong> 기존의 번거로운 Form 인증 대신 <strong>`HTTPBearer`</strong> 방식을 적용하여, Access Token 입력만으로 즉시 API 테스트가 가능한 환경을 프론트엔드 팀에 제공했습니다.</li>
+                                        <li><strong>RAG System Integration:</strong> 단순 진단 결과(JSON)를 넘어, LangChain을 통해 의학 가이드라인 기반의 맞춤형 조언을 생성하는 로직을 백엔드에 통합했습니다.</li>
+                                    </ul>
+                                </p>
+                                <p><span class="font-bold text-indigo-600">Result:</span> 프론트엔드-백엔드 간 연동 시행착오를 대폭 줄이고, 확장성 있는 데이터 처리 파이프라인을 구축했습니다.</p>
+                            </div>
+
+                            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="group relative">
+                                    <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                                    <div class="relative bg-white border border-slate-200 rounded-lg p-3 hover:shadow-lg transition-all duration-300">
+                                        <img src="images/swagger_aws.png" onerror="this.src='https://placehold.co/600x400?text=AWS+API+Swagger+UI'" alt="AWS Server Swagger UI" class="rounded border border-slate-100 shadow-sm w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-300">
+                                        <div class="mt-3 flex items-center justify-between">
+                                            <span class="text-xs font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded">AWS Cloud (Main)</span>
+                                            <span class="text-[10px] text-slate-400">Auth, User, Diagnosis API</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="group relative">
+                                    <div class="absolute -inset-0.5 bg-gradient-to-r from-green-600 to-teal-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                                    <div class="relative bg-white border border-slate-200 rounded-lg p-3 hover:shadow-lg transition-all duration-300">
+                                        <img src="images/swagger_local.png" onerror="this.src='https://placehold.co/600x400?text=Local+AI+Swagger+UI'" alt="Local AI Server Swagger UI" class="rounded border border-slate-100 shadow-sm w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-300">
+                                        <div class="mt-3 flex items-center justify-between">
+                                            <span class="text-xs font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded">Local GPU Server</span>
+                                            <span class="text-[10px] text-slate-400">YOLO + MobileNet Inference</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="bg-indigo-900 text-white p-8 rounded-2xl shadow-lg">
+                <h2 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-rocket mr-3 text-yellow-400"></i>Project Outcome
+                </h2>
+                <ul class="space-y-3 text-indigo-100 text-sm">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle mt-1 mr-2 text-indigo-400"></i>
+                        <span><strong>Full Pipeline 구축:</strong> Flutter(앱) - AWS(서버) - Local(AI) - DB로 이어지는 End-to-End 서비스 완성</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle mt-1 mr-2 text-indigo-400"></i>
+                        <span><strong>비용 효율성 극대화:</strong> 클라우드 비용을 최소 유지비(EC2 t/m시리즈) 수준으로 절감하며 GPU 자원 활용</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle mt-1 mr-2 text-indigo-400"></i>
+                        <span><strong>사용자 중심 기능:</strong> 객관적 수치(KGS 등급) 제공 및 즉각적인 의료 가이드라인 제시로 1차 스크리닝 도구로서의 가치 입증</span>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var video = document.getElementById('architecture-video');
+            if (video) {
+                video.playbackRate = 5.0; // 속도 5배 설정
+            }
+        });
+    </script>
+</body>
+</html>
