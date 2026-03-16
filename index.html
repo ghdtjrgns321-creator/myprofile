@@ -87,7 +87,7 @@
         </div>
     </header>
 
-<section id="about" class="py-20 bg-white">
+<section id="about" class="py-20 bg-slate-50 border-y border-slate-100">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">About Me</h2>
         
@@ -142,7 +142,7 @@
     </div>
 </section>
 
-    <section id="skills" class="py-20 bg-slate-50 border-y border-slate-100">
+    <section id="skills" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Skills & Certificates</h2>
             
@@ -193,7 +193,7 @@
                         </li>
 
                         <li class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center space-x-3 hover:border-blue-300 transition">
-                            <i class="fas fa-language text-purple-500 text-xl"></i>
+                            <i class="fas fa-robot text-purple-500 text-xl"></i>
                             <div>
                                 <span class="block font-bold text-slate-800">AICE Associate</span>
                                 <span class="text-xs text-slate-500">2025.12 취득</span>
@@ -201,21 +201,23 @@
                         </li>
 
                         <li class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center space-x-3 hover:border-blue-300 transition">
-                            <i class="fas fa-hourglass-half text-orange-400 text-xl"></i>
+                            <i class="fas fa-chart-pie text-orange-500 text-xl"></i>
                             <div>
                                 <span class="block font-bold text-slate-800">빅데이터분석기사</span>
                                 <span class="text-xs text-slate-500">2025.12 취득</span>
-                            </li>
+                            </div>
+                        </li>
 
                         <li class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center space-x-3 hover:border-blue-300 transition">
-                            <i class="fas fa-hourglass-half text-orange-400 text-xl"></i>
+                            <i class="fas fa-desktop text-teal-500 text-xl"></i>
                             <div>
                                 <span class="block font-bold text-slate-800">컴퓨터활용능력1급</span>
                                 <span class="text-xs text-slate-500">2021.08 취득</span>
-                            </li>
+                            </div>
+                        </li>
 
                         <li class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center space-x-3 hover:border-blue-300 transition">
-                            <i class="fas fa-hourglass-half text-orange-400 text-xl"></i>
+                            <i class="fas fa-globe text-sky-500 text-xl"></i>
                             <div>
                                 <span class="block font-bold text-slate-800">TOEIC 915</span>
                                 <span class="text-xs text-slate-500">2025.12 취득</span>
@@ -227,15 +229,50 @@
         </div>
     </section>
 
-    <!-- <section id="projects" class="py-20 bg-white">
+    <section id="projects" class="py-20 bg-slate-50 border-y border-slate-100">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Featured Projects</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
+                <!-- K-IFRS 1115 회계감사 AI (실제 프로젝트) -->
+                <a href="project_kifrs.html" class="group block bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+                    <div class="p-8 flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full uppercase tracking-wide">
+                                Audit-Tech RAG
+                            </span>
+                            <span class="text-slate-400 text-sm"><i class="far fa-calendar-alt mr-1"></i>2026.03</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
+                            K-IFRS 1115 회계감사 AI 어시스턴트
+                        </h3>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                            K-IFRS 제1115호에 특화된 회계감사 전문 AI 시스템입니다.
+                            <br>
+                            PydanticAI와 의사결정 트리(Decision Tree)를 결합한 5단계 구조적 방어 파이프라인을 구축하여 AI의 환각(Hallucination)을 원천 차단했습니다.
+                            <br>
+                            하이브리드 검색과 질문 유형별 듀얼 LLM 라우팅을 통해, 기준서 원문 근거에 기반한 신뢰도 높은 판단 가이드를 제공합니다.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">FastAPI</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">RAG</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Streamlit</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Docker</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">PydanticAI</span>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 px-8 py-3 flex justify-between items-center text-sm font-medium text-blue-700">
+                        <span>View Project</span>
+                        <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- 이하 fake 프로젝트 카드 (비활성화) -->
+                <!--
                  <a href="project_final.html" class="group block bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col relative">
                     <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">NEW</div>
-                    
+
                     <div class="p-8 flex-grow">
                         <div class="flex justify-between items-start mb-4">
                             <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full uppercase tracking-wide">
@@ -261,7 +298,7 @@
                         <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
                     </div>
                 </a>
-                
+
                  <a href="project_objectdetection.html" class="group block bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
                     <div class="p-8 flex-grow">
                         <div class="flex justify-between items-start mb-4">
@@ -281,12 +318,12 @@
                             <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Docker</span>
                         </div>
                     </div>
-                    <div class="gbg-yellow-50 px-8 py-3 flex justify-between items-center text-sm font-medium text-yellow-700">
+                    <div class="bg-yellow-50 px-8 py-3 flex justify-between items-center text-sm font-medium text-yellow-700">
                         <span>View Project</span>
                         <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
                     </div>
                 </a>
-                
+
                 <a href="project_segmentation.html" class="group block bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
                     <div class="p-8 flex-grow">
                         <div class="flex justify-between items-start mb-4">
@@ -395,10 +432,11 @@
                         <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
                     </div>
                 </a>
+                -->
 
             </div>
         </div>
-    </section> -->
+    </section>
 
     <footer id="contact" class="bg-slate-900 text-white py-16 border-t border-slate-800">
         <div class="max-w-4xl mx-auto px-4 text-center">
