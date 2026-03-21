@@ -1,0 +1,15 @@
+# Claude Code 설정
+CLAUDE.md
+.claude/
+
+# 참고용 프로젝트 (본인 프로젝트 아님)
+project_algo.html
+project_factorio.html
+project_final.html
+project_gongpick.html
+project_objectdetection.html
+project_posco.html
+project_segmentation.html
+
+# Windows 시스템 파일
+desktop.ini
