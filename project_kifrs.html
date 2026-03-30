@@ -331,50 +331,194 @@
             <!-- [3.5] Quality Verification (별도 섹션) -->
             <!-- ================================================ -->
             <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-                <h2 class="text-xl font-bold mb-8 text-slate-900 flex items-center border-b border-slate-100 pb-4">
+                <h2 class="text-xl font-bold mb-4 text-slate-900 flex items-center border-b border-slate-100 pb-4">
                     <span class="w-8 h-8 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-vial"></i></span>
                     Quality Verification
                 </h2>
-                <p class="text-slate-600 text-sm leading-relaxed mb-6">
-                    파이프라인의 신뢰성을 정량적으로 입증하기 위해,
-                    모델 선정부터 최종 배포까지 3단계에 걸친 체계적인 품질 검증을 수행했습니다.
-                </p>
+
+                <!-- 총 검증 호출 수 요약 배너 -->
+                <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 mb-6 border border-green-100">
+                    <div class="flex items-center justify-between flex-wrap gap-3">
+                        <p class="text-sm text-slate-700 font-medium">3단계에 걸쳐 총 <strong class="text-green-700 text-base">620회</strong> 호출로 품질 검증</p>
+                        <div class="flex gap-3 text-xs text-slate-500">
+                            <span class="bg-white px-2.5 py-1 rounded-full border border-slate-200">모델 비교 <strong class="text-slate-700">218회</strong></span>
+                            <span class="bg-white px-2.5 py-1 rounded-full border border-slate-200">검색 테스트 <strong class="text-slate-700">101회</strong></span>
+                            <span class="bg-white px-2.5 py-1 rounded-full border border-slate-200">품질 테스트 <strong class="text-slate-700">301회</strong></span>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="space-y-4">
-                    <!-- Stage 1 -->
+                    <!-- Stage 1: 모델 선정 218회 -->
                     <div class="bg-slate-50 rounded-lg p-5 border border-slate-100">
                         <div class="flex items-center mb-3">
                             <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 flex-shrink-0">1</span>
                             <h4 class="font-bold text-slate-900">모델 선정 — 7개 모델 218회 A/B 테스트</h4>
                         </div>
                         <p class="text-slate-600 text-sm mb-3">
-                            5개의 질문(난이도별)으로 7개 LLM을 4라운드에 걸쳐 비교 평가하여 핵심 발견을 도출했습니다.
+                            회계 추론과 산술 정확도를 단일 모델로 양립할 수 있는지 검증하기 위해, 7개 AI 모델을 4라운드에 걸쳐 비교했습니다.
                         </p>
+
+                        <!-- 라운드별 테이블 -->
+                        <div class="overflow-x-auto mb-3">
+                            <table class="w-full text-xs border-collapse">
+                                <thead>
+                                    <tr class="border-b border-slate-200">
+                                        <th class="text-left py-1.5 px-2 font-bold text-slate-500">라운드</th>
+                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">질문</th>
+                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">모델</th>
+                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">호출</th>
+                                        <th class="text-left py-1.5 px-2 font-bold text-slate-500">목적</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-700">
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1.5 px-2">1차</td>
+                                        <td class="py-1.5 px-2 text-center">1개</td>
+                                        <td class="py-1.5 px-2 text-center">7개</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">28회</td>
+                                        <td class="py-1.5 px-2">초기 선별 — 2개 모델 탈락</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1.5 px-2">2차</td>
+                                        <td class="py-1.5 px-2 text-center">5개</td>
+                                        <td class="py-1.5 px-2 text-center">6개</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">150회</td>
+                                        <td class="py-1.5 px-2">정밀 비교 — 듀얼 LLM 라우팅 결정</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1.5 px-2">3차</td>
+                                        <td class="py-1.5 px-2 text-center">5개</td>
+                                        <td class="py-1.5 px-2 text-center">듀얼 2종</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">15회</td>
+                                        <td class="py-1.5 px-2">프로덕션 통합 — 오라우팅·산술 급락 발견</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1.5 px-2">4차</td>
+                                        <td class="py-1.5 px-2 text-center">5개</td>
+                                        <td class="py-1.5 px-2 text-center">듀얼 3종</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">25회</td>
+                                        <td class="py-1.5 px-2">최종 개선 — 평균 0.72→0.82</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- 2차 라운드 핵심 결과 -->
                         <div class="bg-white rounded-md p-3 border border-slate-200 text-sm mb-3">
                             <p class="font-semibold text-slate-700 text-xs mb-2"><i class="fas fa-lightbulb text-yellow-500 mr-1"></i>핵심 발견: 회계 추론과 산술 정확도는 단일 모델로 양립 불가</p>
-                            <div class="grid grid-cols-2 gap-2 text-xs text-slate-600">
-                                <div class="bg-sky-50 rounded p-2 border border-sky-100">
-                                    <p class="font-bold text-sky-700">Gemini Flash</p>
-                                    <p>회계 추론 1위 / 산술 20~40%</p>
-                                </div>
-                                <div class="bg-slate-50 rounded p-2 border border-slate-200">
-                                    <p class="font-bold text-slate-700">GPT-4.1-mini</p>
-                                    <p>회계 추론 4위 / 산술 100%</p>
-                                </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-xs border-collapse">
+                                    <thead>
+                                        <tr class="border-b border-slate-200">
+                                            <th class="text-left py-1 px-2 font-bold text-slate-500">모델</th>
+                                            <th class="text-center py-1 px-2 font-bold text-slate-500">회계 추론</th>
+                                            <th class="text-center py-1 px-2 font-bold text-slate-500">산술 정확도</th>
+                                            <th class="text-center py-1 px-2 font-bold text-slate-500">선정</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-slate-600">
+                                        <tr class="border-b border-slate-100 bg-sky-50">
+                                            <td class="py-1 px-2 font-bold text-sky-700">Gemini Flash</td>
+                                            <td class="py-1 px-2 text-center font-bold text-sky-700">0.81 (1위)</td>
+                                            <td class="py-1 px-2 text-center text-red-400">20~40%</td>
+                                            <td class="py-1 px-2 text-center text-sky-600"><i class="fas fa-check"></i> 일반·상황 전담</td>
+                                        </tr>
+                                        <tr class="border-b border-slate-100 bg-violet-50">
+                                            <td class="py-1 px-2 font-bold text-violet-700">GPT-4.1-mini</td>
+                                            <td class="py-1 px-2 text-center text-slate-400">0.71 (4위)</td>
+                                            <td class="py-1 px-2 text-center font-bold text-green-600">100%</td>
+                                            <td class="py-1 px-2 text-center text-violet-600"><i class="fas fa-check"></i> 계산 전담</td>
+                                        </tr>
+                                        <tr class="border-b border-slate-100">
+                                            <td class="py-1 px-2">Claude 3.5 Sonnet</td>
+                                            <td class="py-1 px-2 text-center">0.76 (2위)</td>
+                                            <td class="py-1 px-2 text-center">67%</td>
+                                            <td class="py-1 px-2 text-center text-slate-400">—</td>
+                                        </tr>
+                                        <tr class="border-b border-slate-100">
+                                            <td class="py-1 px-2">GPT-4o</td>
+                                            <td class="py-1 px-2 text-center">0.73 (3위)</td>
+                                            <td class="py-1 px-2 text-center">33%</td>
+                                            <td class="py-1 px-2 text-center text-slate-400">—</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-1 px-2 text-slate-400">기타 3개 모델</td>
+                                            <td class="py-1 px-2 text-center text-slate-400">0.41~0.69</td>
+                                            <td class="py-1 px-2 text-center text-slate-400">0~33%</td>
+                                            <td class="py-1 px-2 text-center text-slate-400">—</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <p class="text-xs text-green-700 font-medium"><i class="fas fa-arrow-right mr-1"></i>의사결정: 듀얼트랙 라우팅 채택</p>
+                        <p class="text-xs text-green-700 font-medium"><i class="fas fa-arrow-right mr-1"></i>의사결정: 회계 추론 1위 + 산술 1위를 듀얼 LLM 라우팅으로 결합. 질문 유형을 AI가 자동 판별하여 최적 모델로 라우팅.</p>
                     </div>
 
-                    <!-- Stage 2 -->
+                    <!-- Stage 2: 검색 엔진 테스트 101회 -->
                     <div class="bg-slate-50 rounded-lg p-5 border border-slate-100">
                         <div class="flex items-center mb-3">
                             <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 flex-shrink-0">2</span>
-                            <h4 class="font-bold text-slate-900">검색 엔진 + 파이프라인 개선 — 4라운드 반복 실험</h4>
+                            <h4 class="font-bold text-slate-900">검색 엔진 테스트 — 6종 스크립트 101회</h4>
                         </div>
                         <p class="text-slate-600 text-sm mb-3">
-                            데이터 파싱 결함을 수정하여 프로젝트 최대 단일 개선(+40%p)을 달성했습니다.
+                            모델 선정 후, 검색 파이프라인을 개선하고 6종의 검증 스크립트로 테스트했습니다.
                         </p>
+
+                        <!-- 6종 스크립트 테이블 -->
+                        <div class="overflow-x-auto mb-3">
+                            <table class="w-full text-xs border-collapse">
+                                <thead>
+                                    <tr class="border-b border-slate-200">
+                                        <th class="text-left py-1.5 px-2 font-bold text-slate-500">테스트</th>
+                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">케이스</th>
+                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">호출</th>
+                                        <th class="text-left py-1.5 px-2 font-bold text-slate-500">검증 대상</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-700">
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1.5 px-2">핀포인트 DB 실재 검증</td>
+                                        <td class="py-1.5 px-2 text-center">26건</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">26회</td>
+                                        <td class="py-1.5 px-2">큐레이션 문서가 DB에 존재하는지</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1.5 px-2">검색 커버리지</td>
+                                        <td class="py-1.5 px-2 text-center">26건</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">26회</td>
+                                        <td class="py-1.5 px-2">적중률 76/81 = 94%</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1.5 px-2">검색 경로 분석</td>
+                                        <td class="py-1.5 px-2 text-center">5건</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">5회</td>
+                                        <td class="py-1.5 px-2">Pinpoint vs Retriever 분리 분석</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1.5 px-2">calc 라우팅 정확도</td>
+                                        <td class="py-1.5 px-2 text-center">14건</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">42회</td>
+                                        <td class="py-1.5 px-2">42/42 = 100%</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1.5 px-2">IE bypass E2E</td>
+                                        <td class="py-1.5 px-2 text-center">1건</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">1회</td>
+                                        <td class="py-1.5 px-2">적용사례 bypass 정상 동작</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1.5 px-2">단일 질문 디버그</td>
+                                        <td class="py-1.5 px-2 text-center">1건</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">1회</td>
+                                        <td class="py-1.5 px-2">검색 경로 추적</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- 개선 결과 Before/After -->
+                        <p class="text-xs font-bold text-slate-700 mb-2"><i class="fas fa-chart-line text-green-500 mr-1"></i>개선 결과</p>
                         <div class="overflow-x-auto">
                             <table class="w-full text-xs border-collapse">
                                 <thead>
@@ -382,7 +526,7 @@
                                         <th class="text-left py-1.5 px-2 font-bold text-slate-500">지표</th>
                                         <th class="text-center py-1.5 px-2 font-bold text-slate-400">Before</th>
                                         <th class="text-center py-1.5 px-2 font-bold text-green-600">After</th>
-                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">개선폭</th>
+                                        <th class="text-left py-1.5 px-2 font-bold text-slate-500">원인과 해결</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-slate-700">
@@ -390,59 +534,187 @@
                                         <td class="py-1.5 px-2">검색 적중률</td>
                                         <td class="py-1.5 px-2 text-center text-slate-400">36%</td>
                                         <td class="py-1.5 px-2 text-center font-bold text-green-600">76%</td>
-                                        <td class="py-1.5 px-2 text-center text-green-600">+40%p</td>
+                                        <td class="py-1.5 px-2 text-slate-500">핀포인트 파싱 결함 수정</td>
                                     </tr>
                                     <tr class="border-b border-slate-100">
                                         <td class="py-1.5 px-2">계산 라우팅 정확도</td>
                                         <td class="py-1.5 px-2 text-center text-slate-400">33%</td>
                                         <td class="py-1.5 px-2 text-center font-bold text-green-600">100%</td>
-                                        <td class="py-1.5 px-2 text-center text-green-600">+67%p</td>
+                                        <td class="py-1.5 px-2 text-slate-500">듀얼 LLM 라우팅</td>
                                     </tr>
-                                    <tr>
+                                    <tr class="border-b border-slate-100">
                                         <td class="py-1.5 px-2">검색 속도</td>
                                         <td class="py-1.5 px-2 text-center text-slate-400">3.7초</td>
                                         <td class="py-1.5 px-2 text-center font-bold text-green-600">0.6초</td>
-                                        <td class="py-1.5 px-2 text-center text-green-600">-84%</td>
+                                        <td class="py-1.5 px-2 text-slate-500">DB 개별→일괄 조회 (-84%)</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1.5 px-2">꼬리질문 일관성</td>
+                                        <td class="py-1.5 px-2 text-center text-slate-400">60%</td>
+                                        <td class="py-1.5 px-2 text-center font-bold text-green-600">100%</td>
+                                        <td class="py-1.5 px-2 text-slate-500">thinking level 조절</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1.5 px-2">calc 포맷 준수율</td>
+                                        <td class="py-1.5 px-2 text-center text-slate-400">0%</td>
+                                        <td class="py-1.5 px-2 text-center font-bold text-green-600">100%</td>
+                                        <td class="py-1.5 px-2 text-slate-500">시스템 프롬프트 중복 제거</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <p class="text-xs text-slate-500 mt-3 mb-3">
+                        <p class="text-xs text-slate-500 mt-3">
                             <i class="fas fa-info-circle mr-1"></i>
-                            검색 적중률 76%는 Top-1 기준이며, 실제 시스템은 상위 3개를 활용하므로 Top-3 기준 적중률은 100%입니다.
+                            검색 적중률 76%는 Top-1 기준. 실제 시스템은 상위 3개를 활용하므로 Top-3 적중률은 100%. 핵심 문서는 Tier 1 핀포인트 검색(적중률 100%)이 보장.
                         </p>
-                        <div class="mt-3">
-                            <a href="https://github.com/ghdtjrgns321-creator/k-ifrs-1115/blob/main/FINAL-REPORT/5_TEST-AND-DECISIONS.md#adr-22-%ED%95%80%ED%8F%AC%EC%9D%B8%ED%8A%B8-%ED%8C%8C%EC%8B%B1-3%EC%A4%91-gap-%EC%88%98%EC%A0%95--%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%B5%9C%EB%8C%80-%EB%8B%A8%EC%9D%BC-%EA%B0%9C%EC%84%A0-40p" target="_blank" class="font-semibold text-slate-700 text-xs mb-2 inline-flex items-center hover:text-blue-600 transition">수정한 데이터 파싱 결함 참고 문서(클릭) <i class="fas fa-external-link-alt ml-1.5 text-[10px] text-slate-400"></i></a>
-                        </div>
                     </div>
 
-                    <!-- Stage 3 -->
+                    <!-- Stage 3: 파이프라인 품질 테스트 301회 -->
                     <div class="bg-slate-50 rounded-lg p-5 border border-slate-100">
                         <div class="flex items-center mb-3">
                             <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 flex-shrink-0">3</span>
-                            <h4 class="font-bold text-slate-900">최종 골든 테스트 — 53건 x 3회 = 159회</h4>
+                            <h4 class="font-bold text-slate-900">파이프라인 품질 테스트 — 6라운드 301회</h4>
                         </div>
                         <p class="text-slate-600 text-sm mb-3">
-                            실제 감사인이 물을 법한 7개 유형 53건의 질문을 설계하고,
-                            정답 기준을 사전 정의한 뒤 각 3회씩 반복 호출하여 정확성을 수동 채점했습니다.
+                            파이프라인 개선마다 테스트를 반복하여, 문제 발견 → 수정 → 재검증 사이클을 6라운드 돌렸습니다.
                         </p>
-                        <div class="grid grid-cols-3 gap-2 text-center mb-3">
-                            <div class="bg-white rounded-md p-2.5 border border-green-100">
-                                <p class="text-lg font-extrabold text-green-600">88.7%</p>
-                                <p class="text-[10px] text-slate-500">Pass Rate (141/159)</p>
-                            </div>
-                            <div class="bg-white rounded-md p-2.5 border border-red-100">
-                                <p class="text-lg font-extrabold text-red-600">0건</p>
-                                <p class="text-[10px] text-slate-500">환각(Hallucination)</p>
-                            </div>
-                            <div class="bg-white rounded-md p-2.5 border border-blue-100">
-                                <p class="text-lg font-extrabold text-blue-600">7유형</p>
-                                <p class="text-[10px] text-slate-500">거래상황/이론/라우팅/계산/멀티턴/신규/스트레스</p>
-                            </div>
+
+                        <!-- 6라운드 테이블 -->
+                        <div class="overflow-x-auto mb-4">
+                            <table class="w-full text-xs border-collapse">
+                                <thead>
+                                    <tr class="border-b border-slate-200">
+                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">#</th>
+                                        <th class="text-left py-1.5 px-2 font-bold text-slate-500">테스트</th>
+                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">케이스</th>
+                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">호출</th>
+                                        <th class="text-left py-1.5 px-2 font-bold text-slate-500">목적</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-700">
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1.5 px-2 text-center">1</td>
+                                        <td class="py-1.5 px-2">초기 품질 테스트</td>
+                                        <td class="py-1.5 px-2 text-center">26건 ×3</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">78회</td>
+                                        <td class="py-1.5 px-2">파이프라인 통합 후 첫 전수 검증</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1.5 px-2 text-center">2</td>
+                                        <td class="py-1.5 px-2">라우팅·계산·멀티턴 v1</td>
+                                        <td class="py-1.5 px-2 text-center">10건 ×3</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">42회</td>
+                                        <td class="py-1.5 px-2">집중 검증</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1.5 px-2 text-center">3</td>
+                                        <td class="py-1.5 px-2">라우팅·계산·멀티턴 v2</td>
+                                        <td class="py-1.5 px-2 text-center">10건 ×3</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">42회</td>
+                                        <td class="py-1.5 px-2">버그 수정 후 재검증</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1.5 px-2 text-center">4</td>
+                                        <td class="py-1.5 px-2">라우팅·계산·멀티턴 v3</td>
+                                        <td class="py-1.5 px-2 text-center">10건 ×3</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">42회</td>
+                                        <td class="py-1.5 px-2">5가지 구조 수정 (Pass 40%→90%)</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1.5 px-2 text-center">5</td>
+                                        <td class="py-1.5 px-2">thinking A/B + 토픽 안정성</td>
+                                        <td class="py-1.5 px-2 text-center">13건 ×1~5</td>
+                                        <td class="py-1.5 px-2 text-center font-semibold">33회</td>
+                                        <td class="py-1.5 px-2">추론 강도 A/B + 토픽 매칭</td>
+                                    </tr>
+                                    <tr class="bg-green-50">
+                                        <td class="py-1.5 px-2 text-center font-bold text-green-700">6</td>
+                                        <td class="py-1.5 px-2 font-bold text-green-700">최종 골든 테스트</td>
+                                        <td class="py-1.5 px-2 text-center font-bold text-green-700">53건 ×1~3</td>
+                                        <td class="py-1.5 px-2 text-center font-bold text-green-700">64회</td>
+                                        <td class="py-1.5 px-2 font-bold text-green-700">7개 유형 53건 최종 전수 검증</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+
+                        <!-- 골든 테스트 결과 그룹별 -->
+                        <p class="text-xs font-bold text-slate-700 mb-2"><i class="fas fa-trophy text-amber-500 mr-1"></i>최종 골든 테스트 결과 — 53건</p>
+                        <div class="overflow-x-auto mb-3">
+                            <table class="w-full text-xs border-collapse">
+                                <thead>
+                                    <tr class="border-b border-slate-200">
+                                        <th class="text-left py-1.5 px-2 font-bold text-slate-500">그룹</th>
+                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">케이스</th>
+                                        <th class="text-center py-1.5 px-2 font-bold text-green-600">Pass</th>
+                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">Issue</th>
+                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">응답 시간</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-700">
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1 px-2">거래상황 (S)</td>
+                                        <td class="py-1 px-2 text-center">20</td>
+                                        <td class="py-1 px-2 text-center font-bold text-green-600">18</td>
+                                        <td class="py-1 px-2 text-center text-amber-500">2</td>
+                                        <td class="py-1 px-2 text-center">28초</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1 px-2">개념이론 (K)</td>
+                                        <td class="py-1 px-2 text-center">5</td>
+                                        <td class="py-1 px-2 text-center font-bold text-green-600">5</td>
+                                        <td class="py-1 px-2 text-center">0</td>
+                                        <td class="py-1 px-2 text-center">22초</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1 px-2">라우팅 (R)</td>
+                                        <td class="py-1 px-2 text-center">4</td>
+                                        <td class="py-1 px-2 text-center font-bold text-green-600">4</td>
+                                        <td class="py-1 px-2 text-center">0</td>
+                                        <td class="py-1 px-2 text-center">22초</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1 px-2">계산 (C)</td>
+                                        <td class="py-1 px-2 text-center">3</td>
+                                        <td class="py-1 px-2 text-center font-bold text-green-600">3</td>
+                                        <td class="py-1 px-2 text-center">0</td>
+                                        <td class="py-1 px-2 text-center">21초</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1 px-2">멀티턴 (M)</td>
+                                        <td class="py-1 px-2 text-center">3</td>
+                                        <td class="py-1 px-2 text-center font-bold text-green-600">2</td>
+                                        <td class="py-1 px-2 text-center text-amber-500">1</td>
+                                        <td class="py-1 px-2 text-center">57초</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1 px-2">신규커버리지 (N)</td>
+                                        <td class="py-1 px-2 text-center">10</td>
+                                        <td class="py-1 px-2 text-center font-bold text-green-600">9</td>
+                                        <td class="py-1 px-2 text-center text-amber-500">1</td>
+                                        <td class="py-1 px-2 text-center">25초</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-1 px-2">스트레스 (X)</td>
+                                        <td class="py-1 px-2 text-center">8</td>
+                                        <td class="py-1 px-2 text-center font-bold text-green-600">6</td>
+                                        <td class="py-1 px-2 text-center text-amber-500">2</td>
+                                        <td class="py-1 px-2 text-center">18초</td>
+                                    </tr>
+                                    <tr class="bg-green-50 font-bold">
+                                        <td class="py-1.5 px-2 text-green-800">합계</td>
+                                        <td class="py-1.5 px-2 text-center text-green-800">53</td>
+                                        <td class="py-1.5 px-2 text-center text-green-700">47 (88.7%)</td>
+                                        <td class="py-1.5 px-2 text-center text-amber-600">6</td>
+                                        <td class="py-1.5 px-2 text-center text-green-800">25.3초</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                         <p class="text-xs text-slate-500 mb-3">
                             <i class="fas fa-info-circle mr-1"></i>
-                            미통과 18회(6건)는 "분기를 하나 더 제시했으면 좋겠다" 수준의 표현 이슈이며, 잘못된 정보 생성은 159회 중 0건.
+                            Issue 6건은 "토픽 매칭이 기대와 다름(답변은 정확)", "응답 시간이 긴 편" 수준의 메타데이터·완성도 이슈. 잘못된 정보 생성이나 근거 없는 결론 단정은 0건.
                         </p>
                         <div class="flex flex-wrap gap-2">
                             <a href="https://github.com/ghdtjrgns321-creator/k-ifrs-1115/blob/main/app/test/quality_test/GOLDEN_CASES_DETAIL.md" target="_blank" class="inline-flex items-center text-xs text-blue-600 hover:text-blue-800 font-medium transition">
@@ -451,6 +723,37 @@
                             <a href="https://github.com/ghdtjrgns321-creator/k-ifrs-1115/blob/main/app/test/quality_test/results/golden_report.md" target="_blank" class="inline-flex items-center text-xs text-blue-600 hover:text-blue-800 font-medium transition">
                                 <i class="fas fa-chart-column mr-1"></i>AI 답변·판정 결과 보기 <i class="fas fa-external-link-alt ml-1 text-[10px]"></i>
                             </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 최종 핵심 지표 종합 -->
+                <div class="mt-6 bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-5 text-white">
+                    <p class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3"><i class="fas fa-chart-bar mr-1"></i>최종 핵심 지표</p>
+                    <div class="grid grid-cols-3 md:grid-cols-6 gap-3 text-center">
+                        <div>
+                            <p class="text-xl font-extrabold text-green-400">620</p>
+                            <p class="text-[10px] text-slate-400 mt-0.5">총 검증 호출</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-extrabold text-green-400">88.7%</p>
+                            <p class="text-[10px] text-slate-400 mt-0.5">골든 테스트 (47/53)</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-extrabold text-green-400">0%</p>
+                            <p class="text-[10px] text-slate-400 mt-0.5">환각 발생률</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-extrabold text-green-400">100%</p>
+                            <p class="text-[10px] text-slate-400 mt-0.5">라우팅 정확도</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-extrabold text-green-400">100%</p>
+                            <p class="text-[10px] text-slate-400 mt-0.5">계산 정답률</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-extrabold text-green-400">25.3초</p>
+                            <p class="text-[10px] text-slate-400 mt-0.5">응답시간 중위값</p>
                         </div>
                     </div>
                 </div>
