@@ -5,9 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project: K-IFRS 1115 AI | 홍석훈</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontSize: {
+                        'xs':   ['13px', '18px'],
+                        'sm':   ['15px', '22px'],
+                        'base': ['17px', '26px'],
+                        'lg':   ['19px', '28px'],
+                        'xl':   ['21px', '30px'],
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Noto Sans KR', sans-serif; }</style>
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; font-size: 16px; }
+        .tab-bar::-webkit-scrollbar { display: none; }
+        .tab-bar { -ms-overflow-style: none; scrollbar-width: none; }
+        .accordion-icon { transition: transform 0.2s; }
+        .accordion-icon.open { transform: rotate(180deg); }
+        .tab-card { transition: all 0.2s; cursor: pointer; }
+        .tab-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px -5px rgba(0,0,0,0.1); }
+        .tab-card.active { box-shadow: 0 4px 15px -3px rgba(0,0,0,0.1); }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
@@ -17,7 +41,7 @@
         </a>
 
         <!-- ================================================ -->
-        <!-- [1] Title & Overview -->
+        <!-- 고정 영역: 헤더 + 스크린샷 + 개요 -->
         <!-- ================================================ -->
         <header class="mb-12">
             <div class="flex gap-2 mb-4">
@@ -32,7 +56,6 @@
             <p class="text-lg text-blue-600 font-semibold mb-4">
                 환각(Hallucination)을 방지하는 도메인 특화 RAG 파이프라인
             </p>
-
             <div class="flex flex-wrap gap-4">
                 <a href="http://134.185.104.224:8501" target="_blank" class="inline-flex items-center bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition font-medium text-sm shadow-md">
                     <i class="fas fa-globe mr-2"></i>서비스 바로가기
@@ -43,77 +66,169 @@
             </div>
         </header>
 
-        <!-- Service Screenshot -->
-        <section class="mb-12">
-            <p class="text-center text-sm text-slate-500 mb-2 font-medium">
-                <i class="fas fa-desktop text-blue-500 mr-1"></i> K-IFRS 1115 수익인식 기준서 분석 도구 메인 화면
-            </p>
-            <div class="bg-white p-2 rounded-2xl shadow-md border border-slate-200 overflow-hidden">
-                <img src="images/kifrs_screenshot.png" alt="K-IFRS 1115 서비스 메인 화면" class="w-full h-auto rounded-xl object-cover border border-slate-100">
-            </div>
-        </section>
+        <!-- ================================================ -->
+        <!-- 4개 탭 카드 네비게이션 (눈에 띄는 큰 카드) -->
+        <!-- ================================================ -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8" id="tab-cards">
+            <button data-tab="overview" class="tab-card active bg-white rounded-xl p-4 border-2 border-blue-500 shadow-md text-center group">
+                <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition">
+                    <i class="fas fa-cogs text-lg"></i>
+                </div>
+                <p class="font-bold text-slate-900 text-sm">개요</p>
+                <p class="text-[11px] text-slate-400 mt-0.5">파이프라인 · 설계</p>
+            </button>
+            <button data-tab="features" class="tab-card bg-white rounded-xl p-4 border-2 border-slate-200 shadow-sm text-center group">
+                <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition">
+                    <i class="fas fa-desktop text-lg"></i>
+                </div>
+                <p class="font-bold text-slate-900 text-sm">실제 사용 예시</p>
+                <p class="text-[11px] text-slate-400 mt-0.5">UX · 기능 시연</p>
+            </button>
+            <button data-tab="quality" class="tab-card bg-white rounded-xl p-4 border-2 border-slate-200 shadow-sm text-center group">
+                <div class="w-10 h-10 bg-green-100 text-green-600 rounded-xl flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition">
+                    <i class="fas fa-vial text-lg"></i>
+                </div>
+                <p class="font-bold text-slate-900 text-sm">Quality Verification</p>
+                <p class="text-[11px] text-slate-400 mt-0.5">범용 LLM과의 답변 비교<BR>자체 620회 검증 · 테스트</p>
+            </button>
+            <button data-tab="troubleshoot" class="tab-card bg-white rounded-xl p-4 border-2 border-slate-200 shadow-sm text-center group">
+                <div class="w-10 h-10 bg-slate-200 text-slate-600 rounded-xl flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition">
+                    <i class="fas fa-wrench text-lg"></i>
+                </div>
+                <p class="font-bold text-slate-900 text-sm">트러블슈팅</p>
+                <p class="text-[11px] text-slate-400 mt-0.5">6개 전략적 해결</p>
+            </button>
+        </div>
 
-        <div class="grid gap-12">
+        <!-- ================================================ -->
+        <!-- Tab 1: 개요 -->
+        <!-- ================================================ -->
+        <div id="panel-overview" class="tab-panel grid gap-8 mt-8" role="tabpanel">
 
-            <!-- Overview Card -->
+            <!-- Service Screenshot -->
+            <section>
+                <p class="text-center text-sm text-slate-500 mb-2 font-medium">
+                    <i class="fas fa-desktop text-blue-500 mr-1"></i> K-IFRS 1115 수익인식 기준서 분석 도구 메인 화면
+                </p>
+                <div class="bg-white p-2 rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                    <div class="overflow-y-auto overflow-x-hidden rounded-xl border border-slate-100" style="max-height: 600px;">
+                        <div style="margin: 0 -6% 0 -2%; width: 108%;">
+                            <img src="images/kifrs_screenshot.png" alt="K-IFRS 1115 서비스 메인 화면" style="width: 100%; height: auto; image-rendering: -webkit-optimize-contrast;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Project Overview -->
             <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
                 <h2 class="text-xl font-bold mb-4 text-slate-900 flex items-center border-b border-slate-100 pb-4">
                     <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-bullseye"></i></span>
                     Project Overview
                 </h2>
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    K-IFRS 제1115호(고객과의 계약에서 생기는 수익)에 특화된 회계감사 전문 AI 도구입니다.
-                    <br>
-                    감사인이 객관적 팩트를 선행 확인하고, AI는 구조화된 가이드 내에서만 제한적으로 판단을 내리도록 설계하여
-                    <br>
-                    회계 쟁점 분석 시 요구되는
-                    정확성과 신뢰성을 동시에 확보했습니다.
+
+                <p class="text-slate-600 text-sm leading-relaxed mb-5">
+                    기준서 원문과 회계 지식을 통해 생성한 Decision Tree를 기반으로<br>
+                    <strong>자유 추론을 허용하지 않는 답변</strong>을 생성하는 <strong class="text-blue-700">도메인 특화 RAG 시스템</strong>입니다.
                 </p>
 
-                <!-- Tech Stack -->
-                <div class="mt-6 pt-4 border-t border-slate-100">
-                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3">Core Tech & Tools</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-50 text-blue-700 border border-blue-100 rounded-md text-sm font-semibold">FastAPI</span>
-                        <span class="px-3 py-1 bg-purple-50 text-purple-700 border border-purple-100 rounded-md text-sm font-semibold">PydanticAI</span>
-                        <span class="px-3 py-1 bg-red-50 text-red-700 border border-red-100 rounded-md text-sm font-semibold">Streamlit</span>
-                        <span class="px-3 py-1 bg-slate-100 rounded-md text-sm font-semibold text-slate-700">Docker</span>
+                <!-- 핵심 포인트 -->
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3"><i class="fas fa-star text-amber-400 mr-1"></i>핵심 포인트</p>
+                <div class="space-y-2 mb-6">
+                    <div class="border-l-4 border-indigo-500 bg-indigo-50 rounded-r-lg px-4 py-3">
+                        <div class="flex items-center gap-2 mb-1">
+                            <i class="fas fa-sitemap text-indigo-500"></i>
+                            <p class="font-bold text-indigo-800 text-base">Decision Tree</p>
+                        </div>
+                        <p class="text-sm text-slate-700"><strong>정해진 Case 분기 내에서만 </strong>  결론 도출, AI 자의적 추론 차단 
+                    </div>
+                    <div class="border-l-4 border-purple-500 bg-purple-50 rounded-r-lg px-4 py-3">
+                        <div class="flex items-center gap-2 mb-1">
+                            <i class="fas fa-lock text-purple-500"></i>
+                            <p class="font-bold text-purple-800 text-base">PydanticAI 구조화 출력</p>
+                        </div>
+                        <p class="text-sm text-slate-700"><strong>AI 답변의 변동성 억제</strong>를 코드수준에서 강제함</p>
+                    </div>
+                    <div class="border-l-4 border-sky-500 bg-sky-50 rounded-r-lg px-4 py-3">
+                        <div class="flex items-center gap-2 mb-1">
+                            <i class="fas fa-crosshairs text-sky-500"></i>
+                            <p class="font-bold text-sky-800 text-base">근거 문서 하이브리드 검색 시스템 </p>
+                        </div>
+                        <p class="text-sm text-slate-700">사전 배정 문서 직접 조회 + 약칭 자동 인식 + 가중치 적용</p>
+                        <ul class="text-sm text-slate-600 mt-1.5 ml-4 space-y-1">
+                            <li>• (본문 1.3 / 감리지적 1.2 / BC 0.8) 등 상세 가중치 적용</li>
+                            <li>• (예: "묶음 판매" → 복수의 수행의무, 거래가격 배분, 상대적 독립 판매 가격)</li>
+                        </ul>
+                    </div>
+                    <div class="border-l-4 border-amber-500 bg-amber-50 rounded-r-lg px-4 py-3">
+                        <div class="flex items-center gap-2 mb-1">
+                            <i class="fas fa-book-open text-amber-500"></i>
+                            <p class="font-bold text-amber-800 text-base">도메인 DATA 적재 + 요약 제공</p>
+                        </div>
+                        <p class="text-sm text-slate-700"><strong>1,575건의 데이터(1115호본문·적용사례·질의회신·감리사례)</strong> DB 적재<BR>AI 호출 전에 <strong>SUMMARY</strong>와 함께 확인 가능</p>
+                    </div>
+                    <div class="border-l-4 border-green-500 bg-green-50 rounded-r-lg px-4 py-3">
+                        <div class="flex items-center gap-2 mb-1">
+                            <i class="fas fa-columns text-green-500"></i>
+                            <p class="font-bold text-green-800 text-base">Split View 근거 추적</p>
+                        </div>
+                        <p class="text-sm text-slate-700">AI 답변과 인용 근거를 <strong>한 화면에서 동시 확인</strong></p>
                     </div>
                 </div>
 
-                <!-- Architecture Table -->
-                <div class="mt-6 pt-4 border-t border-slate-100">
-                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3">System Architecture</h3>
-                    <div class="overflow-x-auto">
+                <!-- 왜 만들었나 + 비교 테이블 통합 -->
+                <div class="border-t border-slate-100 pt-6">
+                    <h3 class="text-base font-bold text-slate-900 mb-3 flex items-center">
+                        <span class="w-8 h-8 bg-red-100 text-red-600 rounded-lg flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-triangle-exclamation"></i></span>
+                        왜 만들었나 
+                    </h3>
+                    <p class="text-sm text-slate-600 mb-5 pl-11">
+                        AI 과대신뢰 문제 (2종 오류) <- 범용 LLM의 <strong>환각</strong>에 의해 발생<BR> AI에게 자유 추론을 허락하지 않는 <strong>확정적 아키텍처</strong>가 필요
+                    </p>
+
+                    <div class="overflow-x-auto bg-slate-50 rounded-lg border border-slate-100 p-1">
                         <table class="w-full text-sm border-collapse">
-                            <tbody class="text-slate-700">
-                                <tr class="border-b border-slate-100">
-                                    <td class="py-2.5 px-4 font-semibold text-slate-500 w-28">Frontend</td>
-                                    <td class="py-2.5 px-4">Streamlit (스플릿 뷰 인터페이스)</td>
+                            <thead>
+                                <tr class="border-b-2 border-slate-200">
+                                    <th class="text-left py-3 px-4 font-bold text-slate-500">항목</th>
+                                    <th class="text-left py-3 px-4 font-bold text-slate-400">일반 ChatGPT</th>
+                                    <th class="text-left py-3 px-4 font-bold text-blue-600">이 시스템</th>
                                 </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="py-2.5 px-4 font-semibold text-slate-500">Backend</td>
-                                    <td class="py-2.5 px-4">FastAPI + uvicorn</td>
+                            </thead>
+                            <tbody class="text-slate-600">
+                                <tr class="border-b border-slate-200 bg-white">
+                                    <td class="py-2.5 px-4 font-medium text-slate-700">답변 근거</td>
+                                    <td class="py-2.5 px-4">학습 데이터에서 자유 추론</td>
+                                    <td class="py-2.5 px-4 font-semibold text-slate-800">DB에 저장된 기준서 원문만 사용</td>
                                 </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="py-2.5 px-4 font-semibold text-slate-500">Vector DB</td>
-                                    <td class="py-2.5 px-4">MongoDB Atlas (벡터 검색)</td>
+                                <tr class="border-b border-slate-200">
+                                    <td class="py-2.5 px-4 font-medium text-slate-700">근거 추적</td>
+                                    <td class="py-2.5 px-4">어려움 (출처 불명)</td>
+                                    <td class="py-2.5 px-4 font-semibold text-slate-800">문단 번호 단위로 추적</td>
                                 </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="py-2.5 px-4 font-semibold text-slate-500">Embedding</td>
-                                    <td class="py-2.5 px-4">Upstage Solar (한국어 특화)</td>
+                                <tr class="border-b border-slate-200 bg-white">
+                                    <td class="py-2.5 px-4 font-medium text-slate-700">환각 방지</td>
+                                    <td class="py-2.5 px-4">없음</td>
+                                    <td class="py-2.5 px-4 font-semibold text-slate-800">5-Layer 파이프라인</td>
                                 </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="py-2.5 px-4 font-semibold text-slate-500">LLM</td>
-                                    <td class="py-2.5 px-4">Gemini Flash (추론) + GPT-4.1-mini (계산)</td>
+                                <tr class="border-b border-slate-200">
+                                    <td class="py-2.5 px-4 font-medium text-slate-700">결론 구조</td>
+                                    <td class="py-2.5 px-4">자유형 텍스트</td>
+                                    <td class="py-2.5 px-4 font-semibold text-slate-800">Decision Tree + Case 분기</td>
                                 </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="py-2.5 px-4 font-semibold text-slate-500">Reranker</td>
-                                    <td class="py-2.5 px-4">Cohere 다국어 Cross-encoder</td>
+                                <tr class="border-b border-slate-200 bg-white">
+                                    <td class="py-2.5 px-4 font-medium text-slate-700">정보 부족 시</td>
+                                    <td class="py-2.5 px-4">근거 없이 단정 위험</td>
+                                    <td class="py-2.5 px-4 font-semibold text-slate-800">조건부 결론으로 분기 제시</td>
                                 </tr>
-                                <tr>
-                                    <td class="py-2.5 px-4 font-semibold text-slate-500">Infra</td>
-                                    <td class="py-2.5 px-4">Docker + docker-compose / Oracle Cloud</td>
+                                <tr class="border-b border-slate-200">
+                                    <td class="py-2.5 px-4 font-medium text-slate-700">모델</td>
+                                    <td class="py-2.5 px-4">단일 모델</td>
+                                    <td class="py-2.5 px-4 font-semibold text-slate-800">듀얼 LLM 라우팅 (자동 선택)</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="py-2.5 px-4 font-medium text-slate-700">품질 검증</td>
+                                    <td class="py-2.5 px-4">없음</td>
+                                    <td class="py-2.5 px-4 font-semibold text-slate-800">620회 체계적 테스트</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -121,222 +236,414 @@
                 </div>
             </section>
 
-            <!-- ================================================ -->
-            <!-- [2] Background & Problem -->
-            <!-- ================================================ -->
-            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-                <h2 class="text-xl font-bold mb-4 text-slate-900 flex items-center border-b border-slate-100 pb-4">
-                    <span class="w-8 h-8 bg-red-100 text-red-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-triangle-exclamation"></i></span>
-                    Background & Problem
-                </h2>
-                <h3 class="text-base font-bold text-slate-800 mb-3">
-                    [Problem] 범용 AI의 환각(Hallucination) 현상과 부실 감사 리스크
-                </h3>
-                <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                    기존 범용 LLM을 회계 기준서 해석에 그대로 적용할 경우, 근거 없는 답변을 생성하는 <strong>환각 문제</strong>에 노출됩니다.<br> 이는 감사 실무에서 AI를 <strong>과대신뢰</strong>하는 2종 오류를 유발하여 심각한 리스크로 이어질 수 있습니다. 따라서 <br>
-                </p>
-                <p class="text-sm text-red-700 font-medium pl-4 border-l-4 border-red-200">
-                    <i class="fas fa-quote-left text-red-300 mr-2"></i>
-                    AI에게 자유로운 추론을 허락하지 않고 철저히 통제된 환경에서만 작동하는 <strong>확정적 아키텍처</strong>가 필요했습니다.
-                </p>
-            </section>
-
-            <!-- ================================================ -->
-            <!-- [3] Core Solutions & Pipeline -->
-            <!-- ================================================ -->
+            <!-- 환각 방지 5-Layer Pipeline -->
             <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
                 <h2 class="text-xl font-bold mb-8 text-slate-900 flex items-center border-b border-slate-100 pb-4">
                     <span class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-cogs"></i></span>
-                    Core Solutions & Pipeline
+                    환각 방지 5-Layer Pipeline
                 </h2>
 
-                <!-- 5-Layer Pipeline Overview -->
-                <h3 class="text-lg font-bold text-slate-900 mb-3">할루시네이션 방어 DATA PIPELINE</h3>
-                <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                    데이터 적재부터 최종 답변 출력까지 전 과정을 통제하는 <strong>확정적(Deterministic) 아키텍처</strong>를 설계했습니다.<br>
-                    검증된 <strong>K-IFRS 도메인 지식</strong> 만을 AI에 주입하고, 데이터가 <strong>의사결정 트리(Decision Tree)</strong>와 <strong>PydanticAI</strong>를 통과함으로써<br>
-                    AI의 자의적 추론을 원천 차단하고, 정보가 부족한 상황에서도 임의의 판단 대신 안전한 <strong>'조건부 결론(Case 분기)'</strong>을 도출합니다.
+                <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                    전 과정(데이터 적재 -> 최종 답변)을 통제하는 <strong>확정적(Deterministic) 아키텍처</strong>
                 </p>
-                <div class="bg-slate-50 p-4 rounded-lg text-sm mb-8">
+
+                <div class="bg-slate-50 p-4 rounded-lg text-sm mb-6">
                     <p class="font-bold text-slate-500 text-xs uppercase tracking-wide mb-3">5-Layer Data Pipeline</p>
                     <ol class="space-y-2 text-slate-700">
                         <li class="flex items-start">
                             <span class="w-5 h-5 bg-indigo-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 mt-0.5 flex-shrink-0">1</span>
-                            <span>검증된 도메인 데이터를 DATABASE에 적재 (본문·적용사례·질의회신·감리사례+KAI교육자료)</span>
+                            <span><strong>도메인 데이터 적재</strong><BR>1115호 본문 및 관련 사례와 지적사례 1,575건을 DB에 저장<BR><strong class="text-indigo-700"></strong>(본문·적용사례·질의회신·감리사례·KAI교육·토픽큐레이션)</span>
                         </li>
                         <li class="flex items-start">
                             <span class="w-5 h-5 bg-indigo-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 mt-0.5 flex-shrink-0">2</span>
-                            <span>Pinpoint검색과 Reranker를 통해 가장 정확한 DATA만을 답변 근거로 추출하여 프롬프트에 주입</span>
+                            <div>
+                                <strong>핀포인트 + Reranker 검색</strong>
+                                <ul class="mt-1 ml-1 space-y-0.5 text-slate-600 text-xs">
+                                    <li>• <strong class="text-indigo-700">Tier 1 핀포인트</strong> —사전 배정문서 ID로 DB 직접 조회. 검색 엔진 경유X → <strong>핵심 근거 누락 0%</strong></li>
+                                    <li>• <strong class="text-indigo-700">Tier 2 하이브리드 보충</strong> — 약칭 자동 인식 + 가중치 적용(본문 1.3 / 감리지적 1.2 / BC 0.8)</li>
+                                    <li>• <strong class="text-indigo-700">Cohere Cross-encoder 재평가</strong> — LLM을 통한 관련성 재평가</li>
+                                </ul>
+                            </div>
                         </li>
                         <li class="flex items-start">
                             <span class="w-5 h-5 bg-indigo-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 mt-0.5 flex-shrink-0">3</span>
-                            <span>질의의 복잡도와 유형을 판단하여 최적의 AI 모델로 연결하는 듀얼 LLM 라우팅 적용</span>
+                            <div>
+                                <strong>듀얼 LLM 라우팅</strong>
+                                <ul class="mt-1 ml-1 space-y-0.5 text-slate-600 text-xs">
+                                    <li>• <strong class="text-indigo-700">Gemini Flash</strong> — 회계 추론 1위 (81%). 일반·상황 질문 전담</li>
+                                    <li>• <strong class="text-indigo-700">gpt-4.1-mini</strong> — 산술 정확도 1위 (100%). 계산 질문 전담</li>
+                                </ul>
+                            </div>
                         </li>
                         <li class="flex items-start">
                             <span class="w-5 h-5 bg-indigo-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 mt-0.5 flex-shrink-0">4</span>
-                            <span>토픽별 의사결정 트리(Decision Tree)로 자의적 추론을 차단하고 정해진 분기(Case) 내에서만 결론 도출</span>
+                            <span><strong>Decision Tree 강제</strong><BR>의사결정 트리로 AI 자의적 추론 차단<BR> 정보 부족 시 임의 판단 대신 조건부 결론(Case 분기) 도출</span>
                         </li>
                         <li class="flex items-start">
                             <span class="w-5 h-5 bg-indigo-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 mt-0.5 flex-shrink-0">5</span>
-                            <span>PydanticAI를 활용하여 '근거'와 '결론'이 완벽히 분리된 구조화된 출력 양식을 코드 수준에서 강제</span>
+                            <span><strong>PydanticAI 구조화 출력</strong><BR>'근거'와 '결론' 분리를 코드 수준에서 강제</span>
                         </li>
                     </ol>
                 </div>
 
-                <!-- Detail: 2-Tier Retrieval (Layer 2 상세) -->
-                <div class="border-t border-slate-100 pt-8 mb-8">
-                    <h3 class="text-base font-bold text-slate-900 mb-3 flex items-center">
-                        <span class="w-5 h-5 bg-indigo-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 flex-shrink-0">2</span>
-                        Pinpoint + Reranker 교차 검증
-                    </h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                        핵심 문서의 누락을 원천 차단하는 <strong>핀포인트 검색</strong>과 
-                        관련 문서를 보충하는 <strong>하이브리드 검색</strong>을 병렬로 실행합니다.<br>
-                        검색 결과는 Cohere Cross-encoder가 2차 검증하여 노이즈를 제거하고,
-                        문단 번호 단위까지 출처를 정확히 추적합니다.
-                    </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm mb-4">
-                        <div class="bg-indigo-50 border border-indigo-100 rounded-lg p-4">
-                            <p class="font-bold text-indigo-700 text-xs uppercase tracking-wide mb-2">
-                                <i class="fas fa-crosshairs mr-1"></i>Tier 1 — 핀포인트 검색
-                            </p>
-                            <p class="text-slate-600 text-sm mb-2">Decision Tree에 사전 배정된 문서 ID로 DB에서 직접 조회</p>
-                            <ul class="text-xs text-slate-500 space-y-1">
-                                <li><i class="fas fa-check text-indigo-400 mr-1"></i>검색 엔진 미경유 — 누락 위험 0%</li>
-                                <li><i class="fas fa-check text-indigo-400 mr-1"></i>적용사례, 질의회신, 감리사례 원문 직접 매칭</li>
-                                <li><i class="fas fa-check text-indigo-400 mr-1"></i>Reranker 탈락 시에도 강제 보존</li>
-                            </ul>
-                        </div>
-                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
-                            <p class="font-bold text-slate-700 text-xs uppercase tracking-wide mb-2">
-                                <i class="fas fa-magnifying-glass mr-1"></i>Tier 2 — 하이브리드 보충 검색
-                            </p>
-                            <p class="text-slate-600 text-sm mb-2">벡터 검색 + BM25 키워드 검색을 RRF로 융합</p>
-                            <ul class="text-xs text-slate-500 space-y-1">
-                                <li><i class="fas fa-check text-slate-400 mr-1"></i>의미 유사도: "수익 인식" ↔ "매출 인식" 매칭</li>
-                                <li><i class="fas fa-check text-slate-400 mr-1"></i>키워드 매칭: "문단 B63A" 정확 조회</li>
-                                <li><i class="fas fa-check text-slate-400 mr-1"></i>실무→공식용어 자동 확장 (15개 매핑)</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="bg-yellow-50 border border-yellow-100 rounded-lg p-4 text-xs">
-                        <p class="font-bold text-yellow-700 mb-2"><i class="fas fa-filter mr-1"></i>Reranker (Cohere Cross-encoder)</p>
-                        <p class="text-slate-600 mb-3">1차 검색 결과 30건을 질문과 동시에 읽고 관련성을 재평가. 2단계 가중치로 문서의 실무 가치를 차등 반영합니다.</p>
-                        <div class="inline-flex flex-wrap gap-2">
-                            <span class="px-2.5 py-1 bg-white rounded border border-slate-100 text-slate-700">본문·적용지침 <strong class="text-indigo-600">1.3</strong></span>
-                            <span class="px-2.5 py-1 bg-white rounded border border-slate-100 text-slate-700">감리사례 <strong class="text-indigo-600">1.2</strong></span>
-                            <span class="px-2.5 py-1 bg-white rounded border border-slate-100 text-slate-700">적용사례·QNA <strong class="text-slate-500">1.1</strong></span>
-                            <span class="px-2.5 py-1 bg-white rounded border border-slate-100 text-slate-700">BC·용어·시행일 <strong class="text-slate-400">0.8</strong></span>
-                        </div>
-                    </div>
-                </div>
+                <!-- 상세 정보 버튼 하나로 통합 -->
+                <div class="border border-slate-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition text-left">
+                        <p class="font-bold text-indigo-600 text-sm"><i class="fas fa-info-circle mr-1.5"></i>Layer 상세 정보 확인</p>
+                        <i class="fas fa-chevron-down text-slate-400 accordion-icon flex-shrink-0"></i>
+                    </button>
+                    <div class="hidden border-t border-slate-100 p-5 bg-slate-50 space-y-8">
 
-                <!-- Detail: Dual LLM Routing (Layer 3 상세) -->
-                <div class="border-t border-slate-100 pt-8">
-                    <h3 class="text-base font-bold text-slate-900 mb-3 flex items-center">
-                        <span class="w-5 h-5 bg-indigo-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 flex-shrink-0">3</span>
-                        듀얼 LLM 라우팅
-                    </h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                        질의의 복잡도와 유형에 따라 최적의 모델을 자동 선택합니다.<br>
-                        7개 모델 218회 A/B 테스트를 통해, 회계 추론과 산술 정확도가 단일 모델로 양립 불가함을 발견하고 듀얼트랙을 채택했습니다.
-                    </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-                        <div class="bg-sky-50 border border-sky-100 rounded-lg p-4">
-                            <p class="font-bold text-sky-700 text-xs uppercase tracking-wide mb-2">Gemini Flash</p>
-                            <p class="text-slate-600">회계 추론 및 기준서 해석 질문 처리</p>
-                            <p class="text-slate-400 text-xs mt-1">e.g. "수익 인식 시점은?"</p>
-                        </div>
-                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
-                            <p class="font-bold text-slate-700 text-xs uppercase tracking-wide mb-2">GPT-4.1-mini</p>
-                            <p class="text-slate-600">산술/계산 문제 전담 처리</p>
-                            <p class="text-slate-400 text-xs mt-1">e.g. "변동대가 배분 금액은?"</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Detail: Decision Tree (Layer 4 상세) -->
-                <div class="border-t border-slate-100 pt-8">
-                    <h3 class="text-base font-bold text-slate-900 mb-3 flex items-center">
-                        <span class="w-5 h-5 bg-indigo-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 flex-shrink-0">4</span>
-                        토픽별 의사결정 트리 (Decision Tree)
-                    </h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                        31개 토픽 각각에 <strong>체크리스트 → 분기 논리 → 선례/감리사례</strong>가 사전 정의되어 있습니다.<br>
-                        LLM은 새로운 분기를 생성할 수 없고, 정해진 가이드 내에서만 결론을 도출합니다.
-                    </p>
-                    <div class="mb-6">
-                        <a href="https://github.com/ghdtjrgns321-creator/k-ifrs-1115-chatbot/blob/main/app/domain/decision_trees.py" target="_blank" class="inline-flex items-center text-xs text-blue-600 hover:text-blue-800 font-medium transition">
-                            <i class="fas fa-code mr-1.5"></i>Decision Tree 전체 코드 보기 (31개 토픽) <i class="fas fa-external-link-alt ml-1.5 text-[10px]"></i>
-                        </a>
-                    </div>
-
-                    <!-- 세로 플로우: Decision Tree 내부 구조 -->
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3">Decision Tree 내부 구조</p>
-                    <div class="relative pl-6 mb-6">
-                        <!-- 세로 연결선 -->
-                        <div class="absolute left-[11px] top-2 bottom-2 w-0.5 bg-indigo-200"></div>
-
-                        <div class="relative pb-4">
-                            <div class="absolute left-[-17px] top-0.5 w-3 h-3 bg-indigo-500 rounded-full border-2 border-white shadow"></div>
-                            <p class="text-sm"><strong class="text-indigo-700">Routing</strong></p>
-                            <p class="text-xs text-slate-500 mt-0.5">사용자 질문을 어떤 토픽에 연결할지 결정</p>
-                        </div>
-
-                        <div class="relative pb-4">
-                            <div class="absolute left-[-17px] top-0.5 w-3 h-3 bg-indigo-500 rounded-full border-2 border-white shadow"></div>
-                            <p class="text-sm"><strong class="text-indigo-700">Checklist</strong></p>
-                            <p class="text-xs text-slate-500 mt-0.5">결론을 내리기 전 반드시 확인해야 할 항목 정의</p>
-                        </div>
-
-                        <div class="relative pb-4">
-                            <div class="absolute left-[-17px] top-0.5 w-3 h-3 bg-indigo-500 rounded-full border-2 border-white shadow"></div>
-                            <p class="text-sm"><strong class="text-indigo-700">Conclusion Guide</strong></p>
-                            <p class="text-xs text-slate-500 mt-0.5">체크리스트 결과에 따라 선택 가능한 분기(Case)를 사전 정의 — AI는 이 외의 결론 생성 불가</p>
-                            <div class="flex gap-1.5 mt-1.5">
-                                <span class="px-2 py-0.5 bg-indigo-50 rounded text-indigo-600 text-xs">TYPE 1 조건부 — 추가 확인 필요</span>
-                                <span class="px-2 py-0.5 bg-indigo-50 rounded text-indigo-600 text-xs">TYPE 2 확정 — 판단 완료</span>
+                        <!-- Layer 2 상세 -->
+                        <div>
+                            <h4 class="text-base font-bold text-slate-900 mb-3 flex items-center">
+                                <span class="w-5 h-5 bg-indigo-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 flex-shrink-0">2</span>
+                                Pinpoint + Reranker 검색 상세
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm mb-4">
+                                <div class="bg-indigo-50 border border-indigo-100 rounded-lg p-4">
+                                    <p class="font-bold text-indigo-700 text-xs uppercase tracking-wide mb-2">
+                                        <i class="fas fa-crosshairs mr-1"></i>Tier 1 — 핀포인트 검색
+                                    </p>
+                                    <p class="text-slate-600 text-sm mb-2">Decision Tree에 사전 배정된 문서 ID로 DB에서 직접 조회</p>
+                                    <ul class="text-xs text-slate-500 space-y-1">
+                                        <li><i class="fas fa-check text-indigo-400 mr-1"></i>검색 엔진 미경유 — 누락 위험 0%</li>
+                                        <li><i class="fas fa-check text-indigo-400 mr-1"></i>적용사례, 질의회신, 감리사례 원문 직접 매칭</li>
+                                        <li><i class="fas fa-check text-indigo-400 mr-1"></i>Reranker 탈락 시에도 강제 보존</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white border border-slate-200 rounded-lg p-4">
+                                    <p class="font-bold text-slate-700 text-xs uppercase tracking-wide mb-2">
+                                        <i class="fas fa-magnifying-glass mr-1"></i>Tier 2 — 하이브리드 보충 검색
+                                    </p>
+                                    <p class="text-slate-600 text-sm mb-2">벡터 검색 + BM25 키워드 검색을 RRF로 융합</p>
+                                    <ul class="text-xs text-slate-500 space-y-1">
+                                        <li><i class="fas fa-check text-slate-400 mr-1"></i>의미 유사도: "수익 인식" ↔ "매출 인식" 매칭</li>
+                                        <li><i class="fas fa-check text-slate-400 mr-1"></i>키워드 매칭: "문단 B63A" 정확 조회</li>
+                                        <li><i class="fas fa-check text-slate-400 mr-1"></i>실무→공식용어 자동 확장 (15개 매핑)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-yellow-50 border border-yellow-100 rounded-lg p-4 text-xs">
+                                <p class="font-bold text-yellow-700 mb-2"><i class="fas fa-filter mr-1"></i>Reranker (Cohere Cross-encoder)</p>
+                                <p class="text-slate-600 mb-3">1차 검색 결과 30건을 질문과 동시에 읽고 관련성을 재평가. 핀포인트 문서는 보호.</p>
+                                <div class="inline-flex flex-wrap gap-2">
+                                    <span class="px-2.5 py-1 bg-white rounded border border-slate-100 text-slate-700">본문·적용지침 <strong class="text-indigo-600">1.3</strong></span>
+                                    <span class="px-2.5 py-1 bg-white rounded border border-slate-100 text-slate-700">감리사례 <strong class="text-indigo-600">1.2</strong></span>
+                                    <span class="px-2.5 py-1 bg-white rounded border border-slate-100 text-slate-700">적용사례·QNA <strong class="text-slate-500">1.1</strong></span>
+                                    <span class="px-2.5 py-1 bg-white rounded border border-slate-100 text-slate-700">BC·용어·시행일 <strong class="text-slate-400">0.8</strong></span>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="relative pb-4">
-                            <div class="absolute left-[-17px] top-0.5 w-3 h-3 bg-indigo-500 rounded-full border-2 border-white shadow"></div>
-                            <p class="text-sm"><strong class="text-indigo-700">Precedents</strong></p>
-                            <p class="text-xs text-slate-500 mt-0.5">각 분기에 사전 배정된 적용사례(IE)·질의회신(QNA)·감리사례(FSS)를 핀포인트로 연결</p>
+                        <!-- Layer 3 상세 -->
+                        <div class="border-t border-slate-200 pt-6">
+                            <h4 class="text-base font-bold text-slate-900 mb-3 flex items-center">
+                                <span class="w-5 h-5 bg-indigo-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 flex-shrink-0">3</span>
+                                듀얼 LLM 라우팅 상세
+                            </h4>
+                            <p class="text-slate-600 text-sm mb-4">
+                                7개 모델 218회 A/B 테스트를 통해, 회계 추론과 산술 정확도가 단일 모델로 양립 불가함을 발견하고 듀얼트랙을 채택했습니다.
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                                <div class="bg-sky-50 border border-sky-100 rounded-lg p-4">
+                                    <p class="font-bold text-sky-700 text-xs uppercase tracking-wide mb-2">Gemini Flash</p>
+                                    <p class="text-slate-600">회계 추론 1위 (0.81) — 일반·상황 질문 전담</p>
+                                </div>
+                                <div class="bg-white border border-slate-200 rounded-lg p-4">
+                                    <p class="font-bold text-slate-700 text-xs uppercase tracking-wide mb-2">GPT-4.1-mini</p>
+                                    <p class="text-slate-600">산술 정확도 100% — 계산 질문 전담</p>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="relative pb-4">
-                            <div class="absolute left-[-17px] top-0.5 w-3 h-3 bg-red-400 rounded-full border-2 border-white shadow"></div>
-                            <p class="text-sm"><strong class="text-red-600">Red Flags</strong></p>
-                            <p class="text-xs text-slate-500 mt-0.5">주의해야 할 감리 지적 사항과 위험 경고 자동 표시</p>
+                        <!-- Layer 4 상세 -->
+                        <div class="border-t border-slate-200 pt-6">
+                            <h4 class="text-base font-bold text-slate-900 mb-3 flex items-center">
+                                <span class="w-5 h-5 bg-indigo-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 flex-shrink-0">4</span>
+                                Decision Tree 내부 구조
+                            </h4>
+                            <p class="text-slate-600 text-sm mb-4">
+                                31개 토픽 각각에 <strong>체크리스트 → 분기 논리 → 선례/감리사례</strong>가 사전 정의되어 있습니다.
+                                LLM은 새로운 분기를 생성할 수 없고, 정해진 가이드 내에서만 결론을 도출합니다.
+                            </p>
+                            <div class="mb-4">
+                                <a href="https://github.com/ghdtjrgns321-creator/k-ifrs-1115-chatbot/blob/main/app/domain/decision_trees.py" target="_blank" class="inline-flex items-center text-xs text-blue-600 hover:text-blue-800 font-medium transition">
+                                    <i class="fas fa-code mr-1.5"></i>Decision Tree 전체 코드 보기 (31개 토픽) <i class="fas fa-external-link-alt ml-1.5 text-[10px]"></i>
+                                </a>
+                            </div>
+                            <div class="relative pl-6">
+                                <div class="absolute left-[11px] top-2 bottom-2 w-0.5 bg-indigo-200"></div>
+                                <div class="relative pb-4">
+                                    <div class="absolute left-[-17px] top-0.5 w-3 h-3 bg-indigo-500 rounded-full border-2 border-white shadow"></div>
+                                    <p class="text-sm"><strong class="text-indigo-700">Routing</strong></p>
+                                    <p class="text-xs text-slate-500 mt-0.5">사용자 질문을 어떤 토픽에 연결할지 결정</p>
+                                </div>
+                                <div class="relative pb-4">
+                                    <div class="absolute left-[-17px] top-0.5 w-3 h-3 bg-indigo-500 rounded-full border-2 border-white shadow"></div>
+                                    <p class="text-sm"><strong class="text-indigo-700">Checklist</strong></p>
+                                    <p class="text-xs text-slate-500 mt-0.5">결론을 내리기 전 반드시 확인해야 할 항목 정의</p>
+                                </div>
+                                <div class="relative pb-4">
+                                    <div class="absolute left-[-17px] top-0.5 w-3 h-3 bg-indigo-500 rounded-full border-2 border-white shadow"></div>
+                                    <p class="text-sm"><strong class="text-indigo-700">Conclusion Guide</strong></p>
+                                    <p class="text-xs text-slate-500 mt-0.5">체크리스트 결과에 따라 선택 가능한 분기(Case)를 사전 정의 — AI는 이 외의 결론 생성 불가</p>
+                                    <div class="flex gap-1.5 mt-1.5">
+                                        <span class="px-2 py-0.5 bg-indigo-50 rounded text-indigo-600 text-xs">TYPE 1 조건부 — 추가 확인 필요</span>
+                                        <span class="px-2 py-0.5 bg-indigo-50 rounded text-indigo-600 text-xs">TYPE 2 확정 — 판단 완료</span>
+                                    </div>
+                                </div>
+                                <div class="relative pb-4">
+                                    <div class="absolute left-[-17px] top-0.5 w-3 h-3 bg-indigo-500 rounded-full border-2 border-white shadow"></div>
+                                    <p class="text-sm"><strong class="text-indigo-700">Precedents</strong></p>
+                                    <p class="text-xs text-slate-500 mt-0.5">각 분기에 사전 배정된 적용사례(IE)·질의회신(QNA)·감리사례(FSS)를 핀포인트로 연결</p>
+                                </div>
+                                <div class="relative pb-4">
+                                    <div class="absolute left-[-17px] top-0.5 w-3 h-3 bg-red-400 rounded-full border-2 border-white shadow"></div>
+                                    <p class="text-sm"><strong class="text-red-600">Red Flags</strong></p>
+                                    <p class="text-xs text-slate-500 mt-0.5">주의해야 할 감리 지적 사항과 위험 경고 자동 표시</p>
+                                </div>
+                                <div class="relative pb-4">
+                                    <div class="absolute left-[-17px] top-0.5 w-3 h-3 bg-sky-400 rounded-full border-2 border-white shadow"></div>
+                                    <p class="text-sm"><strong class="text-sky-600">Calculation Formula</strong> <span class="text-slate-400 text-xs">(선택)</span></p>
+                                    <p class="text-xs text-slate-500 mt-0.5">산술 질문 시 분기별 계산 공식을 GPT-4.1-mini에 전달하여 정확한 수치 산출</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute left-[-17px] top-0.5 w-3 h-3 bg-yellow-400 rounded-full border-2 border-white shadow"></div>
+                                    <p class="text-sm"><strong class="text-yellow-600">Critical Factors</strong> <span class="text-slate-400 text-xs">(선택)</span></p>
+                                    <p class="text-xs text-slate-500 mt-0.5">이 요소가 미확인이면 확정 결론(TYPE 2)을 금지하는 양방향 분기 안전장치</p>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="relative pb-4">
-                            <div class="absolute left-[-17px] top-0.5 w-3 h-3 bg-sky-400 rounded-full border-2 border-white shadow"></div>
-                            <p class="text-sm"><strong class="text-sky-600">Calculation Formula</strong> <span class="text-slate-400 text-xs">(선택)</span></p>
-                            <p class="text-xs text-slate-500 mt-0.5">산술 질문 시 분기별 계산 공식을 GPT-4.1-mini에 전달하여 정확한 수치 산출</p>
-                        </div>
+                    </div>
+                </div>
+            </section>
 
-                        <div class="relative">
-                            <div class="absolute left-[-17px] top-0.5 w-3 h-3 bg-yellow-400 rounded-full border-2 border-white shadow"></div>
-                            <p class="text-sm"><strong class="text-yellow-600">Critical Factors</strong> <span class="text-slate-400 text-xs">(선택)</span></p>
-                            <p class="text-xs text-slate-500 mt-0.5">이 요소가 미확인이면 확정 결론(TYPE 2)을 금지하는 양방향 분기 안전장치</p>
-                        </div>
+            <!-- 설계 한계 & 향후 발전 방향 (통합) -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold mb-4 text-slate-900 flex items-center border-b border-slate-100 pb-4">
+                    <span class="w-8 h-8 bg-yellow-100 text-yellow-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-triangle-exclamation"></i></span>
+                    설계 한계 & 향후 발전 방향
+                </h2>
+
+                <!-- 대응 가능/불가능 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+                    <div class="bg-green-50 border border-green-100 rounded-lg p-4">
+                        <p class="font-bold text-green-700 text-sm mb-3"><i class="fas fa-circle-check mr-1"></i>대응 가능</p>
+                        <ul class="text-xs text-slate-600 space-y-1.5">
+                            <li><i class="fas fa-check text-green-400 mr-1.5"></i>체크리스트 Q&A 응답</li>
+                            <li><i class="fas fa-check text-green-400 mr-1.5"></i>추가 조건 제시 및 결론 확정</li>
+                            <li><i class="fas fa-check text-green-400 mr-1.5"></i>개념 설명 · 계산 질문</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 border border-red-100 rounded-lg p-4">
+                        <p class="font-bold text-red-700 text-sm mb-3"><i class="fas fa-circle-xmark mr-1"></i>대응 불가능</p>
+                        <ul class="text-xs text-slate-600 space-y-1.5">
+                            <li><i class="fas fa-xmark text-red-400 mr-1.5"></i>최신 뉴스 검색</li>
+                            <li><i class="fas fa-xmark text-red-400 mr-1.5"></i>지식 범위 밖의 신규 거래유형</li>
+                            <li><i class="fas fa-xmark text-red-400 mr-1.5"></i>비교 회사 처리 방식 안내</li>
+                        </ul>
                     </div>
                 </div>
 
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm text-slate-600 mb-6">
+                    <p class="font-semibold text-slate-700 mb-1"><i class="fas fa-info-circle text-slate-400 mr-1"></i>왜 한계를 유지하는가?</p>
+                    <p><strong>유연성은 범용 LLM에 맡기고, 무결성에 집중.</strong><br>자유도를 잃더라도 엄격한 제약을 유지하는 것이 프로젝트의 최우선 가치라고 판단.</p>
+                </div>
+
+                <!-- 향후 발전 방향 -->
+                <div class="border-t border-slate-100 pt-5">
+                    <h3 class="text-base font-bold text-slate-900 mb-3 flex items-center">
+                        <i class="fas fa-rocket text-blue-500 mr-2"></i>향후 발전 방향
+                    </h3>
+                    <ul class="space-y-2.5 text-slate-700 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right mt-1 mr-2 text-blue-500 text-xs flex-shrink-0"></i>
+                            <span><strong>타 기준서 확장:</strong> K-IFRS 1116호(리스), 1109호(금융상품) 등 별도 Decision Trees 구축</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right mt-1 mr-2 text-blue-500 text-xs flex-shrink-0"></i>
+                            <span><strong>BIG4 가이드 임베딩:</strong> 삼일·삼정·안진·한영의 K-IFRS 1115 실무 가이드를 데이터에 추가</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right mt-1 mr-2 text-blue-500 text-xs flex-shrink-0"></i>
+                            <span><strong>RAGAS 자동 평가:</strong> Faithfulness·Context Precision 등 자동 정량 평가 프레임워크 구축</span>
+                        </li>
+                    </ul>
+                </div>
             </section>
 
-            <!-- ================================================ -->
-            <!-- [3.5] Quality Verification (별도 섹션) -->
-            <!-- ================================================ -->
+            <!-- System Architecture -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-lg font-bold mb-4 text-slate-900 flex items-center border-b border-slate-100 pb-4">
+                    <span class="w-8 h-8 bg-slate-100 text-slate-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-layer-group"></i></span>
+                    System Architecture
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm border-collapse">
+                        <tbody class="text-slate-700">
+                            <tr class="border-b border-slate-100">
+                                <td class="py-2.5 px-4 font-semibold text-slate-500 w-28">Frontend</td>
+                                <td class="py-2.5 px-4">Streamlit (스플릿 뷰 인터페이스)</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="py-2.5 px-4 font-semibold text-slate-500">Backend</td>
+                                <td class="py-2.5 px-4">FastAPI + uvicorn + PydanticAI</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="py-2.5 px-4 font-semibold text-slate-500">Vector DB</td>
+                                <td class="py-2.5 px-4">MongoDB Atlas (벡터 검색 + 메타데이터 필터링 + PDR)</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="py-2.5 px-4 font-semibold text-slate-500">Embedding</td>
+                                <td class="py-2.5 px-4">Upstage Solar (한국어 특화)</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="py-2.5 px-4 font-semibold text-slate-500">LLM</td>
+                                <td class="py-2.5 px-4">Gemini Flash (추론) + GPT-4.1-mini (계산)</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="py-2.5 px-4 font-semibold text-slate-500">Reranker</td>
+                                <td class="py-2.5 px-4">Cohere 다국어 Cross-encoder</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2.5 px-4 font-semibold text-slate-500">Infra</td>
+                                <td class="py-2.5 px-4">Docker + docker-compose / Oracle Cloud</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- Tab 2: Quality Verification -->
+        <!-- ================================================ -->
+        <div id="panel-quality" class="tab-panel hidden grid gap-8 mt-8" role="tabpanel">
+
+            <!-- 범용 AI vs 이 시스템 답변 비교 -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold mb-4 text-slate-900 flex items-center border-b border-slate-100 pb-4">
+                    <span class="w-8 h-8 bg-red-100 text-red-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-scale-balanced"></i></span>
+                    범용 AI vs 이 시스템 — 동일 질문 답변 비교
+                </h2>
+
+                <!-- 질문 -->
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-2"><i class="fas fa-question-circle mr-1"></i>동일 질문</p>
+                    <p class="text-sm text-slate-700 font-medium">"A사가 B에게 재화를 100원에 공급하고 세금계산서를 발행, B가 고객 C에게 120원에 판매할 때 A의 매출액은?"</p>
+                </div>
+
+                <!-- 핵심 차이 요약 -->
+                <div class="bg-red-50 border border-red-100 rounded-lg p-4 mb-6">
+                    <p class="text-sm text-slate-700"><strong class="text-red-700">6개 LLM 모두 "100원"으로 단정</strong> <BR> ㅡ 본인/대리인 여부를 확인하지 않고 결론을 내림 및 근거 문단 제시 미흡함. <BR>ㅡ 이 시스템은 <strong>체크리스트로 조건을 확인</strong>한 뒤 Case 1(본인: 120원) / Case 2(대리인: 100원)로 <strong>조건부 분기</strong>하고, 기준서 문단을 인용.</p>
+                </div>
+
+                <!-- 4개 LLM 아코디언 -->
+                <div class="space-y-2 mb-6">
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition text-left">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 bg-slate-800 text-white rounded text-xs font-bold flex-shrink-0">Gemini Flash</span>
+                                <p class="text-sm text-slate-600"><strong class="text-red-600">"100원"</strong> 단정 — 본인/대리인 개념 미언급</p>
+                            </div>
+                            <i class="fas fa-chevron-down text-slate-400 accordion-icon flex-shrink-0"></i>
+                        </button>
+                        <div class="hidden border-t border-slate-100 p-4 bg-slate-50">
+                            <img src="images/llm_gemini_flash.png" alt="Gemini Flash 답변" loading="lazy" class="w-full h-auto rounded-lg border border-slate-200">
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition text-left">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 bg-slate-800 text-white rounded text-xs font-bold flex-shrink-0">Gemini Pro</span>
+                                <p class="text-sm text-slate-600"><strong class="text-red-600">"100원"</strong> 단정 — 본인/대리인 언급했으나 결국 단정</p>
+                            </div>
+                            <i class="fas fa-chevron-down text-slate-400 accordion-icon flex-shrink-0"></i>
+                        </button>
+                        <div class="hidden border-t border-slate-100 p-4 bg-slate-50">
+                            <img src="images/llm_gemini_pro.png" alt="Gemini Pro 답변" loading="lazy" class="w-full h-auto rounded-lg border border-slate-200">
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition text-left">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 bg-slate-800 text-white rounded text-xs font-bold flex-shrink-0">Perplexity</span>
+                                <p class="text-sm text-slate-600"><strong class="text-red-600">"100원"</strong> 단정 — 두 경우를 설명했으나 100원으로 단정</p>
+                            </div>
+                            <i class="fas fa-chevron-down text-slate-400 accordion-icon flex-shrink-0"></i>
+                        </button>
+                        <div class="hidden border-t border-slate-100 p-4 bg-slate-50">
+                            <img src="images/llm_perplexity.png" alt="Perplexity 답변" loading="lazy" class="w-full h-auto rounded-lg border border-slate-200">
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition text-left">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 bg-slate-800 text-white rounded text-xs font-bold flex-shrink-0">GPT 일반모델</span>
+                                <p class="text-sm text-slate-600"><strong class="text-red-600">"100원"</strong> 단정 — 가장 단순, 조건 분기 없음</p>
+                            </div>
+                            <i class="fas fa-chevron-down text-slate-400 accordion-icon flex-shrink-0"></i>
+                        </button>
+                        <div class="hidden border-t border-slate-100 p-4 bg-slate-50">
+                            <img src="images/llm_chatgpt.png" alt="ChatGPT 답변" loading="lazy" class="w-full h-auto rounded-lg border border-slate-200">
+                        </div>
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition text-left">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 bg-slate-800 text-white rounded text-xs font-bold flex-shrink-0">GPT 확장추론</span>
+                                <p class="text-sm text-slate-600"><strong class="text-red-600">"100원"</strong> 단정 — 추론 후에도 조건 분기 없음</p>
+                            </div>
+                            <i class="fas fa-chevron-down text-slate-400 accordion-icon flex-shrink-0"></i>
+                        </button>
+                        <div class="hidden border-t border-slate-100 p-4 bg-slate-50">
+                            <img src="images/llm_gpt_reasoning.png" alt="GPT 확장추론 답변" loading="lazy" class="w-full h-auto rounded-lg border border-slate-200">
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition text-left">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 bg-slate-800 text-white rounded text-xs font-bold flex-shrink-0">Claude Opus 4.6</span>
+                                <p class="text-sm text-slate-600"><strong class="text-red-600">"100원"</strong> 단정 — 간결하지만 조건 분기 없음</p>
+                            </div>
+                            <i class="fas fa-chevron-down text-slate-400 accordion-icon flex-shrink-0"></i>
+                        </button>
+                        <div class="hidden border-t border-slate-100 p-4 bg-slate-50">
+                            <img src="images/llm_opus.png" alt="Claude Opus 답변" loading="lazy" class="w-full h-auto rounded-lg border border-slate-200">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <!-- 이 시스템의 답변 -->
+                <div class="border-t border-slate-100 pt-6">
+                    <h3 class="text-base font-bold text-slate-900 mb-3 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mr-3 flex-shrink-0"><i class="fas fa-shield-halved"></i></span>
+                        이 시스템의 답변
+                    </h3>
+                    <ul class="text-slate-600 text-sm space-y-1.5 mb-4">
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i>"100원인지 120원인지"를 <strong>단정하지 않고</strong> 확인 질문을 먼저 제시</li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i>Case 1(본인: 120원) / Case 2(대리인: 100원) <strong>조건부 분기</strong>로 결론 도출</li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-500 mr-2 mt-0.5 text-xs"></i>기준서 <strong>문단 B35, B37</strong> 등 구체적 근거 인용 + 감리사례 경고 포함</li>
+                    </ul>
+                    <div class="bg-white p-1.5 rounded-xl shadow-md border border-slate-200 overflow-hidden">
+                        <img src="images/ux4_split_view_hd.png" alt="이 시스템 Split View 답변" loading="lazy" class="w-full h-auto rounded-lg border border-slate-100">
+                    </div>
+                </div>
+            </section>
+
             <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
                 <h2 class="text-xl font-bold mb-4 text-slate-900 flex items-center border-b border-slate-100 pb-4">
                     <span class="w-8 h-8 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-vial"></i></span>
                     Quality Verification
                 </h2>
 
-                <!-- 총 검증 호출 수 요약 배너 -->
+                <!-- 총 검증 배너 -->
                 <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 mb-6 border border-green-100">
                     <div class="flex items-center justify-between flex-wrap gap-3">
                         <p class="text-sm text-slate-700 font-medium">3단계에 걸쳐 총 <strong class="text-green-700 text-base">620회</strong> 호출로 품질 검증</p>
@@ -349,23 +656,20 @@
                 </div>
 
                 <div class="space-y-4">
-                    <!-- Stage 1: 모델 선정 218회 -->
+
+                    <!-- Stage 1: 모델 선정 -->
                     <div class="bg-slate-50 rounded-lg p-5 border border-slate-100">
                         <div class="flex items-center mb-3">
                             <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 flex-shrink-0">1</span>
                             <h4 class="font-bold text-slate-900">모델 선정 — 7개 모델 218회 A/B 테스트</h4>
                         </div>
-                        <p class="text-slate-600 text-sm mb-3">
-                            회계 추론과 산술 정확도를 단일 모델로 양립할 수 있는지 검증하기 위해, 7개 AI 모델을 4라운드에 걸쳐 비교했습니다.
-                        </p>
 
-                        <!-- 라운드별 테이블 -->
+                        <!-- 라운드 테이블 -->
                         <div class="overflow-x-auto mb-3">
                             <table class="w-full text-xs border-collapse">
                                 <thead>
                                     <tr class="border-b border-slate-200">
                                         <th class="text-left py-1.5 px-2 font-bold text-slate-500">라운드</th>
-                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">질문</th>
                                         <th class="text-center py-1.5 px-2 font-bold text-slate-500">모델</th>
                                         <th class="text-center py-1.5 px-2 font-bold text-slate-500">호출</th>
                                         <th class="text-left py-1.5 px-2 font-bold text-slate-500">목적</th>
@@ -374,28 +678,24 @@
                                 <tbody class="text-slate-700">
                                     <tr class="border-b border-slate-100">
                                         <td class="py-1.5 px-2">1차</td>
-                                        <td class="py-1.5 px-2 text-center">1개</td>
                                         <td class="py-1.5 px-2 text-center">7개</td>
                                         <td class="py-1.5 px-2 text-center font-semibold">28회</td>
                                         <td class="py-1.5 px-2">초기 선별 — 2개 모델 탈락</td>
                                     </tr>
                                     <tr class="border-b border-slate-100">
                                         <td class="py-1.5 px-2">2차</td>
-                                        <td class="py-1.5 px-2 text-center">5개</td>
                                         <td class="py-1.5 px-2 text-center">6개</td>
                                         <td class="py-1.5 px-2 text-center font-semibold">150회</td>
-                                        <td class="py-1.5 px-2">정밀 비교 — 듀얼 LLM 라우팅 결정</td>
+                                        <td class="py-1.5 px-2">정밀 비교 — 듀얼 LLM 결정</td>
                                     </tr>
                                     <tr class="border-b border-slate-100">
                                         <td class="py-1.5 px-2">3차</td>
-                                        <td class="py-1.5 px-2 text-center">5개</td>
                                         <td class="py-1.5 px-2 text-center">듀얼 2종</td>
                                         <td class="py-1.5 px-2 text-center font-semibold">15회</td>
-                                        <td class="py-1.5 px-2">프로덕션 통합 — 오라우팅·산술 급락 발견</td>
+                                        <td class="py-1.5 px-2">프로덕션 통합 — 오라우팅 발견</td>
                                     </tr>
                                     <tr>
                                         <td class="py-1.5 px-2">4차</td>
-                                        <td class="py-1.5 px-2 text-center">5개</td>
                                         <td class="py-1.5 px-2 text-center">듀얼 3종</td>
                                         <td class="py-1.5 px-2 text-center font-semibold">25회</td>
                                         <td class="py-1.5 px-2">최종 개선 — 평균 0.72→0.82</td>
@@ -404,7 +704,7 @@
                             </table>
                         </div>
 
-                        <!-- 2차 라운드 핵심 결과 -->
+                        <!-- 핵심 발견 -->
                         <div class="bg-white rounded-md p-3 border border-slate-200 text-sm mb-3">
                             <p class="font-semibold text-slate-700 text-xs mb-2"><i class="fas fa-lightbulb text-yellow-500 mr-1"></i>핵심 발견: 회계 추론과 산술 정확도는 단일 모델로 양립 불가</p>
                             <div class="overflow-x-auto">
@@ -422,13 +722,13 @@
                                             <td class="py-1 px-2 font-bold text-sky-700">Gemini Flash</td>
                                             <td class="py-1 px-2 text-center font-bold text-sky-700">0.81 (1위)</td>
                                             <td class="py-1 px-2 text-center text-red-400">20~40%</td>
-                                            <td class="py-1 px-2 text-center text-sky-600"><i class="fas fa-check"></i> 일반·상황 전담</td>
+                                            <td class="py-1 px-2 text-center text-sky-600"><i class="fas fa-check"></i> 일반·상황</td>
                                         </tr>
                                         <tr class="border-b border-slate-100 bg-violet-50">
                                             <td class="py-1 px-2 font-bold text-violet-700">GPT-4.1-mini</td>
                                             <td class="py-1 px-2 text-center text-slate-400">0.71 (4위)</td>
                                             <td class="py-1 px-2 text-center font-bold text-green-600">100%</td>
-                                            <td class="py-1 px-2 text-center text-violet-600"><i class="fas fa-check"></i> 계산 전담</td>
+                                            <td class="py-1 px-2 text-center text-violet-600"><i class="fas fa-check"></i> 계산</td>
                                         </tr>
                                         <tr class="border-b border-slate-100">
                                             <td class="py-1 px-2">Claude 3.5 Sonnet</td>
@@ -452,74 +752,19 @@
                                 </table>
                             </div>
                         </div>
-                        <p class="text-xs text-green-700 font-medium"><i class="fas fa-arrow-right mr-1"></i>의사결정: 회계 추론 1위 + 산술 1위를 듀얼 LLM 라우팅으로 결합. 질문 유형을 AI가 자동 판별하여 최적 모델로 라우팅.</p>
+                        <p class="text-xs text-green-700 font-medium"><i class="fas fa-arrow-right mr-1"></i>의사결정: 추론 1위 + 산술 1위를 듀얼 LLM 라우팅으로 결합</p>
                     </div>
 
-                    <!-- Stage 2: 검색 엔진 테스트 101회 -->
+                    <!-- Stage 2: 검색 엔진 테스트 -->
                     <div class="bg-slate-50 rounded-lg p-5 border border-slate-100">
                         <div class="flex items-center mb-3">
                             <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 flex-shrink-0">2</span>
                             <h4 class="font-bold text-slate-900">검색 엔진 테스트 — 6종 스크립트 101회</h4>
                         </div>
-                        <p class="text-slate-600 text-sm mb-3">
-                            모델 선정 후, 검색 파이프라인을 개선하고 6종의 검증 스크립트로 테스트했습니다.
-                        </p>
 
-                        <!-- 6종 스크립트 테이블 -->
-                        <div class="overflow-x-auto mb-3">
-                            <table class="w-full text-xs border-collapse">
-                                <thead>
-                                    <tr class="border-b border-slate-200">
-                                        <th class="text-left py-1.5 px-2 font-bold text-slate-500">테스트</th>
-                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">케이스</th>
-                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">호출</th>
-                                        <th class="text-left py-1.5 px-2 font-bold text-slate-500">검증 대상</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-slate-700">
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1.5 px-2">핀포인트 DB 실재 검증</td>
-                                        <td class="py-1.5 px-2 text-center">26건</td>
-                                        <td class="py-1.5 px-2 text-center font-semibold">26회</td>
-                                        <td class="py-1.5 px-2">큐레이션 문서가 DB에 존재하는지</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1.5 px-2">검색 커버리지</td>
-                                        <td class="py-1.5 px-2 text-center">26건</td>
-                                        <td class="py-1.5 px-2 text-center font-semibold">26회</td>
-                                        <td class="py-1.5 px-2">적중률 76/81 = 94%</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1.5 px-2">검색 경로 분석</td>
-                                        <td class="py-1.5 px-2 text-center">5건</td>
-                                        <td class="py-1.5 px-2 text-center font-semibold">5회</td>
-                                        <td class="py-1.5 px-2">Pinpoint vs Retriever 분리 분석</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1.5 px-2">calc 라우팅 정확도</td>
-                                        <td class="py-1.5 px-2 text-center">14건</td>
-                                        <td class="py-1.5 px-2 text-center font-semibold">42회</td>
-                                        <td class="py-1.5 px-2">42/42 = 100%</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1.5 px-2">IE bypass E2E</td>
-                                        <td class="py-1.5 px-2 text-center">1건</td>
-                                        <td class="py-1.5 px-2 text-center font-semibold">1회</td>
-                                        <td class="py-1.5 px-2">적용사례 bypass 정상 동작</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="py-1.5 px-2">단일 질문 디버그</td>
-                                        <td class="py-1.5 px-2 text-center">1건</td>
-                                        <td class="py-1.5 px-2 text-center font-semibold">1회</td>
-                                        <td class="py-1.5 px-2">검색 경로 추적</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <!-- 개선 결과 Before/After -->
+                        <!-- Before/After -->
                         <p class="text-xs font-bold text-slate-700 mb-2"><i class="fas fa-chart-line text-green-500 mr-1"></i>개선 결과</p>
-                        <div class="overflow-x-auto">
+                        <div class="overflow-x-auto mb-3">
                             <table class="w-full text-xs border-collapse">
                                 <thead>
                                     <tr class="border-b border-slate-200">
@@ -563,158 +808,40 @@
                                 </tbody>
                             </table>
                         </div>
-                        <p class="text-xs text-slate-500 mt-3">
+                        <p class="text-xs text-slate-500">
                             <i class="fas fa-info-circle mr-1"></i>
-                            검색 적중률 76%는 Top-1 기준. 실제 시스템은 상위 3개를 활용하므로 Top-3 적중률은 100%. 핵심 문서는 Tier 1 핀포인트 검색(적중률 100%)이 보장.
+                            검색 적중률 76%는 Top-1 기준. 핵심 문서는 Tier 1 핀포인트 검색(적중률 100%)이 보장.
                         </p>
                     </div>
 
-                    <!-- Stage 3: 파이프라인 품질 테스트 301회 -->
+                    <!-- Stage 3: 파이프라인 품질 테스트 -->
                     <div class="bg-slate-50 rounded-lg p-5 border border-slate-100">
                         <div class="flex items-center mb-3">
                             <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2.5 flex-shrink-0">3</span>
                             <h4 class="font-bold text-slate-900">파이프라인 품질 테스트 — 6라운드 301회</h4>
                         </div>
-                        <p class="text-slate-600 text-sm mb-3">
-                            파이프라인 개선마다 테스트를 반복하여, 문제 발견 → 수정 → 재검증 사이클을 6라운드 돌렸습니다.
-                        </p>
 
-                        <!-- 6라운드 테이블 -->
-                        <div class="overflow-x-auto mb-4">
-                            <table class="w-full text-xs border-collapse">
-                                <thead>
-                                    <tr class="border-b border-slate-200">
-                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">#</th>
-                                        <th class="text-left py-1.5 px-2 font-bold text-slate-500">테스트</th>
-                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">케이스</th>
-                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">호출</th>
-                                        <th class="text-left py-1.5 px-2 font-bold text-slate-500">목적</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-slate-700">
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1.5 px-2 text-center">1</td>
-                                        <td class="py-1.5 px-2">초기 품질 테스트</td>
-                                        <td class="py-1.5 px-2 text-center">26건 ×3</td>
-                                        <td class="py-1.5 px-2 text-center font-semibold">78회</td>
-                                        <td class="py-1.5 px-2">파이프라인 통합 후 첫 전수 검증</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1.5 px-2 text-center">2</td>
-                                        <td class="py-1.5 px-2">라우팅·계산·멀티턴 v1</td>
-                                        <td class="py-1.5 px-2 text-center">10건 ×3</td>
-                                        <td class="py-1.5 px-2 text-center font-semibold">42회</td>
-                                        <td class="py-1.5 px-2">집중 검증</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1.5 px-2 text-center">3</td>
-                                        <td class="py-1.5 px-2">라우팅·계산·멀티턴 v2</td>
-                                        <td class="py-1.5 px-2 text-center">10건 ×3</td>
-                                        <td class="py-1.5 px-2 text-center font-semibold">42회</td>
-                                        <td class="py-1.5 px-2">버그 수정 후 재검증</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1.5 px-2 text-center">4</td>
-                                        <td class="py-1.5 px-2">라우팅·계산·멀티턴 v3</td>
-                                        <td class="py-1.5 px-2 text-center">10건 ×3</td>
-                                        <td class="py-1.5 px-2 text-center font-semibold">42회</td>
-                                        <td class="py-1.5 px-2">5가지 구조 수정 (Pass 40%→90%)</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1.5 px-2 text-center">5</td>
-                                        <td class="py-1.5 px-2">thinking A/B + 토픽 안정성</td>
-                                        <td class="py-1.5 px-2 text-center">13건 ×1~5</td>
-                                        <td class="py-1.5 px-2 text-center font-semibold">33회</td>
-                                        <td class="py-1.5 px-2">추론 강도 A/B + 토픽 매칭</td>
-                                    </tr>
-                                    <tr class="bg-green-50">
-                                        <td class="py-1.5 px-2 text-center font-bold text-green-700">6</td>
-                                        <td class="py-1.5 px-2 font-bold text-green-700">최종 골든 테스트</td>
-                                        <td class="py-1.5 px-2 text-center font-bold text-green-700">53건 ×1~3</td>
-                                        <td class="py-1.5 px-2 text-center font-bold text-green-700">64회</td>
-                                        <td class="py-1.5 px-2 font-bold text-green-700">7개 유형 53건 최종 전수 검증</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <!-- 골든 테스트 결과 -->
+                        <p class="text-xs font-bold text-slate-700 mb-2"><i class="fas fa-trophy text-amber-500 mr-1"></i>최종 골든 테스트 결과 — 53건 <span class="font-normal text-slate-400">(6라운드 301회 중 최종 라운드)</span></p>
+                        <div class="bg-green-50 border border-green-100 rounded-lg p-4 mb-3">
+                            <div class="grid grid-cols-3 gap-4 text-center">
+                                <div>
+                                    <p class="text-2xl font-extrabold text-slate-800">53</p>
+                                    <p class="text-xs text-slate-500">케이스</p>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-extrabold text-green-600">47</p>
+                                    <p class="text-xs text-slate-500">Pass (88.7%)</p>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-extrabold text-amber-500">6</p>
+                                    <p class="text-xs text-slate-500">Issue</p>
+                                </div>
+                            </div>
                         </div>
-
-                        <!-- 골든 테스트 결과 그룹별 -->
-                        <p class="text-xs font-bold text-slate-700 mb-2"><i class="fas fa-trophy text-amber-500 mr-1"></i>최종 골든 테스트 결과 — 53건</p>
-                        <div class="overflow-x-auto mb-3">
-                            <table class="w-full text-xs border-collapse">
-                                <thead>
-                                    <tr class="border-b border-slate-200">
-                                        <th class="text-left py-1.5 px-2 font-bold text-slate-500">그룹</th>
-                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">케이스</th>
-                                        <th class="text-center py-1.5 px-2 font-bold text-green-600">Pass</th>
-                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">Issue</th>
-                                        <th class="text-center py-1.5 px-2 font-bold text-slate-500">응답 시간</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-slate-700">
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1 px-2">거래상황 (S)</td>
-                                        <td class="py-1 px-2 text-center">20</td>
-                                        <td class="py-1 px-2 text-center font-bold text-green-600">18</td>
-                                        <td class="py-1 px-2 text-center text-amber-500">2</td>
-                                        <td class="py-1 px-2 text-center">28초</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1 px-2">개념이론 (K)</td>
-                                        <td class="py-1 px-2 text-center">5</td>
-                                        <td class="py-1 px-2 text-center font-bold text-green-600">5</td>
-                                        <td class="py-1 px-2 text-center">0</td>
-                                        <td class="py-1 px-2 text-center">22초</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1 px-2">라우팅 (R)</td>
-                                        <td class="py-1 px-2 text-center">4</td>
-                                        <td class="py-1 px-2 text-center font-bold text-green-600">4</td>
-                                        <td class="py-1 px-2 text-center">0</td>
-                                        <td class="py-1 px-2 text-center">22초</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1 px-2">계산 (C)</td>
-                                        <td class="py-1 px-2 text-center">3</td>
-                                        <td class="py-1 px-2 text-center font-bold text-green-600">3</td>
-                                        <td class="py-1 px-2 text-center">0</td>
-                                        <td class="py-1 px-2 text-center">21초</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1 px-2">멀티턴 (M)</td>
-                                        <td class="py-1 px-2 text-center">3</td>
-                                        <td class="py-1 px-2 text-center font-bold text-green-600">2</td>
-                                        <td class="py-1 px-2 text-center text-amber-500">1</td>
-                                        <td class="py-1 px-2 text-center">57초</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1 px-2">신규커버리지 (N)</td>
-                                        <td class="py-1 px-2 text-center">10</td>
-                                        <td class="py-1 px-2 text-center font-bold text-green-600">9</td>
-                                        <td class="py-1 px-2 text-center text-amber-500">1</td>
-                                        <td class="py-1 px-2 text-center">25초</td>
-                                    </tr>
-                                    <tr class="border-b border-slate-100">
-                                        <td class="py-1 px-2">스트레스 (X)</td>
-                                        <td class="py-1 px-2 text-center">8</td>
-                                        <td class="py-1 px-2 text-center font-bold text-green-600">6</td>
-                                        <td class="py-1 px-2 text-center text-amber-500">2</td>
-                                        <td class="py-1 px-2 text-center">18초</td>
-                                    </tr>
-                                    <tr class="bg-green-50 font-bold">
-                                        <td class="py-1.5 px-2 text-green-800">합계</td>
-                                        <td class="py-1.5 px-2 text-center text-green-800">53</td>
-                                        <td class="py-1.5 px-2 text-center text-green-700">47 (88.7%)</td>
-                                        <td class="py-1.5 px-2 text-center text-amber-600">6</td>
-                                        <td class="py-1.5 px-2 text-center text-green-800">25.3초</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
                         <p class="text-xs text-slate-500 mb-3">
                             <i class="fas fa-info-circle mr-1"></i>
-                            Issue 6건은 "토픽 매칭이 기대와 다름(답변은 정확)", "응답 시간이 긴 편" 수준의 메타데이터·완성도 이슈. 잘못된 정보 생성이나 근거 없는 결론 단정은 0건.
+                            Issue 6건은 토픽 매칭·완성도 이슈. 잘못된 정보 생성이나 근거 없는 결론 단정은 0건.
                         </p>
                         <div class="flex flex-wrap gap-2">
                             <a href="https://github.com/ghdtjrgns321-creator/k-ifrs-1115/blob/main/app/test/quality_test/GOLDEN_CASES_DETAIL.md" target="_blank" class="inline-flex items-center text-xs text-blue-600 hover:text-blue-800 font-medium transition">
@@ -727,7 +854,7 @@
                     </div>
                 </div>
 
-                <!-- 최종 핵심 지표 종합 -->
+                <!-- 최종 핵심 지표 -->
                 <div class="mt-6 bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-5 text-white">
                     <p class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3"><i class="fas fa-chart-bar mr-1"></i>최종 핵심 지표</p>
                     <div class="grid grid-cols-3 md:grid-cols-6 gap-3 text-center">
@@ -757,168 +884,429 @@
                         </div>
                     </div>
                 </div>
+
             </section>
+        </div>
 
-            <!-- ================================================ -->
-            <!-- [4] Key Features -->
-            <!-- ================================================ -->
-            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-                <h2 class="text-xl font-bold mb-8 text-slate-900 flex items-center border-b border-slate-100 pb-4">
-                    <span class="w-8 h-8 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-desktop"></i></span>
-                    Key Features
-                </h2>
+        <!-- ================================================ -->
+        <!-- Tab 3: 실제 사용 예시 -->
+        <!-- ================================================ -->
+        <div id="panel-features" class="tab-panel hidden grid gap-8 mt-8" role="tabpanel">
 
-                <div class="space-y-10">
-
-                    <!-- UX 1+2: 토픽 네비게이션 + 4개 탭 -->
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 mb-3">1. 토픽 선택 시 제공 화면</h3>
-                        <ul class="text-slate-600 text-sm space-y-1.5 mb-3">
-                            <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>연관 토픽 버튼으로 관련 주제 간 자연스러운 네비게이션</li>
-                            <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>본문·적용사례·질의회신·감리사례 4개 탭 큐레이션</li>
-                            <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>각 주제별 Summary 제공 — 전문을 펼치기 전에 핵심을 먼저 파악</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1.5 bg-blue-50 text-blue-700 border border-blue-100 rounded-lg text-xs font-semibold">
-                                <i class="fas fa-file-lines mr-1"></i> 본문·BC
-                            </span>
-                            <span class="px-3 py-1.5 bg-green-50 text-green-700 border border-green-100 rounded-lg text-xs font-semibold">
-                                <i class="fas fa-lightbulb mr-1"></i> 적용사례
-                            </span>
-                            <span class="px-3 py-1.5 bg-orange-50 text-orange-700 border border-orange-100 rounded-lg text-xs font-semibold">
-                                <i class="fas fa-comments mr-1"></i> 질의회신
-                            </span>
-                            <span class="px-3 py-1.5 bg-red-50 text-red-700 border border-red-100 rounded-lg text-xs font-semibold">
-                                <i class="fas fa-gavel mr-1"></i> 감리사례
-                            </span>
-                        </div>
-                        <div class="bg-white p-1.5 rounded-xl shadow-md border border-slate-200 overflow-hidden">
-                            <img src="images/ux1_topic_tabs.png" alt="토픽 네비게이션 + 4개 탭 UI" class="w-full h-auto rounded-lg border border-slate-100">
-                        </div>
-                    </div>
-
-                    <!-- UX 2: 기준서 원문 열람 -->
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 mb-2">2. 기준서 원문 열람 + 관련 조항 버튼</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                            문단을 펼치면 원문 전체가 표시되고, 하단에 해당 문단이 참조하는 관련 조항이 버튼으로 자동 표시됩니다.
-                        </p>
-                        <div class="bg-white p-1.5 rounded-xl shadow-md border border-slate-200 overflow-hidden">
-                            <img src="images/ux2_cross_ref.png" alt="기준서 원문 + 관련 조항 버튼" class="w-full h-auto rounded-lg border border-slate-100">
-                        </div>
-                    </div>
-
-                    <!-- UX 3: 관련 조항 팝업 -->
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 mb-2">3. 관련 조항 자동 연결 — 클릭 시 원문 팝업</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                            관련 조항 버튼을 클릭하면 해당 조항의 원문 전체를 팝업으로 즉시 확인할 수 있습니다.
-                            조항 간 연결을 따라가며 기준서의 논리 구조를 파악합니다.
-                        </p>
-                        <div class="bg-white p-1.5 rounded-xl shadow-md border border-slate-200 overflow-hidden">
-                            <img src="images/ux3_ref_popup.png" alt="관련 조항 팝업" class="w-full h-auto rounded-lg border border-slate-100">
-                        </div>
-                    </div>
-
-                    <!-- UX 4: Split View -->
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 mb-3">4. Split View — AI 답변 + 근거 문단 동시 확인</h3>
-                        <ul class="text-slate-600 text-sm space-y-1.5 mb-4">
-                            <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>좌측: AI가 검색한 근거 문서를 카테고리별로 표시 (인용 문단은 볼드 처리)</li>
-                            <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>우측: 구조화된 AI 답변 (확인 질문 → 조건부 결론 → 혼동점 해소 → 논리적 근거)</li>
-                        </ul>
-                        <div class="bg-white p-1.5 rounded-xl shadow-md border border-slate-200 overflow-hidden">
-                            <img src="images/ux4_split_view.png" alt="Split View UI" class="w-full h-auto rounded-lg border border-slate-100">
-                        </div>
-                    </div>
-
-                    <!-- UX 5: 실사용 데이터 수집 & 피드백 루프 -->
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 mb-3">5. 실사용 데이터 수집 — 데이터 기반 품질 개선 루프</h3>
-                        <ul class="text-slate-600 text-sm space-y-1.5 mb-4">
-                            <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>매 응답마다 규칙 기반 4개 메트릭(응답 속도·인용 커버리지·토픽 매칭·결론 신중성) 자동 채점 기록 (~1ms)</li>
-                            <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>LLM 기반 3개 심화 채점(근거 충실도·답변 적절성·답변 완전성) — 데이터 수집 후 수동 실행 필요</li>
-                            <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>👍/👎 피드백 버튼 — 👎 클릭 시 부족한 점 사유 입력 가능</li>
-                            <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>자동|수동 채점 + 사용자 피드백 교차 분석으로 실제 품질 문제를 파악</li>
-                        </ul>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div class="bg-white p-1.5 rounded-xl shadow-md border border-slate-200 overflow-hidden">
-                                <img src="images/5-2.png" alt="피드백 버튼 UI" class="w-full h-auto rounded-lg border border-slate-100">
-                                <p class="text-center text-xs text-slate-400 mt-1.5 mb-1">👍 도움이 됐어요 / 👎 개선이 필요해요</p>
-                            </div>
-                            <div class="bg-white p-1.5 rounded-xl shadow-md border border-slate-200 overflow-hidden">
-                                <img src="images/5-1.png" alt="👎 사유 입력 UI" class="w-full h-auto rounded-lg border border-slate-100">
-                                <p class="text-center text-xs text-slate-400 mt-1.5 mb-1">👎 클릭 시 부족한 점 사유 입력</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- ================================================ -->
-            <!-- [5] Retrospective -->
-            <!-- ================================================ -->
-            <!-- 설계 한계 — 의도된 Trade-off -->
+            <!-- 이렇게 동작합니다 -->
             <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
                 <h2 class="text-xl font-bold mb-4 text-slate-900 flex items-center border-b border-slate-100 pb-4">
-                    <span class="w-8 h-8 bg-yellow-100 text-yellow-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-triangle-exclamation"></i></span>
-                    설계 한계 — 자유검색 제한
+                    <span class="w-8 h-8 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-play-circle"></i></span>
+                    이렇게 동작합니다
                 </h2>
-                <p class="text-slate-600 text-sm leading-relaxed mb-5">
-                    이 시스템은 AI 챗봇이라기보다 <strong>"규칙 기반 전문 검색 시스템"</strong>에 가깝습니다.
-                    AI에게 자유로운 추론을 허용하면 더 다양한 질문에 답할 수 있지만,
-                    <strong>근거 없는 답변(환각)이 구조적으로 불가능한 현재의 보장</strong>이 깨집니다.</p>
-                </p>
 
-                <!-- 대응 가능 vs 불가능 -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <div class="bg-green-50 border border-green-100 rounded-lg p-4">
-                        <p class="font-bold text-green-700 text-sm mb-3"><i class="fas fa-circle-check mr-1"></i>대응 가능</p>
-                        <ul class="text-xs text-slate-600 space-y-1.5">
-                            <li><i class="fas fa-check text-green-400 mr-1.5"></i>체크리스트 Q&A 응답</li>
-                            <li><i class="fas fa-check text-green-400 mr-1.5"></i>추가 조건 제시 및 결론 확정</li>
-                            <li><i class="fas fa-check text-green-400 mr-1.5"></i>개념 설명 · 계산 질문</li>
-                        </ul>
-                    </div>
-                    <div class="bg-red-50 border border-red-100 rounded-lg p-4">
-                        <p class="font-bold text-red-700 text-sm mb-3"><i class="fas fa-circle-xmark mr-1"></i>대응 불가능</p>
-                        <ul class="text-xs text-slate-600 space-y-1.5">
-                            <li><i class="fas fa-xmark text-red-400 mr-1.5"></i>관련된 최신 뉴스 검색해줘</li>
-                            <li><i class="fas fa-xmark text-red-400 mr-1.5"></i>코인관련 새로운 거래유형인데 어떻게 처리해야해?</li>
-                            <li><i class="fas fa-xmark text-red-400 mr-1.5"></i>다른 회사는 어떻게 처리해?</li>
-                        </ul>
+                <!-- 예시 질문 -->
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-2"><i class="fas fa-question-circle mr-1"></i>예시 질문</p>
+                    <p class="text-sm text-slate-700 font-medium">"A가 B에게 재화를 100원에 공급하고 세금계산서를 발행, B가 고객 C에게 120원에 판매할 때 A의 매출액은 100원인지 120원인지?"</p>
+                </div>
+
+                <!-- Split View 결과 (예시 질문 바로 아래) -->
+                <div class="mb-6">
+                    <h3 class="text-base font-bold text-slate-900 mb-2 flex items-center">
+                        <i class="fas fa-columns text-indigo-500 mr-2"></i>Split View로 결과 확인
+                    </h3>
+                    <ul class="text-slate-600 text-sm space-y-1 mb-3">
+                        <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>좌측: AI가 검색한 근거 문서를 카테고리별로 표시 (인용 문단은 볼드 처리)</li>
+                        <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>우측: 구조화된 AI 답변 (확인 질문 → 조건부 결론 → 논리적 근거)</li>
+                    </ul>
+                    <div class="bg-white p-1.5 rounded-xl shadow-md border border-slate-200 overflow-hidden">
+                        <img src="images/ux4_split_view_hd.png" alt="Split View UI" loading="lazy" class="w-full h-auto rounded-lg border border-slate-100">
                     </div>
                 </div>
 
-                <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 text-sm text-slate-600">
-                    <p class="font-semibold text-slate-700 mb-1"><i class="fas fa-info-circle text-slate-400 mr-1"></i>왜 한계를 유지하는가?</p>
-                    <p><strong>유연성은 범용 LLM에 맡기고, 무결성에 집중 :</strong> 업데이트를 통해 '자유 질문 모드'를 추가할 수도 있습니다. 하지만 최신 정보나, 구체적인 정답이 제시되지 않은 새로운 사례등은 대형 LLM(ChatGPT, Gemini 등)을 활용하는 것이 더 효율적이고 합리적인 선택입니다. <span>본 시스템은 범용 LLM이 보장하지 못하는 '환각이 없는 확정적 근거 제시'를 위해 발전됐습니다. 대화의 자유도를 잃더라도 엄격한 제약을 유지하는 것이, 해당 프로젝트가 가져야 할 최우선 가치라고 판단했습니다.</span></p>
+                <!-- AI 질문 → Pipeline 작동 -->
+                <div class="bg-indigo-50 border border-indigo-100 rounded-lg p-4 mb-6">
+                    <p class="text-xs font-bold text-indigo-600 uppercase tracking-wide mb-3"><i class="fas fa-cogs mr-1"></i>AI 질문 → 5-Layer Pipeline 작동</p>
+                    <ol class="text-sm text-slate-700 space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-indigo-600 font-bold mr-2 flex-shrink-0">①</span>
+                            <span>핀포인트 검색으로 Decision Tree 배정 문서(본인/대리인 판단 기준 문단) <strong>직접 조회</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-indigo-600 font-bold mr-2 flex-shrink-0">②</span>
+                            <span>하이브리드 보충 검색(벡터 + BM25) → <strong>Reranker가 30건 재평가</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-indigo-600 font-bold mr-2 flex-shrink-0">③</span>
+                            <span>Gemini Flash가 Decision Tree 분기에 따라 <strong>구조화된 결론 도출</strong></span>
+                        </li>
+                    </ol>
                 </div>
             </section>
 
-            <!-- 향후 발전 방향 -->
-            <section class="bg-slate-900 text-white p-8 rounded-2xl shadow-lg">
-                <h2 class="text-xl font-bold mb-6 flex items-center">
-                    <i class="fas fa-rocket text-blue-400 mr-3"></i>향후 발전 방향
+            <!-- AI 질문 전 — 토픽 탐색 + 근거 열람 (별도 섹션) -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold mb-4 text-slate-900 flex items-center border-b border-slate-100 pb-4">
+                    <span class="w-8 h-8 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-book-open"></i></span>
+                    AI 질문 전 — 토픽 탐색 + 근거 열람
                 </h2>
-                <ul class="space-y-3 text-slate-300 text-sm">
-                    <li class="flex items-start">
-                        <i class="fas fa-chevron-right mt-1 mr-2 text-blue-400 text-xs flex-shrink-0"></i>
-                        <span><strong class="text-white">타 기준서 확장:</strong> K-IFRS 1116호(리스), 1109호(금융상품) 등 별도 Decision Trees 구축</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-chevron-right mt-1 mr-2 text-blue-400 text-xs flex-shrink-0"></i>
-                        <span><strong class="text-white">BIG4 가이드 임베딩:</strong> 삼일·삼정·안진·한영의 K-IFRS 1115 실무 가이드를 데이터에 추가</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-chevron-right mt-1 mr-2 text-blue-400 text-xs flex-shrink-0"></i>
-                        <span><strong class="text-white">RAGAS 자동 평가:</strong> Faithfulness·Context Precision 등 자동 정량 평가 프레임워크 구축</span>
-                    </li>
+                <p class="text-sm text-slate-500 mb-4">"본인 대 대리인" 토픽 선택 → 연관 토픽(거래가격 산정, 변동대가) 네비게이션</p>
+
+                <ul class="text-slate-600 text-sm space-y-1.5 mb-3">
+                    <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>4개 탭에서 기준서 원문·적용사례·질의회신·감리사례를 AI 호출 전에 즉시 열람</li>
+                    <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>각 주제별 Summary 제공 — 전문을 펼치기 전에 핵심을 먼저 파악</li>
                 </ul>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-3 py-1.5 bg-blue-50 text-blue-700 border border-blue-100 rounded-lg text-xs font-semibold">
+                        <i class="fas fa-file-lines mr-1"></i> 본문·BC
+                    </span>
+                    <span class="px-3 py-1.5 bg-green-50 text-green-700 border border-green-100 rounded-lg text-xs font-semibold">
+                        <i class="fas fa-lightbulb mr-1"></i> 적용사례
+                    </span>
+                    <span class="px-3 py-1.5 bg-orange-50 text-orange-700 border border-orange-100 rounded-lg text-xs font-semibold">
+                        <i class="fas fa-comments mr-1"></i> 질의회신
+                    </span>
+                    <span class="px-3 py-1.5 bg-red-50 text-red-700 border border-red-100 rounded-lg text-xs font-semibold">
+                        <i class="fas fa-gavel mr-1"></i> 감리사례
+                    </span>
+                </div>
+                <div class="bg-white p-1.5 rounded-xl shadow-md border border-slate-200 overflow-hidden">
+                    <img src="images/ux1_topic_tabs_hd.png" alt="토픽 네비게이션 + 4개 탭 UI" loading="lazy" class="w-full h-auto rounded-lg border border-slate-100">
+                </div>
+
+                <!-- 기준서 원문 상세 -->
+                <div class="mt-6 border-t border-slate-100 pt-6">
+                    <h3 class="text-base font-bold text-slate-900 mb-2 flex items-center">
+                        <i class="fas fa-book text-slate-500 mr-2"></i>기준서 원문 열람 + 관련 조항 자동 연결
+                    </h3>
+                    <ul class="text-slate-600 text-sm space-y-1.5 mb-4">
+                        <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>문단을 펼치면 원문 전체가 표시 → 하단에 관련 조항이 버튼으로 자동 표시</li>
+                        <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>버튼 클릭 시 해당 조항의 원문을 팝업으로 즉시 확인 가능</li>
+                    </ul>
+                    <div class="space-y-4">
+                        <div class="bg-white p-1.5 rounded-xl shadow-md border border-slate-200 overflow-hidden">
+                            <img src="images/ux2_cross_ref_hd.png" alt="기준서 원문 + 관련 조항 버튼" loading="lazy" class="w-full h-auto rounded-lg border border-slate-100">
+                            <p class="text-center text-xs text-slate-400 mt-1.5 mb-1">기준서 원문 + 관련 조항 버튼</p>
+                        </div>
+                        <div class="bg-white p-1.5 rounded-xl shadow-md border border-slate-200 overflow-hidden">
+                            <img src="images/ux3_ref_popup_hd.png" alt="관련 조항 팝업" loading="lazy" class="w-full h-auto rounded-lg border border-slate-100">
+                            <p class="text-center text-xs text-slate-400 mt-1.5 mb-1">관련 조항 클릭 시 원문 팝업</p>
+                        </div>
+                    </div>
+                </div>
             </section>
 
+            <!-- 실사용 데이터 수집 -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold mb-4 text-slate-900 flex items-center border-b border-slate-100 pb-4">
+                    <span class="w-8 h-8 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-chart-line"></i></span>
+                    실사용 데이터 수집 — 품질 개선 루프
+                </h2>
+                <ul class="text-slate-600 text-sm space-y-1.5 mb-4">
+                    <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>매 응답마다 규칙 기반 4개 메트릭 자동 채점 + LLM 기반 3개 심화 채점</li>
+                    <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>피드백 버튼으로 부족한 점 사유 수집 → 자동·수동 채점과 교차 분석</li>
+                </ul>
+                <div class="space-y-4">
+                    <div class="bg-white p-1.5 rounded-xl shadow-md border border-slate-200 overflow-hidden">
+                        <img src="images/5-2.png" alt="피드백 버튼 UI" loading="lazy" class="w-full h-auto rounded-lg border border-slate-100">
+                        <p class="text-center text-xs text-slate-400 mt-1.5 mb-1">도움이 됐어요 / 개선이 필요해요</p>
+                    </div>
+                    <div class="bg-white p-1.5 rounded-xl shadow-md border border-slate-200 overflow-hidden">
+                        <img src="images/5-1.png" alt="사유 입력 UI" loading="lazy" class="w-full h-auto rounded-lg border border-slate-100">
+                        <p class="text-center text-xs text-slate-400 mt-1.5 mb-1">개선필요 클릭 시 사유 입력</p>
+                    </div>
+                </div>
+            </section>
         </div>
+
+        <!-- ================================================ -->
+        <!-- Tab 4: 트러블슈팅 -->
+        <!-- ================================================ -->
+        <div id="panel-troubleshoot" class="tab-panel hidden grid gap-8 mt-8" role="tabpanel">
+
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-xl font-bold mb-4 text-slate-900 flex items-center border-b border-slate-100 pb-4">
+                    <span class="w-8 h-8 bg-slate-700 text-white rounded-lg flex items-center justify-center mr-3"><i class="fas fa-wrench"></i></span>
+                    트러블슈팅 — 전략적 문제 해결 기록
+                </h2>
+                <p class="text-sm text-slate-500 mb-6">코드 디버깅이 아닌, 프로젝트 방향 전환·아키텍처 결정·전략 수준의 문제 해결 과정입니다.</p>
+
+                <div class="space-y-3">
+
+                    <!-- Case 1: 범용 AI 차별화 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition text-left">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2 py-0.5 bg-purple-50 text-purple-700 border border-purple-100 rounded text-xs font-bold flex-shrink-0">A. 제품전략</span>
+                                <div>
+                                    <p class="font-bold text-slate-900 text-sm">범용 AI와의 차별화</p>
+                                    <p class="text-xs text-slate-500">챗봇 → UX 2단계(토픽 브라우즈 + AI)</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down text-slate-400 accordion-icon open flex-shrink-0"></i>
+                        </button>
+                        <div class="border-t border-slate-100 p-4 bg-slate-50 text-sm">
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-semibold text-slate-700 text-xs uppercase tracking-wide mb-1">문제</p>
+                                    <p class="text-slate-600 text-sm">ChatGPT, Gemini 같은 범용 AI 대비 이 챗봇을 사용할 이유가 없음</p>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-slate-700 text-xs uppercase tracking-wide mb-1">해결</p>
+                                    <div class="space-y-3 mb-2">
+                                        <div class="border-l-4 border-purple-400 pl-3">
+                                            <p class="font-bold text-slate-800 text-sm mb-1">범용 AI가 제공하지 못하는 모듈 필요</p>
+                                            <p class="text-slate-600 text-sm">→ "구조화된 근거 열람 + SUMMARY"를 1단계로 제공, AI 답변은 2단계로 배치</p>
+                                        </div>
+                                        <div class="border-l-4 border-purple-400 pl-3">
+                                            <p class="font-bold text-slate-800 text-sm mb-1">AI 답변 자체의 품질 차별화 필요</p>
+                                            <p class="text-slate-600 text-sm">→ PydanticAI로 출력 형식을 강제, Decision Tree로 결론 분기를 고정하여 답변의 변동성을 제거. 확정적 결론만 도출하도록 설계 <em class="text-slate-400">— C. AI 파이프라인에서 상세</em></p>
+                                        </div>
+                                    </div>
+                                    <div class="overflow-x-auto mt-2">
+                                        <table class="w-full text-xs border-collapse">
+                                            <thead><tr class="border-b border-slate-200">
+                                                <th class="text-left py-1 px-2 text-slate-500">항목</th>
+                                                <th class="text-left py-1 px-2 text-slate-400">범용 AI</th>
+                                                <th class="text-left py-1 px-2 text-green-600">이 시스템</th>
+                                            </tr></thead>
+                                            <tbody class="text-slate-600">
+                                                <tr class="border-b border-slate-100"><td class="py-1 px-2">사용 흐름</td><td class="py-1 px-2">질문 → AI 답변</td><td class="py-1 px-2 font-semibold">토픽 선택 → 근거 열람 → AI 질문</td></tr>
+                                                <tr class="border-b border-slate-100"><td class="py-1 px-2">근거 접근</td><td class="py-1 px-2">AI 답변에 포함(선택적)</td><td class="py-1 px-2 font-semibold">DB 저장 고정 DATA 즉시 열람</td></tr>
+                                                <tr class="border-b border-slate-100"><td class="py-1 px-2">답변 일관성</td><td class="py-1 px-2">매번 다른 답변</td><td class="py-1 px-2 font-semibold">Decision Tree + PydanticAI로 확정적 결론</td></tr>
+                                                <tr><td class="py-1 px-2">질의응답, 감리사례</td><td class="py-1 px-2">제공 불가</td><td class="py-1 px-2 font-semibold">토픽별 연결</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="bg-purple-50 border border-purple-100 rounded-lg p-3 text-xs">
+                                    <p class="font-semibold text-purple-700 mb-1"><i class="fas fa-lightbulb mr-1"></i>회고</p>
+                                    <p class="text-slate-600"> <strong>AI 외에 어떤 가치를 함께 제공하느냐</strong> 가 중요하다는 것을 깨달음. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 2: PDF 파싱 한계 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition text-left">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2 py-0.5 bg-orange-50 text-orange-700 border border-orange-100 rounded text-xs font-bold flex-shrink-0">B. 데이터</span>
+                                <div>
+                                    <p class="font-bold text-slate-900 text-sm">PDF 파싱 한계 — 웹크롤링 전환</p>
+                                    <p class="text-xs text-slate-500">CASE BY CASE 패치 → kifrs.com REST API 크롤링</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down text-slate-400 accordion-icon flex-shrink-0"></i>
+                        </button>
+                        <div class="hidden border-t border-slate-100 p-4 bg-slate-50 text-sm">
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-semibold text-slate-700 text-xs uppercase tracking-wide mb-1">문제</p>
+                                    <p class="text-slate-600 text-sm">PDF 파싱에서 HTML 태그 혼입, 표 구조 손실 등 다양한 비결정성 발생.<BR> CASE 패치를 진행할수록 사이드이펙트로 정상 문단까지 손상.</p>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-slate-700 text-xs uppercase tracking-wide mb-1">해결</p>
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-xs border-collapse">
+                                            <thead><tr class="border-b border-slate-200">
+                                                <th class="text-left py-1 px-2 text-slate-500">항목</th>
+                                                <th class="text-left py-1 px-2 text-slate-400">PDF 파싱</th>
+                                                <th class="text-left py-1 px-2 text-green-600">웹크롤링</th>
+                                            </tr></thead>
+                                            <tbody class="text-slate-600">
+                                                <tr class="border-b border-slate-100"><td class="py-1 px-2">문단 번호</td><td class="py-1 px-2">불안정</td><td class="py-1 px-2 font-semibold">API 직접 제공 (정확)</td></tr>
+                                                <tr class="border-b border-slate-100"><td class="py-1 px-2">표 구조</td><td class="py-1 px-2">손실</td><td class="py-1 px-2 font-semibold">HTML 직접 파싱</td></tr>
+                                                <tr><td class="py-1 px-2">재현성</td><td class="py-1 px-2">비결정적</td><td class="py-1 px-2 font-semibold">동일 API = 동일 결과</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="bg-orange-50 border border-orange-100 rounded-lg p-3 text-xs">
+                                    <p class="font-semibold text-orange-700 mb-1"><i class="fas fa-lightbulb mr-1"></i>회고</p>
+                                    <p class="text-slate-600"><STRONG>PDF 전처리는 최후의 수단. </STRONG>이미 구조화된 데이터(API, HTML)가 존재하는지 먼저 조사해야 한다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 3: LLM 답변 분산 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition text-left">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-100 rounded text-xs font-bold flex-shrink-0">C. AI 파이프라인</span>
+                                <div>
+                                    <p class="font-bold text-slate-900 text-sm">LLM 답변 분산 — PydanticAI 전환</p>
+                                    <p class="text-xs text-slate-500">프롬프트 강화(역효과) → PydanticAI 구조화 출력</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down text-slate-400 accordion-icon flex-shrink-0"></i>
+                        </button>
+                        <div class="hidden border-t border-slate-100 p-4 bg-slate-50 text-sm">
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-semibold text-slate-700 text-xs uppercase tracking-wide mb-1">문제</p>
+                                    <p class="text-slate-600 text-sm">동일 질문에 매번 다른 형식의 답변. 프롬프트를 엄격하게 쓸수록 오히려 오류 증가. <BR>LangGraph의 자유형 텍스트 출력이 비결정성의 근본 원인.</p>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-slate-700 text-xs uppercase tracking-wide mb-1">해결</p>
+                                    <p class="text-slate-600 text-sm mb-2">LangGraph/LangChain → <strong>PydanticAI</strong> 전환. 프롬프트 수준의 부탁이 아닌 <STRONG>코드 수준의 강제.</STRONG></p>
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-xs border-collapse">
+                                            <thead><tr class="border-b border-slate-200">
+                                                <th class="text-left py-1 px-2 text-slate-500">지표</th>
+                                                <th class="text-center py-1 px-2 text-slate-400">LangGraph</th>
+                                                <th class="text-center py-1 px-2 text-green-600">PydanticAI</th>
+                                            </tr></thead>
+                                            <tbody class="text-slate-600">
+                                                <tr class="border-b border-slate-100"><td class="py-1 px-2">포맷 준수율</td><td class="py-1 px-2 text-center">불안정</td><td class="py-1 px-2 text-center font-semibold">100%</td></tr>
+                                                <tr class="border-b border-slate-100"><td class="py-1 px-2">인용 누락</td><td class="py-1 px-2 text-center">간헐적</td><td class="py-1 px-2 text-center font-semibold">자동 재시도 → 0건</td></tr>
+                                                <tr><td class="py-1 px-2">테스트 재현성</td><td class="py-1 px-2 text-center">3회 모두 상이</td><td class="py-1 px-2 text-center font-semibold">형식 100% 동일</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 border border-blue-100 rounded-lg p-3 text-xs">
+                                    <p class="font-semibold text-blue-700 mb-1"><i class="fas fa-lightbulb mr-1"></i>회고</p>
+                                    <p class="text-slate-600">정확성이 중요한 도메인에서는 코드수준에서의 강제가 필요하다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 4: 비결정적 결론 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition text-left">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-100 rounded text-xs font-bold flex-shrink-0">C. AI 파이프라인</span>
+                                <div>
+                                    <p class="font-bold text-slate-900 text-sm">답변 내용 비결정성 — Decision Tree</p>
+                                    <p class="text-xs text-slate-500">PydanticAI만으로 부족 → Decision Tree 알고리즘 강제</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down text-slate-400 accordion-icon flex-shrink-0"></i>
+                        </button>
+                        <div class="hidden border-t border-slate-100 p-4 bg-slate-50 text-sm">
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-semibold text-slate-700 text-xs uppercase tracking-wide mb-1">문제</p>
+                                    <p class="text-slate-600 text-sm">PydanticAI로 형식은 통제했으나 <strong>내용이 매번 변동됨.</strong><BR> 같은 질문에 인용 문단, 결론 등을 AI가 매번 다르게 자의적으로 생성.</p>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-slate-700 text-xs uppercase tracking-wide mb-1">해결</p>
+                                    <p class="text-slate-600 text-sm mb-2">26개 토픽 각각에 7개 섹션의 <strong>Decision Tree</strong>를 사전 정의. <BR>AI는 정해진 체크리스트를 확인하고, 정해진 결론 분기 중 선택하며, 사전 배정된 문서만 인용 가능.</p>
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-xs border-collapse">
+                                            <thead><tr class="border-b border-slate-200">
+                                                <th class="text-left py-1 px-2 text-slate-500">지표</th>
+                                                <th class="text-center py-1 px-2 text-slate-400">PydanticAI만</th>
+                                                <th class="text-center py-1 px-2 text-green-600">+ Decision Tree</th>
+                                            </tr></thead>
+                                            <tbody class="text-slate-600">
+                                                <tr class="border-b border-slate-100"><td class="py-1 px-2">검색 적중률</td><td class="py-1 px-2 text-center">36%</td><td class="py-1 px-2 text-center font-bold text-green-600">76% (+40%p)</td></tr>
+                                                <tr class="border-b border-slate-100"><td class="py-1 px-2">꼬리질문 일관성</td><td class="py-1 px-2 text-center">60%</td><td class="py-1 px-2 text-center font-bold text-green-600">100%</td></tr>
+                                                <tr><td class="py-1 px-2">환각 발생</td><td class="py-1 px-2 text-center">간헐적</td><td class="py-1 px-2 text-center font-bold text-green-600">0건 (301회 검증)</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 border border-blue-100 rounded-lg p-3 text-xs">
+                                    <p class="font-semibold text-blue-700 mb-1"><i class="fas fa-lightbulb mr-1"></i>회고</p>
+                                    <p class="text-slate-600">루트 사전 주입 및 코드 강제를 통해 변동성 차단 가능</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 5: 개발 프로세스 (Git + 문서 통합) -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition text-left">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2 py-0.5 bg-green-50 text-green-700 border border-green-100 rounded text-xs font-bold flex-shrink-0">D. 개발프로세스</span>
+                                <div>
+                                    <p class="font-bold text-slate-900 text-sm">Git 작업 소실 + 문서 관리 부실 — 규칙·docs 체계 수립</p>
+                                    <p class="text-xs text-slate-500">작업 소실 사고 → .gitignore 체계화 + 문서 체계 구축</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down text-slate-400 accordion-icon flex-shrink-0"></i>
+                        </button>
+                        <div class="hidden border-t border-slate-100 p-4 bg-slate-50 text-sm">
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-semibold text-slate-700 text-xs uppercase tracking-wide mb-1">문제</p>
+                                    <p class="text-slate-600 text-sm">브랜치 전환 시 unstaged 변경사항 전체 소실. 불필요 파일 커밋<BR>동일 문제 반복 디버깅, 에이전트에게 매번 같은 설명 반복.</p>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-slate-700 text-xs uppercase tracking-wide mb-1">해결</p>
+                                    <p class="text-slate-600 text-sm">git 관리 규칙, 안전수칙 체계화.<br> CLAUDE.md·debugging.md·DECISION.md 등 문서 체계를 구축</p>
+                                </div>
+                                <div class="bg-green-50 border border-green-100 rounded-lg p-3 text-xs">
+                                    <p class="font-semibold text-green-700 mb-1"><i class="fas fa-lightbulb mr-1"></i>회고</p>
+                                    <p class="text-slate-600">문서화를 통해 안전장치 확보 및 효율적인 작업이 가능하다는것을 깨달음.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+
     </div>
+
+    <!-- ================================================ -->
+    <!-- JavaScript: 탭 전환 + 아코디언 -->
+    <!-- ================================================ -->
+    <script>
+        // 탭 전환
+        document.addEventListener('DOMContentLoaded', function() {
+            var cards = document.querySelectorAll('.tab-card');
+            var panels = document.querySelectorAll('.tab-panel');
+
+            // 탭 활성화 색상 맵
+            var colorMap = {
+                overview:     { border: 'border-blue-500',   iconBg: 'bg-blue-100',   iconText: 'text-blue-600' },
+                quality:      { border: 'border-green-500',  iconBg: 'bg-green-100',  iconText: 'text-green-600' },
+                features:     { border: 'border-orange-500', iconBg: 'bg-orange-100', iconText: 'text-orange-600' },
+                troubleshoot: { border: 'border-slate-500',  iconBg: 'bg-slate-200',  iconText: 'text-slate-600' }
+            };
+
+            function switchTab(tabName) {
+                // 모든 카드 비활성화
+                cards.forEach(function(c) {
+                    c.classList.remove('active', 'border-blue-500', 'border-green-500', 'border-orange-500', 'border-slate-500', 'shadow-md');
+                    c.classList.add('border-slate-200', 'shadow-sm');
+                });
+                // 모든 패널 숨김
+                panels.forEach(function(p) {
+                    p.classList.add('hidden');
+                });
+
+                // 클릭한 카드 활성화
+                var activeCard = document.querySelector('.tab-card[data-tab="' + tabName + '"]');
+                var colors = colorMap[tabName];
+                activeCard.classList.add('active', colors.border, 'shadow-md');
+                activeCard.classList.remove('border-slate-200', 'shadow-sm');
+
+                // 패널 표시
+                document.getElementById('panel-' + tabName).classList.remove('hidden');
+
+                // 탭 카드 영역으로 부드럽게 스크롤
+                document.getElementById('tab-cards').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            cards.forEach(function(card) {
+                card.addEventListener('click', function() {
+                    switchTab(card.dataset.tab);
+                });
+            });
+        });
+
+        // 아코디언 토글
+        function toggleAccordion(el) {
+            var content = el.nextElementSibling;
+            var icon = el.querySelector('.accordion-icon');
+            content.classList.toggle('hidden');
+            icon.classList.toggle('open');
+        }
+    </script>
+
 </body>
 </html>
