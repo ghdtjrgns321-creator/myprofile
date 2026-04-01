@@ -535,9 +535,17 @@
                     <p class="text-sm text-slate-700 font-medium">"A사가 B에게 재화를 100원에 공급하고 세금계산서를 발행, B가 고객 C에게 120원에 판매할 때 A의 매출액은?"</p>
                 </div>
 
-                <!-- 핵심 차이 요약 -->
-                <div class="bg-red-50 border border-red-100 rounded-lg p-4 mb-6">
-                    <p class="text-sm text-slate-700"><strong class="text-red-700">6개 LLM 모두 "100원"으로 단정</strong> <BR> ㅡ 본인/대리인 여부를 확인하지 않고 결론을 내림 및 근거 문단 제시 미흡함. <BR>ㅡ 이 시스템은 <strong>체크리스트로 조건을 확인</strong>한 뒤 Case 1(본인: 120원) / Case 2(대리인: 100원)로 <strong>조건부 분기</strong>하고, 기준서 문단을 인용.</p>
+                <!-- 핵심 차이 요약: LLM 한계 vs 이 시스템 -->
+                <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-3">
+                    <p class="text-sm font-semibold text-red-700 mb-2"><i class="fa-solid fa-triangle-exclamation mr-1"></i>모두 "100원"으로 단정 — 정보가 충분하지 않더라도 결론을 내리려는 경향</p>
+                    <ul class="text-sm text-slate-600 space-y-1 ml-1">
+                        <li>ㅡ 질문의 핵심인 본인/대리인 여부 확인 없이 결론</li>
+                        <li>ㅡ 근거 문단 제시 미흡</li>
+                    </ul>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-4 mb-6 relative">
+                    <span class="absolute -top-3 left-4 bg-emerald-600 text-white text-xs font-bold px-2.5 py-0.5 rounded-full">This System</span>
+                    <p class="text-sm text-slate-700 mt-1"><i class="fa-solid fa-check-double text-emerald-600 mr-1"></i><strong class="text-emerald-700">체크리스트로 조건을 확인</strong>한 뒤 Case 1(본인: 120원) / Case 2(대리인: 100원)로 <strong class="text-emerald-700">조건부 분기</strong>하고, 기준서 문단을 인용.</p>
                 </div>
 
                 <!-- 4개 LLM 아코디언 -->
@@ -946,11 +954,11 @@
                     <span class="w-8 h-8 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mr-3"><i class="fas fa-book-open"></i></span>
                     AI 질문 전 — 토픽 탐색 + 근거 열람
                 </h2>
-                <p class="text-sm text-slate-500 mb-4">"본인 대 대리인" 토픽 선택 → 연관 토픽(거래가격 산정, 변동대가) 네비게이션</p>
+                <p class="text-sm text-slate-500 mb-4">"라이선싱" 토픽 선택 → 연관 토픽(수행의무 식별, 변동대가의 배분, 본인 대 대리인) 네비게이션</p>
 
                 <ul class="text-slate-600 text-sm space-y-1.5 mb-3">
-                    <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>4개 탭에서 기준서 원문·적용사례·질의회신·감리사례를 AI 호출 전에 즉시 열람</li>
-                    <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>각 주제별 Summary 제공 — 전문을 펼치기 전에 핵심을 먼저 파악</li>
+                    <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>4개 탭에서 <STRONG>기준서 원문·적용사례·질의회신·감리사례</STRONG>를 AI 호출 전에 즉시 열람</li>
+                    <li class="flex items-start"><i class="fas fa-check text-indigo-400 mr-2 mt-0.5 text-xs"></i>각 주제별 <STRONG>Summary 제공</STRONG> — 전문을 펼치기 전에 핵심을 먼저 파악</li>
                 </ul>
                 <div class="flex flex-wrap gap-2 mb-4">
                     <span class="px-3 py-1.5 bg-blue-50 text-blue-700 border border-blue-100 rounded-lg text-xs font-semibold">
@@ -1029,7 +1037,46 @@
 
                 <div class="space-y-3">
 
-                    <!-- Case 1: 범용 AI 차별화 -->
+                    <!-- Case 1-1: 기준서 1115 선택 이유 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition text-left">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2 py-0.5 bg-purple-50 text-purple-700 border border-purple-100 rounded text-xs font-bold flex-shrink-0">A. 제품전략</span>
+                                <div>
+                                    <p class="font-bold text-slate-900 text-sm">왜 K-IFRS 1115인가</p>
+                                    <p class="text-xs text-slate-500">기준서 중 1115호(수익인식)를 선택한 이유</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down text-slate-400 accordion-icon flex-shrink-0"></i>
+                        </button>
+                        <div class="hidden border-t border-slate-100 p-4 bg-slate-50 text-sm">
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-semibold text-slate-700 text-xs uppercase tracking-wide mb-1">문제</p>
+                                    <p class="text-slate-600 text-sm">K-IFRS의 모든 기준서를 첫 프로젝트로 만드는 것은 효익 대비 비용이 크다고 판단<BR> → 하나의 기준서를 선택하여 우선제작 후 확장 가능성</p>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-slate-700 text-xs uppercase tracking-wide mb-1">선택 근거</p>
+                                    <div class="space-y-3 mb-2">
+                                        <div class="border-l-4 border-purple-400 pl-3">
+                                            <p class="font-bold text-slate-800 text-sm mb-1">실무에서 가장 많이 헷갈리는 기준서</p>
+                                            <p class="text-slate-600 text-sm">→ 1115호에 관련된 <strong>질의응답(Q&A)과 감리지적사례가 다른 기준서 대비 가장 많음</strong>. 실무자가 가장 자주 틀리고 질문하는 영역 = 시스템의 수요가 가장 확실한 영역</p>
+                                        </div>
+                                        <div class="border-l-4 border-purple-400 pl-3">
+                                            <p class="font-bold text-slate-800 text-sm mb-1">Decision Tree 표현에 가장 적합</p>
+                                            <p class="text-slate-600 text-sm">→ 5단계 수익인식 모델 + 본인/대리인·변동대가 등 <strong>조건부 분기가 명확</strong>하여, 판단 로직을 Decision Tree로 구조화하기에 최적.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-purple-50 border border-purple-100 rounded-lg p-3 text-xs">
+                                    <p class="font-semibold text-purple-700 mb-1"><i class="fas fa-lightbulb mr-1"></i>회고</p>
+                                    <p class="text-slate-600"><strong>하나의 기준서를 깊게 파는 것</strong>이 MVP로서 제품 가치를 증명하기에 적합했음</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 1-2: 범용 AI 차별화 -->
                     <div class="border border-slate-200 rounded-xl overflow-hidden">
                         <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition text-left">
                             <div class="flex items-center gap-3">
