@@ -221,7 +221,7 @@
                         <p class="text-slate-600 text-sm mb-6 leading-relaxed">
                             멀티에이전트 교차검증 기반 공시 재무제표·주석 변화 리뷰 도구입니다.
                             <br>
-                            OpenDART XBRL을 수집해 BS·IS·CF 숫자 흐름과 주석 근거, 전기 대비 공시 변화를 5개 역할 에이전트가 교차검증하여 감사 리스크 후보를 제안합니다.
+                            OpenDART XBRL을 수집해 BS·IS·CF 숫자 흐름과 주석 근거, 전기 대비 공시 변화를 숫자·주석·흐름·추세·외부·동종업계 6개 관점 에이전트가 독립 교차검증하고, 반박 에이전트가 정상 설명 가능성을 검증해 감사 리스크 후보를 제안합니다.
                         </p>
                         <div class="flex flex-wrap gap-2 mt-auto">
                             <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Python</span>
@@ -252,7 +252,7 @@
                     </h3>
                     <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">
                         전표(Journal Entry) 전수를 룰·ML로 검토하는 로컬 감사 분석 도구입니다.
-                        <span class="font-semibold text-slate-700">데이터 생성 → 룰 기반 탐사 → ML 기반 탐사</span>로 이어지는 3단계 파이프라인으로, K-IFRS 합성 전표부터 고위험 전표 우선순위화까지 전 과정을 직접 구현했습니다.
+                        <span class="font-semibold text-slate-700">데이터 생성 → 룰 기반 탐사 → 분석적 검토·ML 이상탐지</span>로 이어지는 3단계 파이프라인으로, K-IFRS 합성 전표부터 고위험 전표 우선순위화까지 전 과정을 직접 구현했습니다.
                     </p>
 
                     <!-- 소카드 3개 (설명과 기술 태그 사이, 카드 내부 구성) -->
@@ -287,15 +287,15 @@
                                 <i class="fas fa-arrow-right transform group-hover/sub:translate-x-1 transition-transform"></i>
                             </div>
                         </a>
-                        <!-- ③ ML 기반 탐사 -->
+                        <!-- ③ 분석적 검토 + ML 이상탐지 -->
                         <a href="project_localjournal_ml.html" class="group/sub block bg-slate-50 rounded-xl overflow-hidden border border-slate-200 hover:bg-white hover:border-purple-400 hover:shadow-md transition-all duration-300 h-full flex flex-col">
                             <div class="p-5 flex-grow">
                                 <div class="flex items-center justify-between mb-3">
                                     <span class="w-10 h-10 flex items-center justify-center rounded-lg bg-fuchsia-100 text-fuchsia-600 text-lg"><i class="fas fa-brain"></i></span>
                                     <span class="text-xs font-bold text-slate-300">03</span>
                                 </div>
-                                <h4 class="text-base font-bold text-slate-900 mb-2 group-hover/sub:text-purple-600 transition-colors">ML 기반 탐사</h4>
-                                <p class="text-xs text-slate-500 leading-relaxed">XGBoost 이상치 분류 + VAE·Isolation Forest 특이치 탐지를 앙상블해 신규 위험 후보 보조 선별.</p>
+                                <h4 class="text-base font-bold text-slate-900 mb-2 group-hover/sub:text-purple-600 transition-colors">분석적 검토 + ML 이상탐지</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Benford·활동량 급변·라운드넘버·첫등장 거래처 등 전표 한 장으론 안 보이는 계정·거래처 단위 신호를 검토 큐로 표면화. VAE·Isolation Forest 비지도 앙상블로 전표 이상 랭킹을 보강.</p>
                             </div>
                             <div class="bg-purple-50 px-5 py-3 flex justify-between items-center text-xs font-medium text-purple-700">
                                 <span>View Project</span>
@@ -308,8 +308,8 @@
                     <div class="flex flex-wrap gap-2">
                         <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Rust</span>
                         <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Python</span>
-                        <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">XGBoost</span>
                         <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">VAE</span>
+                        <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Isolation Forest</span>
                         <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">DuckDB</span>
                         <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Streamlit</span>
                     </div>
@@ -320,22 +320,23 @@
                     <div class="p-8 flex-grow">
                         <div class="flex justify-between items-start mb-4">
                             <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full uppercase tracking-wide">
-                                Evidence-Driven RAG
+                                Knowledge Graph RAG
                             </span>
                             <span class="text-slate-400 text-sm"><i class="far fa-calendar-alt mr-1"></i>2026.03</span>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
-                            K-IFRS 1115 통합 문헌 감사 어시스턴트
+                            K-IFRS 1115호 지식그래프 기반 어시스턴트
                         </h3>
                         <p class="text-slate-600 text-sm mb-6 leading-relaxed">
                             K-IFRS 1115 규정과 실무 사례를 탐색·해석하는 AI 도구입니다.
                             <br>
-                            (기준서 원문, 적용 사례, 질의응답, 감리지적사항, 교육자료 적재)
+                            (기준서 원문, 적용 사례, 질의응답, 감리지적사항 적재)
                             <br>
-                            5단계 RAG 방어 파이프라인으로 환각을 줄이고, 검증된 근거만 답변합니다.
+                            개념·문단·사례를 온톨로지 지식그래프로 연결해, 근거의 선을 따라가며 답변합니다.
                         </p>
                         <div class="flex flex-wrap gap-2 mt-auto">
                             <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">FastAPI</span>
+                            <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Knowledge Graph</span>
                             <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">RAG</span>
                             <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Streamlit</span>
                             <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Docker</span>
