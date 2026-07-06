@@ -20,6 +20,6 @@ https://ghdtjrgns321-creator.github.io/myprofile/
 
 | 저장소                                                                             | 설명                                                                                    |
 | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| [AI Study Log](https://github.com/ghdtjrgns321-creator/ai-study-log)               | 매일 아침 클라우드 예약 에이전트가 AI 학습 주제를 선별·브리핑해 자동 커밋하는 학습 로그 |
 | [Claude Code Settings](https://github.com/ghdtjrgns321-creator/claudecodesettings) | Claude Code 전역 개발환경 설정 — 훅·스킬·하네스 관리체계                                |
+| [AI Study Log](https://github.com/ghdtjrgns321-creator/ai-study-log)               | 매일 예약 에이전트가 AI 학습 주제를 선별·브리핑해 자동 커밋하는 학습 도우미 |
 
