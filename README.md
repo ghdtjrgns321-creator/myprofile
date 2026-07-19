@@ -3,11 +3,7 @@
 수습 공인회계사 홍석훈의 포트폴리오입니다
 재무·회계 도메인 지식에 생성형 AI 기술을 접목하는 프로젝트를 진행중입니다.
 
-## Live
-
-https://ghdtjrgns321-creator.github.io/myprofile/
-
-## 프로젝트 보러가기
+## 프로젝트 보러가기(Git)
 
 ### [K-IFRS 1115 AI](https://github.com/ghdtjrgns321-creator/k-ifrs-1115) · [데모](http://134.185.104.224:8501/)
 
