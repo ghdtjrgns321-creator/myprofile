@@ -221,7 +221,7 @@
                         <p class="text-slate-600 text-sm mb-6 leading-relaxed">
                             멀티에이전트 교차검증 기반 공시 재무제표·주석 변화 리뷰 도구입니다.
                             <br>
-                            OpenDART XBRL을 수집해 BS·IS·CF 숫자 흐름과 주석 근거, 전기 대비 공시 변화를 숫자·주석·흐름·추세·외부·동종업계 6개 관점 에이전트가 독립 교차검증하고, 반박 에이전트가 정상 설명 가능성을 검증해 감사 리스크 후보를 제안합니다.
+                            OpenDART XBRL을 수집해 BS·IS·CF 숫자 흐름과 주석 근거, 전기 대비 공시 변화를 숫자·주석·흐름·추세·업종 5개 관점 에이전트가 서로 정보를 공유하지 않고 독립 분석합니다. 수치 연산은 코드가 맡고, 카드가 확정되면 반박·외부검증 에이전트가 정상 설명 가능성을 따져 감사 리스크 후보를 제안합니다.
                         </p>
                         <div class="flex flex-wrap gap-2 mt-auto">
                             <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Python</span>
@@ -257,7 +257,7 @@
                         <p class="text-slate-600 text-sm mb-6 leading-relaxed">
                             프로젝트 소개 PPT를 일관된 서식으로 찍어내는 서식 공장입니다.
                             <br>
-                            프로젝트별로 정리해둔 보고서(FINAL-REPORT)를 재료로, 목차 인터뷰 → 덱 구성 → 네이티브 .pptx 빌드 → 일관성 QA의 4단계 멀티에이전트 파이프라인을 거칩니다. 브랜드·서식은 brand-kit.yaml 단일 출처가 보장하고, 시각 어휘 편중을 막는 다양성 게이트와 보고서 대조 검증(창작 0 원칙)을 QA 단계에 두었습니다.
+                            프로젝트별로 정리해둔 보고서(FINAL-REPORT)를 재료로, 목차 인터뷰 → 덱 구성 → 네이티브 .pptx 빌드 → 검증의 4단계 파이프라인을 거칩니다. 손으로 만든 골든 덱 17장이 서식·밀도의 기준선이고, 브랜드·서식 값은 brand-kit.yaml 단일 출처가 보장합니다. 검증 단계에서 사용자와 확정한 목차 계약 대조·덱 오딧·골든 회귀 대조 3층이 걸립니다.
                         </p>
                         <div class="flex flex-wrap gap-2 mt-auto">
                             <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Python</span>
@@ -292,7 +292,7 @@
                     </h3>
                     <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">
                         전표(Journal Entry) 전수를 룰·ML로 검토하는 로컬 감사 분석 도구입니다.
-                        <span class="font-semibold text-slate-700">데이터 생성 → 룰 기반 탐사 → 분석적 검토·ML 이상탐지</span>로 이어지는 3단계 파이프라인으로, K-IFRS 합성 전표부터 고위험 전표 우선순위화까지 전 과정을 직접 구현했습니다.
+                        <span class="font-semibold text-slate-700">데이터 생성 → 룰 기반 탐사 → 분석적 검토·ML 이상탐지</span>로 이어지는 3단계 파이프라인으로, K-IFRS 합성 전표부터 감사인이 먼저 볼 검토 큐 생성까지 전 과정을 직접 구현했습니다.
                     </p>
 
                     <!-- 소카드 3개 (설명과 기술 태그 사이, 카드 내부 구성) -->
@@ -305,7 +305,7 @@
                                     <span class="text-xs font-bold text-slate-300">01</span>
                                 </div>
                                 <h4 class="text-base font-bold text-slate-900 mb-2 group-hover/sub:text-purple-600 transition-colors">데이터 생성</h4>
-                                <p class="text-xs text-slate-500 leading-relaxed">Rust 합성 전표 엔진. K-IFRS 제조 3법인·3년치 110만 라인, 의미정합성 강제 + 정답라벨 주입.</p>
+                                <p class="text-xs text-slate-500 leading-relaxed">Rust 합성 전표 엔진(EY-ASU DataSynth 개조). 한국 중견 제조업 단일 법인 35만 행, 부정을 섞지 않은 정상 원장과 감리 수법 14종 overlay를 분리 생성.</p>
                             </div>
                         </div>
                         <!-- ② 룰 기반 탐사 -->
@@ -316,7 +316,7 @@
                                     <span class="text-xs font-bold text-slate-300">02</span>
                                 </div>
                                 <h4 class="text-base font-bold text-slate-900 mb-2 group-hover/sub:text-purple-600 transition-colors">룰 기반 탐사</h4>
-                                <p class="text-xs text-slate-500 leading-relaxed">32개 감사 룰(L1~L4)로 통제 위반·이상징후를 선별하고 case priority로 검토 우선순위 산출.</p>
+                                <p class="text-xs text-slate-500 leading-relaxed">감사 룰 29종으로 통제 위반·이상징후를 선별. 도구가 위험 등급을 매기는 대신 감사인이 룰 조합을 골라 검토 큐를 만듭니다.</p>
                             </div>
                         </div>
                         <!-- ③ 분석적 검토 + ML 이상탐지 -->
@@ -327,7 +327,7 @@
                                     <span class="text-xs font-bold text-slate-300">03</span>
                                 </div>
                                 <h4 class="text-base font-bold text-slate-900 mb-2 group-hover/sub:text-purple-600 transition-colors">분석적 검토 + ML 이상탐지</h4>
-                                <p class="text-xs text-slate-500 leading-relaxed">Benford·활동량 급변·라운드넘버·첫등장 거래처 등 전표 한 장으론 안 보이는 계정·거래처 단위 신호를 검토 큐로 표면화. VAE·Isolation Forest 비지도 앙상블로 전표 이상 랭킹을 보강.</p>
+                                <p class="text-xs text-slate-500 leading-relaxed">Benford·활동량 급변·라운드넘버·첫등장 거래처 등 전표 한 장으론 안 보이는 계정·거래처 단위 신호를 별도 표면으로 올림. VAE 비지도 모델도 붙였으나 전표 판별력이 무작위 수준이라 실패로 기록.</p>
                             </div>
                         </div>
                     </div>
@@ -337,7 +337,7 @@
                         <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Rust</span>
                         <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Python</span>
                         <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">VAE</span>
-                        <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Isolation Forest</span>
+                        <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">PyTorch</span>
                         <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">DuckDB</span>
                         <span class="text-xs bg-white border border-slate-200 px-2 py-1 rounded text-slate-600 font-medium">Streamlit</span>
                     </div>
