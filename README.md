@@ -8,7 +8,7 @@
 ### [K-IFRS 1115 AI(Git)](https://github.com/ghdtjrgns321-creator/k-ifrs-1115)
 
 수익인식 기준서로 답하는 회계 챗봇 — 지식그래프로 Retrieve, 판단트리로 추론 제한.
--  · [라이브 데모(클릭 시 실행)](http://134.185.104.224:8501/)
+- [라이브 데모(클릭 시 실행)](http://134.185.104.224:8501/)
 
 ### [FS Multi Analyzer(Git)](https://github.com/ghdtjrgns321-creator/fs-multi-analyzer)
 
