@@ -14,11 +14,11 @@
 
 공시 재무제표를 5개 관점의 에이전트가 교차검증해 의심 건을 카드로 생성
 
-### [Local AI Audit Assistant(Git)](https://github.com/ghdtjrgns321-creator/local-ai-journal-assist) *(작업 중)*
+### [Local AI Audit Assistant(Git)](https://github.com/ghdtjrgns321-creator/local-ai-journal-assist) *(개발 중)*
 
 전표를 전수로 탐지해 감사인이 먼저 볼 검토 큐 생성 - 1. 룰 기반 이진분류 2. 분석적 검토 3.VAE(딥러닝)
 
-### [PPTX Maker(Git)](https://github.com/ghdtjrgns321-creator/pptxmaker) *(작업 중)*
+### [PPTX Maker(Git)](https://github.com/ghdtjrgns321-creator/pptxmaker) *(개발 중)*
 
 골든 덱을 기준으로 비슷한 품질과 규격의 네이티브 .pptx 생성 도구
 
