@@ -13,7 +13,7 @@
 
 ## 🔭 프로젝트
 
-### [K-IFRS 1115 AI](https://github.com/ghdtjrgns321-creator/k-ifrs-1115) · [데모](http://134.185.104.224:8501/)
+### [K-IFRS 1115 AI](https://github.com/ghdtjrgns321-creator/k-ifrs-1115)
 
 수익인식 기준서를 기반으로 답하는 도메인 지식 전용 챗봇 — 지식그래프로 Retrieve, 의사결정 트리로 추론 제한
 
