@@ -15,15 +15,15 @@
 
 ### [K-IFRS 1115 AI](https://github.com/ghdtjrgns321-creator/k-ifrs-1115) · [데모](http://134.185.104.224:8501/)
 
-수익인식 기준서를 기반으로 답하는 도메인 지식 전용 챗봇 — 지식그래프로 Retrieve, 의사결정 트리로 추론 제한.
+수익인식 기준서를 기반으로 답하는 도메인 지식 전용 챗봇 — 지식그래프로 Retrieve, 의사결정 트리로 추론 제한
 
 ### [Local AI Audit Assistant](https://github.com/ghdtjrgns321-creator/local-ai-journal-assist)
 
-전표를 전수로 탐지해 감사인이 먼저 볼 검토 큐 생성 - 1. 룰 기반 이진분류 2. 분석적 검토 3.VAE(딥러닝)
+전표를 전수로 탐지해 감사인이 먼저 볼 검토 대상 생성 - 1. 룰 기반 이진분류 2. 분석적 검토 3. 머신러닝(VAE)
 
 ### [FS Multi Analyzer](https://github.com/ghdtjrgns321-creator/fs-multi-analyzer)
 
-공시 재무제표를 5개 관점의 멀티 에이전트가 교차검증해 의심 건을 생성
+공시 재무제표를 5개 관점의 멀티 에이전트가 교차검증해 검토 대상 생성
 
 ### [PPTX Maker](https://github.com/ghdtjrgns321-creator/pptxmaker) *(작업 중)*
 
