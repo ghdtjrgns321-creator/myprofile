@@ -19,7 +19,7 @@
 
 ### [Local AI Audit Assistant](https://github.com/ghdtjrgns321-creator/local-ai-journal-assist)
 
-전표를 전수로 탐지해 감사인이 먼저 볼 검토 대상 생성 - 1. 룰 기반 이진분류 2. 분석적 검토 3. 머신러닝(VAE)
+전표를 전수로 분석해 감사인이 먼저 볼 검토 대상 생성 - 1. 룰 기반 이진분류 2. 분석적 검토 3. 머신러닝(VAE)
 
 ### [FS Multi Analyzer](https://github.com/ghdtjrgns321-creator/fs-multi-analyzer)
 
