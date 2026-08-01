@@ -23,7 +23,7 @@
 
 ### [FS Multi Analyzer](https://github.com/ghdtjrgns321-creator/fs-multi-analyzer)
 
-공시 재무제표를 5개 관점의 멀티 에이전트가 교차검증해 검토 대상 생성
+공시 연간 사업보고서를 5개 관점의 멀티 에이전트가 교차검증해 검토 대상 생성
 
 ### [PPTX Maker](https://github.com/ghdtjrgns321-creator/pptxmaker) *(작업 중)*
 
