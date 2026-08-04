@@ -25,9 +25,9 @@
 
 공시 연간 사업보고서를 5개 관점의 멀티 에이전트가 교차검증해 검토 대상 생성
 
-### [PPTX Maker](https://github.com/ghdtjrgns321-creator/pptxmaker) *(작업 중)*
+### [PPTX Maker](https://github.com/ghdtjrgns321-creator/pptxmaker)
 
-생성형 AI를 활용하여 비슷한 품질과 규격의 pptx 생성 도구
+생성형 AI를 활용한 규격화된 PPT 생성 도구
 
 ## 💼 경력·학력
 
