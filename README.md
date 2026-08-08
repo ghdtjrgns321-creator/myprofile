@@ -23,7 +23,7 @@
 
 ### [FS Multi Analyzer](https://github.com/ghdtjrgns321-creator/fs-multi-analyzer)
 
-관점별 8개의 특화 에이전트를 통한 공시 사업보고서 분석 및 검토 대상 생성
+관점별 8개의 특화 에이전트를 통한 연간 사업보고서 분석 및 검토 대상 생성
 
 ### [PPTX Maker](https://github.com/ghdtjrgns321-creator/pptxmaker)
 
